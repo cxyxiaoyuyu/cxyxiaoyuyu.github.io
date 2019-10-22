@@ -820,5 +820,58 @@ var jiathis_config={
 </html>
 
 
+<style>
+.text-popup {
+    animation: textPopup 1s;
+    color: red;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    user-select: none;
+    white-space: nowrap;
+    position: absolute;
+    z-index: 99;
+}
+@keyframes textPopup {
+    0%, 100% {
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-50px);    
+    }
+}
+</style>
+
+<script>
+var fnTextPopup = function (options) {
+    var index = 0;
+    document.documentElement.addEventListener('click', function (event) {
+        var x = event.pageX, y = event.pageY;
+        var eleText = document.createElement('span');
+        var img = document.createElement('img')
+        img.src="/images/cherry.png"
+        eleText.appendChild(img)
+        eleText.className = 'text-popup';
+        this.appendChild(eleText);
+
+        // 动画结束后删除自己
+        eleText.addEventListener('animationend', function () {
+            eleText.parentNode.removeChild(eleText);
+        });
+        // 位置
+        eleText.style.left = (x - eleText.clientWidth / 2) + 'px';
+        eleText.style.top = (y - eleText.clientHeight) + 'px';
+        // index递增
+        index++;
+    });    
+};
+
+fnTextPopup();
+</script>
+
+
 <!-- 页面点击小红心 -->
-<script type="text/javascript" src="/js/src/love.js"></script>
+<!-- <script type="text/javascript" src="/js/src/love.js"></script> -->
