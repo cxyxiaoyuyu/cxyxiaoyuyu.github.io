@@ -1,7 +1,8 @@
 ---
 title: curl常用用法以及http协议
 date: 2018-10-06 22:38:26
-tags:
+tags: http
+categories: http
 ---
 
 ## curl命令常用参数
@@ -134,8 +135,8 @@ tags:
 5. 如果有请求的第四部分，那么在 FormData 或 Payload 里面可以看到
 6. 如果是响应，可以点击Response查看响应的数据
 
-![request](/img/request.png 'request')
+{% asset_img request.png request %}
 
-![response](/img/response.png 'response')
+{% asset_img response.png response %}
 
 
