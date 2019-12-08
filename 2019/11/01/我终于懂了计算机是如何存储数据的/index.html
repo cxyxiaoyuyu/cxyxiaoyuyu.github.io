@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://cxyxiaoyuyu.github.io').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="前言 世界上只有10种人, 认识二进制的和不认识的计算机只能存储0和1, 所有信息在新计算内部最终都是以二进制的形式存储。  每一个二进制位(bit)都只有0和1两种状态,八位二进制(一个字节byte)可以表示2**8 &#x3D;&#x3D;&#x3D; 256种状态,从00000000~11111111。 既然计算机只能存储0和1,它是怎么存储数字以及各种字符呢？先从简单的数字说起吧 如何存储数字存储数字很容易,直接转为二">
+<meta name="keywords" content="编码 js字符串">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机编码与js字符串">
+<meta property="og:url" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2019&#x2F;11&#x2F;01&#x2F;%E6%88%91%E7%BB%88%E4%BA%8E%E6%87%82%E4%BA%86%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE%E7%9A%84&#x2F;index.html">
+<meta property="og:site_name" content="小宇的博客">
+<meta property="og:description" content="前言 世界上只有10种人, 认识二进制的和不认识的计算机只能存储0和1, 所有信息在新计算内部最终都是以二进制的形式存储。  每一个二进制位(bit)都只有0和1两种状态,八位二进制(一个字节byte)可以表示2**8 &#x3D;&#x3D;&#x3D; 256种状态,从00000000~11111111。 既然计算机只能存储0和1,它是怎么存储数字以及各种字符呢？先从简单的数字说起吧 如何存储数字存储数字很容易,直接转为二">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-12-08T06:57:52.060Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://cxyxiaoyuyu.github.io/2019/11/01/%E6%88%91%E7%BB%88%E4%BA%8E%E6%87%82%E4%BA%86%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE%E7%9A%84/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>计算机编码与js字符串 | 小宇的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband">
+      <a href="https://github.com/cxyxiaoyuyu" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub">
+      <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true">
+      <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+      <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+      <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg>
+      </a> 
+    </div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小宇的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">越努力,越幸运,做个ccode～</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://cxyxiaoyuyu.github.io/2019/11/01/%E6%88%91%E7%BB%88%E4%BA%8E%E6%87%82%E4%BA%86%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE%E7%9A%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="xiaoyu">
+      <meta itemprop="description" content="又是元气满满的一天">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小宇的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          计算机编码与js字符串
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-11-01 09:25:27" itemprop="dateCreated datePublished" datetime="2019-11-01T09:25:27+08:00">2019-11-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-08 14:57:52" itemprop="dateModified" datetime="2019-12-08T14:57:52+08:00">2019-12-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BC%96%E7%A0%81/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机编码</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+<p>世界上只有10种人, 认识二进制的和不认识的<br>计算机只能存储0和1, 所有信息在新计算内部最终都是以二进制的形式存储。</p>
+</blockquote>
+<p>每一个二进制位(bit)都只有0和1两种状态,八位二进制(一个字节byte)可以表示<code>2**8 === 256</code>种状态,从00000000~11111111。</p>
+<p>既然计算机只能存储0和1,它是怎么存储数字以及各种字符呢？先从简单的数字说起吧</p>
+<h1 id="如何存储数字"><a href="#如何存储数字" class="headerlink" title="如何存储数字"></a>如何存储数字</h1><p>存储数字很容易,直接转为二进制就好了</p>
+<pre><code>15 =&gt; 0b1111
+-15 =&gt; -0b1111
+0.75 =&gt; 0b0.11</code></pre><blockquote>
+<p>计算机只能存储1和0<br>负数以<a href="https://zh.wikipedia.org/wiki/%E4%BA%8C%E8%A3%9C%E6%95%B8" target="_blank" rel="noopener">补码</a>的形式存储<br>小数以<a href="https://zh.wikipedia.org/wiki/浮点数" target="_blank" rel="noopener">浮点数</a>的形式存储</p>
+</blockquote>
+<h1 id="如何存储字符"><a href="#如何存储字符" class="headerlink" title="如何存储字符"></a>如何存储字符</h1><blockquote>
+<p>上个世纪60年代，美国制定了一套字符编码，对英语字符与二进制位之间的关系，做了统一规定。这被称为 ASCII 码，一直沿用至今。</p>
+</blockquote>
+
+
+<p>比如 字符a的ascii码对应的十进制是97, 二进制是0110 0001; 字符5的ascii码对应的十进制是53, 二进制是0011 0101。</p>
+<blockquote>
+<p>ASCII 码一共规定了128个字符的编码,只用了一个字节。</p>
+</blockquote>
+<h1 id="如何存储中文字符"><a href="#如何存储中文字符" class="headerlink" title="如何存储中文字符"></a>如何存储中文字符</h1><p>ASCII码只能存储128个英文字符, 不能存储中文字符,所以在ASCII的基础上,中国推出了<a href="https://zh.wikipedia.org/wiki/GB_2312" target="_blank" rel="noopener">GB2321</a>编码</p>
+
+
+<blockquote>
+<p>GB2312 共收录 6763 个汉字，同时收录了包括拉丁字母、希腊字母、日文平假名及片假名字母、俄语西里尔字母在内的 682 个字符。</p>
+</blockquote>
+<blockquote>
+<p>后来为了存储生僻字、繁体字、日语、朝鲜语等，微软推出了 GBK 字符集</p>
+</blockquote>
+<h1 id="如何存储所有字符"><a href="#如何存储所有字符" class="headerlink" title="如何存储所有字符"></a>如何存储所有字符</h1><p>为了存储全球字符，将全球字符编号,有了unicode编码,包括中日韩文字、藏文、盲文、楔形文字、 颜文字:-)、 绘文字😂</p>
+
+
+<p>比如 汉字<strong>严</strong>的 Unicode 是十六进制数4E25，转换成二进制数10011100 00100101 汉字<strong>你</strong>的 Unicode 是十六进制数4f60, 转换成二进制数01001111 01100000，</p>
+<blockquote>
+<p>Unicode只规定了每个字符的码点，到底用什么样的字节序表示这个码点，就涉及到编码方法。</p>
+</blockquote>
+<p>最直观的编码方法是，每个码点使用四个字节表示，字节内容一一对应码点。这种编码方法就叫做UTF-32。</p>
+<blockquote>
+<p>4个字节表示一个字符<br>完全对应unicode编码</p>
+</blockquote>
+<p>比如 a的utf-32为0x00000061 即二进制 00000000 00000000 00000000 01100001 </p>
+<h1 id="如何节省空间-UTF-8编码"><a href="#如何节省空间-UTF-8编码" class="headerlink" title="如何节省空间 (UTF-8编码)"></a>如何节省空间 (UTF-8编码)</h1><p>虽然utf-32编码简单直观,查找起来很方便,但是浪费空间,比如字符’a’,ascii码只用了一个字节存储,utf-32却用了四个字节<br>所以我们需要一种节省空间的表示方法，这导致了utf-8的诞生</p>
+<blockquote>
+<p>UTF-8是一种变长的编码方法，字符长度从1个字节到4个字节不等。</p>
+</blockquote>
+<blockquote>
+<p>所以这里我们知道,unicode是一种字符集,而utf-8是为了节省存储空间的编码方法</p>
+</blockquote>
+<p>以下是utf-8编码规则</p>
+<p>00000000 00000000 00000000 01111111 即 0x0000007F 以下<br>0XXXXXXX </p>
+<p>00000000 00000000 00000111 11111111 即 0x000007FF 以下<br>110XXXXX 10XXXXXX  </p>
+<p>00000000 00000000 11111111 11111111 即 0x0000FFFF 以下<br>1110XXXX 10XXXXXX 10XXXXXX </p>
+<p>00000000 00011111 11111111 11111111 即 0x001FFFFF 以下<br>11110XXX 10XXXXXX 10XXXXXX 10XXXXXX  </p>
+<p>如果一个字节的第一位是0，则这个字节单独就是一个字符；如果第一位是1，则连续有多少个1，就表示当前字符占用多少个字节。</p>
+<p>比如 字符’你’的unicode编码是 <code>0100 1111 0110 0000</code> 即 <code>0x4f60</code> 在0x000007FF~0x0000FFFF之间,所以需要三个字节<br>格式是<code>1110XXXX 10XXXXXX 10XXXXXX</code> ,从’你’的二进制最后一位开始,从右向左替换’X’,高位补0 会得到<br><code>11100100 10111101 10100000</code> 即 <code>E4BDA0</code>,所以’你’的UTF-8编码是<code>E4BDA0</code></p>
+<p>还有更多的<a href="http://www.ruanyifeng.com/blog/2014/12/unicode.html" target="_blank" rel="noopener">unicode编码方式</a>,请参考</p>
+<blockquote>
+<p>UTF-8 可变字节序列，用 1 到 4 个字节表示一个码点<br>UTF-16 可变字节序列，用 2 或 4 个字节表示一个码点<br>UTF-32 固定字节序列，用 4 个字节表示一个码点</p>
+</blockquote>
+<h1 id="Javascript采用的编码方式-USC-2编码"><a href="#Javascript采用的编码方式-USC-2编码" class="headerlink" title="Javascript采用的编码方式 (USC-2编码)"></a>Javascript采用的编码方式 (USC-2编码)</h1><p>由于js诞生的时候只有UCS-2编码, 所以js采用的编码是UCS-2编码</p>
+<blockquote>
+<p>USC-2 1990年发布 使用2个字节表示已经有码点的字符<br>js是1995年诞生的<br>UTF-16 1996年7月发布</p>
+</blockquote>
+<p>由于js采用的是USC-2编码,只能读取2个字节的字符(即范围在0x0000~0xFFFF),这会导致很多问题</p>
+<h2 id="字符的unicode表示法"><a href="#字符的unicode表示法" class="headerlink" title="字符的unicode表示法"></a>字符的unicode表示法</h2><p>这里请参考<a href="http://es6.ruanyifeng.com/#docs/string" target="_blank" rel="noopener">字符的unicode表示法</a></p>
+<blockquote>
+<p>ES6 加强了对 Unicode 的支持, 允许采用\uxxxx形式表示一个字符，其中xxxx表示字符的 Unicode 码点。</p>
+</blockquote>
+<pre><code>&apos;\u4f60&apos; // &apos;你&apos;</code></pre><p>但是在读取超过两个字节的字符时,就会只读取前两个字节</p>
+<pre><code>&apos;\u20bb7&apos;  // &quot;₻7&quot;</code></pre><p>而大于两字节的字符的length也会显示错误</p>
+<pre><code>&quot;𠮷&quot;.length  // 2</code></pre><blockquote>
+<p>ES6 对这一点做出了改进，只要将码点放入大括号，就能正确解读该字符,以UTF-16的编码方式。</p>
+</blockquote>
+<pre><code>&quot;\u{20BB7}&quot;    // &quot;𠮷&quot;
+
+
+&quot;\u{41}\u{42}\u{43}&quot;     // &quot;ABC&quot;
+
+
+let hello = 123;
+hell\u{6F}  // 123   因为&apos;\u{6f}&apos;表示字符&apos;o&apos;
+
+&apos;\u{1F680}&apos; === &apos;\uD83D\uDE80&apos; // true  都表示字符&quot;🚀&quot;</code></pre><p>javaScript 共有 6 种方法可以表示一个字符。</p>
+<pre><code>&apos;\z&apos; === &apos;z&apos;  // true    
+&apos;\172&apos; === &apos;z&apos; // true     这里是unicode码的八进制
+&apos;\x7A&apos; === &apos;z&apos; // true
+&apos;\u007A&apos; === &apos;z&apos; // true
+&apos;\u{7A}&apos; === &apos;z&apos; // true</code></pre><h2 id="将字符串转为数组"><a href="#将字符串转为数组" class="headerlink" title="将字符串转为数组"></a>将字符串转为数组</h2><pre><code>(&apos;𠮷𠮷𠮷&apos;).split(&apos;&apos;)  //  [&quot;�&quot;, &quot;�&quot;, &quot;�&quot;, &quot;�&quot;, &quot;�&quot;, &quot;�&quot;] 超过两个字节的字符无法正确识别</code></pre><p>解决办法: ES6推出了<code>Array.from</code>方法</p>
+<pre><code>Array.from(&apos;𠮷𠮷𠮷&apos;)  //  [&quot;𠮷&quot;, &quot;𠮷&quot;, &quot;𠮷&quot;]</code></pre><h2 id="码点与字符互换"><a href="#码点与字符互换" class="headerlink" title="码点与字符互换"></a>码点与字符互换</h2><blockquote>
+<p>String.prototype.charCodeAt()  返回字符的UTF-16编码(十进制)<br>String.fromCharCode()  返回由指定的UTF-16代码单元序列创建的字符串<br>String.fromCodePoint()  返回由指定的UTF-16代码单元序列创建的字符串  ES6语法</p>
+</blockquote>
+<pre><code>&apos;z&apos;.charCodeAt()              // 122
+String.fromCharCode(&apos;122&apos;,&apos;0o172&apos;,&apos;0x7a&apos;)    // &quot;zzz&quot;
+
+String.fromCharCode(0x20BB7)   // &quot;ஷ&quot;  乱码  因为0x20BB7超过两个字节,无法正确解读</code></pre><p>ES6的fromCodePoint()可以解决这一bug</p>
+<pre><code>String.fromCodePoint(0x20BB7)
+String.fromCodePoint(&apos;122&apos;,&apos;0o172&apos;,&apos;0x7a&apos;)   // &quot;zzz&quot;</code></pre><p>另外一些bug,请参考<a href="http://www.alloyteam.com/2016/12/javascript-has-a-unicode-sinkhole/" target="_blank" rel="noopener">javascript有个unicode的天坑</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%BC%96%E7%A0%81-js%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag"># 编码 js字符串</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/10/31/%E4%B8%80%E4%BA%9B%E9%9B%B6%E7%A2%8E%E7%9A%84JS%E5%BA%94%E7%94%A8/" rel="prev" title="一些零碎的JS应用">
+      <i class="fa fa-chevron-left"></i> 一些零碎的JS应用
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/11/01/CSS-%E5%A0%86%E5%8F%A0%E4%B8%8A%E4%B8%8B%E6%96%87/" rel="next" title="CSS-堆叠上下文">
+      CSS-堆叠上下文 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何存储数字"><span class="nav-number">2.</span> <span class="nav-text">如何存储数字</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何存储字符"><span class="nav-number">3.</span> <span class="nav-text">如何存储字符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何存储中文字符"><span class="nav-number">4.</span> <span class="nav-text">如何存储中文字符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何存储所有字符"><span class="nav-number">5.</span> <span class="nav-text">如何存储所有字符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何节省空间-UTF-8编码"><span class="nav-number">6.</span> <span class="nav-text">如何节省空间 (UTF-8编码)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Javascript采用的编码方式-USC-2编码"><span class="nav-number">7.</span> <span class="nav-text">Javascript采用的编码方式 (USC-2编码)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符的unicode表示法"><span class="nav-number">7.1.</span> <span class="nav-text">字符的unicode表示法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将字符串转为数组"><span class="nav-number">7.2.</span> <span class="nav-text">将字符串转为数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#码点与字符互换"><span class="nav-number">7.3.</span> <span class="nav-text">码点与字符互换</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="xiaoyu"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">xiaoyu</p>
+  <div class="site-description" itemprop="description">又是元气满满的一天</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cxyxiaoyuyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cxyxiaoyuyu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xiaoyu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,0' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>
+
+<style>
+.text-popup {
+    animation: textPopup 1s;
+    color: red;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    user-select: none;
+    white-space: nowrap;
+    position: absolute;
+    z-index: 99;
+}
+@keyframes textPopup {
+    0%, 100% {
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-50px);    
+    }
+}
+</style>
+
+<script>
+var fnTextPopup = function (options) {
+    var index = 0;
+    document.documentElement.addEventListener('click', function (event) {
+        var x = event.pageX, y = event.pageY;
+        var eleText = document.createElement('span');
+        var img = document.createElement('img')
+        img.src="/images/cherry.png"
+        eleText.appendChild(img)
+        eleText.className = 'text-popup';
+        this.appendChild(eleText);
+
+        // 动画结束后删除自己
+        eleText.addEventListener('animationend', function () {
+            eleText.parentNode.removeChild(eleText);
+        });
+        // 位置
+        eleText.style.left = (x - eleText.clientWidth / 2) + 'px';
+        eleText.style.top = (y - eleText.clientHeight) + 'px';
+        // index递增
+        index++;
+    });    
+};
+
+fnTextPopup();
+</script>
+
+
+
+
