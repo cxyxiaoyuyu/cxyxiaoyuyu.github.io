@@ -46,14 +46,14 @@
   };
 </script>
 
-  <meta name="description" content="替换字符串中最后出现的字符串">
+  <meta name="description" content="正则表达式创建一个正则表达式可以使用正则表达式字面量，也可以通过RegExp构造函数var re &#x3D; &#x2F;abc&#x2F;givar re &#x3D; new RegExp(“abc”,’gi’) 其中abc是re.source gi是re.flags">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于正则的灵活运用">
 <meta property="og:url" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2019&#x2F;12&#x2F;08&#x2F;%E5%85%B3%E4%BA%8E%E6%AD%A3%E5%88%99%E7%9A%84%E7%81%B5%E6%B4%BB%E8%BF%90%E7%94%A8&#x2F;index.html">
 <meta property="og:site_name" content="小宇的博客">
-<meta property="og:description" content="替换字符串中最后出现的字符串">
+<meta property="og:description" content="正则表达式创建一个正则表达式可以使用正则表达式字面量，也可以通过RegExp构造函数var re &#x3D; &#x2F;abc&#x2F;givar re &#x3D; new RegExp(“abc”,’gi’) 其中abc是re.source gi是re.flags">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-08T12:14:51.830Z">
+<meta property="og:updated_time" content="2019-12-08T14:59:59.618Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://cxyxiaoyuyu.github.io/2019/12/08/%E5%85%B3%E4%BA%8E%E6%AD%A3%E5%88%99%E7%9A%84%E7%81%B5%E6%B4%BB%E8%BF%90%E7%94%A8/">
@@ -209,7 +209,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2019-12-08 19:56:56 / Modified: 20:14:51" itemprop="dateCreated datePublished" datetime="2019-12-08T19:56:56+08:00">2019-12-08</time>
+              <time title="Created: 2019-12-08 19:56:56 / Modified: 22:59:59" itemprop="dateCreated datePublished" datetime="2019-12-08T19:56:56+08:00">2019-12-08</time>
             </span>
 
           
@@ -223,8 +223,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="替换字符串中最后出现的字符串"><a href="#替换字符串中最后出现的字符串" class="headerlink" title="替换字符串中最后出现的字符串"></a>替换字符串中最后出现的字符串</h1><a id="more"></a>
-<h1 id="将数字转为金额表示"><a href="#将数字转为金额表示" class="headerlink" title="将数字转为金额表示"></a>将数字转为金额表示</h1><h1 id="计算字符串中重复出现的字符的个数"><a href="#计算字符串中重复出现的字符的个数" class="headerlink" title="计算字符串中重复出现的字符的个数"></a>计算字符串中重复出现的字符的个数</h1>
+        <h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h1><h2 id="创建一个正则表达式"><a href="#创建一个正则表达式" class="headerlink" title="创建一个正则表达式"></a>创建一个正则表达式</h2><p>可以使用正则表达式字面量，也可以通过RegExp构造函数<br>var re = /abc/gi<br>var re = new RegExp(“abc”,’gi’)</p>
+<p>其中<code>abc</code>是<code>re.source</code> <code>gi</code>是<code>re.flags</code></p>
+<a id="more"></a>
+<h2 id="使用正则表达式"><a href="#使用正则表达式" class="headerlink" title="使用正则表达式"></a>使用正则表达式</h2><blockquote>
+<p>正则表达式可以被用于 RegExp 的 exec 和 test 方法以及 String 的 match、replace、search 和 split 方法</p>
+</blockquote>
+<h3 id="exec-与-test"><a href="#exec-与-test" class="headerlink" title="exec 与 test"></a>exec 与 test</h3><blockquote>
+<p>在全局匹配模式下，lastIndex的值在每次调用exec()或test()后都会增加，而在非全局模式下则始终保持不变。</p>
+</blockquote>
+<h3 id="search-与-match"><a href="#search-与-match" class="headerlink" title="search 与 match"></a>search 与 match</h3><h2 id="替换字符串中最后出现的字符串"><a href="#替换字符串中最后出现的字符串" class="headerlink" title="替换字符串中最后出现的字符串"></a>替换字符串中最后出现的字符串</h2><h2 id="将数字转为金额表示"><a href="#将数字转为金额表示" class="headerlink" title="将数字转为金额表示"></a>将数字转为金额表示</h2><h2 id="计算字符串中重复出现的字符的个数"><a href="#计算字符串中重复出现的字符的个数" class="headerlink" title="计算字符串中重复出现的字符的个数"></a>计算字符串中重复出现的字符的个数</h2>
     </div>
 
     
@@ -242,7 +250,10 @@
     <a href="/2019/11/13/JS-RSA-AES-%E5%8A%A0%E8%A7%A3%E5%AF%86/" rel="prev" title="JS RSA AES 加解密">
       <i class="fa fa-chevron-left"></i> JS RSA AES 加解密
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/05/24/JS%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/" rel="next" title="JS上传文件">
+      JS上传文件 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -302,7 +313,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#替换字符串中最后出现的字符串"><span class="nav-number">1.</span> <span class="nav-text">替换字符串中最后出现的字符串</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#将数字转为金额表示"><span class="nav-number">2.</span> <span class="nav-text">将数字转为金额表示</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算字符串中重复出现的字符的个数"><span class="nav-number">3.</span> <span class="nav-text">计算字符串中重复出现的字符的个数</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#正则表达式"><span class="nav-number">1.</span> <span class="nav-text">正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建一个正则表达式"><span class="nav-number">1.1.</span> <span class="nav-text">创建一个正则表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用正则表达式"><span class="nav-number">1.2.</span> <span class="nav-text">使用正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#exec-与-test"><span class="nav-number">1.2.1.</span> <span class="nav-text">exec 与 test</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#search-与-match"><span class="nav-number">1.2.2.</span> <span class="nav-text">search 与 match</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#替换字符串中最后出现的字符串"><span class="nav-number">1.3.</span> <span class="nav-text">替换字符串中最后出现的字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将数字转为金额表示"><span class="nav-number">1.4.</span> <span class="nav-text">将数字转为金额表示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算字符串中重复出现的字符的个数"><span class="nav-number">1.5.</span> <span class="nav-text">计算字符串中重复出现的字符的个数</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -318,7 +329,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -361,7 +372,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
