@@ -54,7 +54,7 @@
 <meta property="og:site_name" content="小宇的博客">
 <meta property="og:description" content="前言需求:  对加密文本textPlain进行AES加密,AES加密中的key通过RSA加密,并通过加解签对解密结果进行验证">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-06-17T14:54:05.384Z">
+<meta property="og:updated_time" content="2020-06-17T14:55:27.385Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://cxyxiaoyuyu.github.io/2019/11/06/JS%E4%B8%8ENodeJS-AES-RSA-%E5%8A%A0%E8%A7%A3%E5%AF%86/">
@@ -216,7 +216,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-17 22:54:05" itemprop="dateModified" datetime="2020-06-17T22:54:05+08:00">2020-06-17</time>
+                <time title="Modified: 2020-06-17 22:55:27" itemprop="dateModified" datetime="2020-06-17T22:55:27+08:00">2020-06-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -247,7 +247,7 @@
 </blockquote>
 <a id="more"></a>
 
-<p>本文为了统一, 随机数key为固定字符串</p>
+<p>本文为了统一, 随机数key为固定字符串:</p>
 <pre><code>let key = &apos;zCpdywHdFfPYQwYi&apos; 
 let textPlain = &quot;{id:&apos;123&apos;,name:&apos;xiaoyu&apos;,address:&apos;address:&apos;上海市浦东新区&apos;}&quot;</code></pre><p>如果key随机生成,代码如下</p>
 <pre><code>let key = randomString(16)
