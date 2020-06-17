@@ -46,15 +46,15 @@
   };
 </script>
 
-  <meta name="description" content="前言需求:  对加密文本textPlain进行AES加密,AES加密中的key通过RSA加密,并通过加解签对解密结果进行验证">
+  <meta name="description" content="前言需求:  对加密文本textPlain进行AES加密,AES加密中的key通过RSA加密,并通过加解签对解密结果进行验证  本文为了统一, 随机数key为固定字符串 let key &#x3D; &amp;apos;zCpdywHdFfPYQwYi&amp;apos;  let textPlain &#x3D; &amp;quot;{id:&amp;apos;123&amp;apos;,name:&amp;apos;xiaoyu&amp;apos;,address:&amp;">
 <meta name="keywords" content="加解密">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NodeJS AES RSA 加解密">
 <meta property="og:url" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2019&#x2F;11&#x2F;06&#x2F;JS%E4%B8%8ENodeJS-AES-RSA-%E5%8A%A0%E8%A7%A3%E5%AF%86&#x2F;index.html">
 <meta property="og:site_name" content="小宇的博客">
-<meta property="og:description" content="前言需求:  对加密文本textPlain进行AES加密,AES加密中的key通过RSA加密,并通过加解签对解密结果进行验证">
+<meta property="og:description" content="前言需求:  对加密文本textPlain进行AES加密,AES加密中的key通过RSA加密,并通过加解签对解密结果进行验证  本文为了统一, 随机数key为固定字符串 let key &#x3D; &amp;apos;zCpdywHdFfPYQwYi&amp;apos;  let textPlain &#x3D; &amp;quot;{id:&amp;apos;123&amp;apos;,name:&amp;apos;xiaoyu&amp;apos;,address:&amp;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-06-17T14:55:27.385Z">
+<meta property="og:updated_time" content="2020-06-17T14:56:45.932Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://cxyxiaoyuyu.github.io/2019/11/06/JS%E4%B8%8ENodeJS-AES-RSA-%E5%8A%A0%E8%A7%A3%E5%AF%86/">
@@ -216,7 +216,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-17 22:55:27" itemprop="dateModified" datetime="2020-06-17T22:55:27+08:00">2020-06-17</time>
+                <time title="Modified: 2020-06-17 22:56:45" itemprop="dateModified" datetime="2020-06-17T22:56:45+08:00">2020-06-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -245,11 +245,11 @@
 <blockquote>
 <p>对加密文本textPlain进行AES加密,AES加密中的key通过RSA加密,并通过加解签对解密结果进行验证</p>
 </blockquote>
-<a id="more"></a>
-
-<p>本文为了统一, 随机数key为固定字符串:</p>
+<p>本文为了统一, 随机数key为固定字符串</p>
 <pre><code>let key = &apos;zCpdywHdFfPYQwYi&apos; 
-let textPlain = &quot;{id:&apos;123&apos;,name:&apos;xiaoyu&apos;,address:&apos;address:&apos;上海市浦东新区&apos;}&quot;</code></pre><p>如果key随机生成,代码如下</p>
+let textPlain = &quot;{id:&apos;123&apos;,name:&apos;xiaoyu&apos;,address:&apos;address:&apos;上海市浦东新区&apos;}&quot;</code></pre><a id="more"></a>
+
+<p>如果key随机生成,代码如下</p>
 <pre><code>let key = randomString(16)
 
 function randomString(len) {
