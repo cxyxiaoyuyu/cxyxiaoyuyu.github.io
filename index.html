@@ -184,7 +184,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://cxyxiaoyuyu.github.io/2020/05/24/JS%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/">
+    <link itemprop="mainEntityOfPage" href="http://cxyxiaoyuyu.github.io/2020/05/24/JS%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -198,7 +198,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/05/24/JS%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/" class="post-title-link" itemprop="url">JS零碎知识点总结</a>
+            <a href="/2020/05/24/JS%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">JS零碎知识点总结</a>
         </h1>
 
         <div class="post-meta">
@@ -215,7 +215,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-15 23:18:21" itemprop="dateModified" datetime="2020-06-15T23:18:21+08:00">2020-06-15</time>
+                <time title="Modified: 2020-06-17 22:45:20" itemprop="dateModified" datetime="2020-06-17T22:45:20+08:00">2020-06-17</time>
               </span>
 
           
@@ -233,7 +233,7 @@
 num = num.toFixed(2)     // 输出是字符串 需要用parseFloat或Number再转一下</code></pre>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/05/24/JS%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/#more" rel="contents">
+              <a class="btn" href="/2020/05/24/JS%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -447,7 +447,7 @@ num = num.toFixed(2)     // 输出是字符串 需要用parseFloat或Number再�
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-08 14:57:52" itemprop="dateModified" datetime="2019-12-08T14:57:52+08:00">2019-12-08</time>
+                <time title="Modified: 2020-06-17 22:54:05" itemprop="dateModified" datetime="2020-06-17T22:54:05+08:00">2020-06-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -476,107 +476,14 @@ num = num.toFixed(2)     // 输出是字符串 需要用parseFloat或Number再�
 <blockquote>
 <p>对加密文本textPlain进行AES加密,AES加密中的key通过RSA加密,并通过加解签对解密结果进行验证</p>
 </blockquote>
-<p>本文为了统一, 随机数key为固定字符串</p>
-<pre><code>let key = &apos;zCpdywHdFfPYQwYi&apos; 
-let textPlain = &quot;{id:&apos;123&apos;,name:&apos;xiaoyu&apos;,address:&apos;address:&apos;上海市浦东新区&apos;}&quot;</code></pre><p>如果key随机生成,代码如下</p>
-<pre><code>let key = randomString(16)
-
-function randomString(len) {
-  len = len || 32
-  // 默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1
-  let $chars = &apos;ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678&apos;;    
-  let maxPos = $chars.length;
-  let str = &apos;&apos;
-  for (i = 0; i &lt; len; i++) {
-    str += $chars.charAt(Math.floor(Math.random() * maxPos));
-  }
-  return str;
-}</code></pre><p>其中RSA加密中的公密钥可通过<a href="https://travistidwell.com/jsencrypt/demo/" target="_blank" rel="noopener">此链接</a>生成</p>
-<pre><code>let privateKey = `-----BEGIN RSA PRIVATE KEY-----
-MIICWwIBAAKBgG+u7KERg6DWKDhK7NRUe63FPpxbzBAUWxULzjYCJexsvgzXjj/m
-UPvTR/wjFXf49sidHDcEwhzx18k8aJ0+Rt5AUtNExTeAIIGo/mytyQwlS0GuazdW
-Sqw+1IOEJe88f/I62prFuuVuY+cIxucXDVpxwv5mfkMjeiTIixWyju4tAgMBAAEC
-gYABkOtiitNUswwXVf2iMJkXY7ewC5198DsivWqj2T3c5d14YqFtBfbGwTy2LWvE
-peoYABQANYHfVAjZmo5A/jmSKWHaCHd+k8sMQeThdklGVGHBctZ46aJ32c4CRmZa
-pHAtgYVYBxOyn/55WlJb9cYEYGE1M9ouOmsEwW/sUruyZQJBANmmXVhte5LNCrmr
-c7GFbJQLNT4YTcGPXHyRdxjGBRfcgAK0IHREUrBGjCY+N4DYd3QxRYTAF+EYileF
-ou3C1bcCQQCDXKz9d3pibVtfi/qcO6bn3Bdqfv641sEO5++dD/SCAeUSTrd8KO/e
-ZoVIkYV8lcj5Ol6cRhXr9TGTGHUXzbs7AkACvxmwcvk7OgEnpKU6GT/sglOyq+XX
-SnLVU5SYKG+KBItM/W7naLFObiV4mhJjOtgPDEwfR7lFauTcA+CxdWLzAkBaOEVr
-lCqO/VKbTdVihim85tGCSBSEOKLBrRRJyBKDU+/TYhLtCGSuV7VEwQVwKqOsYKVo
-KU6XD4Dr6QlKvvbPAkEAkjlU5ua5BfGh601U8va1xWyxh0TqemBTsyoQ8bSwOpZH
-NgGjWqv5Z0QoK99pJv7VfReKbLyIg2MXhpigTogeWA==
------END RSA PRIVATE KEY-----`
-
-let publicKey = `-----BEGIN PUBLIC KEY-----
-MIGeMA0GCSqGSIb3DQEBAQUAA4GMADCBiAKBgG+u7KERg6DWKDhK7NRUe63FPpxb
-zBAUWxULzjYCJexsvgzXjj/mUPvTR/wjFXf49sidHDcEwhzx18k8aJ0+Rt5AUtNE
-xTeAIIGo/mytyQwlS0GuazdWSqw+1IOEJe88f/I62prFuuVuY+cIxucXDVpxwv5m
-fkMjeiTIixWyju4tAgMBAAE=
------END PUBLIC KEY-----`</code></pre><h1 id="RSA-加解密"><a href="#RSA-加解密" class="headerlink" title="RSA 加解密"></a>RSA 加解密</h1><h3 id="RSA-公钥加密"><a href="#RSA-公钥加密" class="headerlink" title="RSA 公钥加密"></a>RSA 公钥加密</h3><pre><code>let keyEnc = publicEncrypt(key)          // RSA每次加密结果不一致
-
-// RSA公钥加密函数 返回16进制字符串
-function publicEncrypt(key){
-  key = Buffer.from(key)
-  let keyEnc = crypto.publicEncrypt({key:publicKey,padding:crypto.constants.RSA_PKCS1_PADDING}, key);
-  return keyEnc.toString(&apos;hex&apos;);
-}</code></pre><h3 id="RSA-私钥解密"><a href="#RSA-私钥解密" class="headerlink" title="RSA 私钥解密"></a>RSA 私钥解密</h3><pre><code>let keyDec = privateDecrypt(keyEnc)       // zCpdywHdFfPYQwYi
-
-// RSA私钥解密函数
-function privateDecrypt(keyEnc){
-  let keyDec = crypto.privateDecrypt(
-    {
-      key:privateKey,
-      padding:crypto.constants.RSA_PKCS1_PADDING
-    },
-    // `keyEnc`是16进制第二个参数就是`hex` `keyEnc`是Base64第二个参数就是`base64`
-    Buffer.from(keyEnc,&apos;hex&apos;)
-  )
-  return keyDec
-}</code></pre><h1 id="AES-加解密"><a href="#AES-加解密" class="headerlink" title="AES 加解密"></a>AES 加解密</h1><blockquote>
-<p>AES加密用到的iv写在函数里了,固定为<code>1234567812345678</code></p>
-</blockquote>
-<h2 id="AES-加密"><a href="#AES-加密" class="headerlink" title="AES 加密"></a>AES 加密</h2><pre><code>let textEnc = AESEncrypt(plainText,key)    // 每次AES加密结果一致
-// xoJ9fYIqyoAA3Qbhm/h8nGy4KjcmHVtusheMTd61mpUB8Lr6SDFQ1pWimi+WwlZyL5ncvZ9kQKjoRcRXUB7/D6uVkl724DzxBu/Ns1ivWnA=
-
-// AES 加密函数
-function AESEncrypt(content,key){
-  let iv = &apos;1234567812345678&apos;
-  let cipher = crypto.createCipheriv(&apos;aes-128-cbc&apos;, key, iv);
-  let encrypted = cipher.update(content,&apos;utf8&apos;,&apos;binary&apos;);
-  encrypted += cipher.final(&apos;binary&apos;);
-  encrypted = Buffer.from(encrypted,&apos;binary&apos;).toString(&apos;base64&apos;)
-  return encrypted;
-}</code></pre><h2 id="AES-解密"><a href="#AES-解密" class="headerlink" title="AES 解密"></a>AES 解密</h2><pre><code>// 用解密后的keyDec通过AES解密textEnc
-let textDec = AESDecrypt(textEnc,keyDec) 
-// {id:&apos;123&apos;,name:&apos;xiaoyu&apos;,address:&apos;address:&apos;上海市浦东新区&apos;}
-
-function AESDecrypt(content,key){
-  let iv = &quot;1234567812345678&quot;;
-  content = Buffer.from(content,&apos;base64&apos;).toString(&apos;binary&apos;)
-  let cipher = crypto.createDecipheriv(&apos;aes-128-cbc&apos;, key, iv);
-  let decrypted = cipher.update(content,&apos;binary&apos;,&apos;utf8&apos;);
-  decrypted += cipher.final(&apos;utf8&apos;);
-  return decrypted;
-}</code></pre><h1 id="RSA-加解签"><a href="#RSA-加解签" class="headerlink" title="RSA 加解签"></a>RSA 加解签</h1><h2 id="RSA-加签"><a href="#RSA-加签" class="headerlink" title="RSA 加签"></a>RSA 加签</h2><pre><code>let sign = getSign(plainText)       // 每次签名结果一致
-// 3b073ad8655293c8ec92dddeb6b986fbad190d642e2ca74f57f90aeedb1645be20449e0e3a7824f483d72de120221b0a29f2adf5c0cd0b913cee01d8d6a13eeb55c9f2b9a3868dc29181cddbd0fde15264d40a46f74ab7db23a09bc48d93a376eb8d50c84e67a7d08ea9810a76badfc4bb7f5e8cdbd045ef3551389eb1b9cef7
-
-//获取签名
-function getSign(content){
-  let sign = crypto.createSign(&apos;RSA-SHA1&apos;);
-  sign.update(content);
-  return sign.sign(privateKey,&apos;hex&apos;);
-}</code></pre><h2 id="RSA-验签"><a href="#RSA-验签" class="headerlink" title="RSA 验签"></a>RSA 验签</h2><pre><code>let result = verifySign(textDec,sign)      // true
-
-// 验证签名
-function verifySign(standard,sign){
-  let verify = crypto.createVerify(&apos;RSA-SHA1&apos;);
-  verify.update(standard,&apos;utf8&apos;);
-  return verify.verify(publicKey,sign,&apos;hex&apos;);
-}</code></pre>
-
-
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/06/JS%E4%B8%8ENodeJS-AES-RSA-%E5%8A%A0%E8%A7%A3%E5%AF%86/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
