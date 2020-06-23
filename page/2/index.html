@@ -184,6 +184,230 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://cxyxiaoyuyu.github.io/2019/10/28/cookie%E3%80%81session%E4%B8%8E%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="xiaoyu">
+      <meta itemprop="description" content="又是元气满满的一天">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小宇的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/28/cookie%E3%80%81session%E4%B8%8E%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C/" class="post-title-link" itemprop="url">cookie、session与登录注册(基于Node.js)</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-10-28 14:56:36" itemprop="dateCreated datePublished" datetime="2019-10-28T14:56:36+08:00">2019-10-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-08 14:57:52" itemprop="dateModified" datetime="2019-12-08T14:57:52+08:00">2019-12-08</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>本文代码基于Node.js,参考<a href="https://github.com/cxyxiaoyuyu/login_register" target="_blank" rel="noopener">完整代码</a></p>
+<h3 id="登录与注册流程"><a href="#登录与注册流程" class="headerlink" title="登录与注册流程"></a>登录与注册流程</h3><h4 id="注册流程"><a href="#注册流程" class="headerlink" title="注册流程"></a>注册流程</h4><ul>
+<li>注册时传入用户名,密码,确认密码</li>
+<li>注册成功将用户名与密码存入数据库</li>
+<li>密码与确认密码不同，或已经注册的用户，返回400</li>
+</ul>
+<h4 id="注册具体实现"><a href="#注册具体实现" class="headerlink" title="注册具体实现"></a>注册具体实现</h4><p>客户端传递注册时需要的数据</p>
+<pre><code>let value = [&apos;username&apos;,&apos;password&apos;,&apos;password_confirm&apos;]
+  value.forEach(name=&gt;{
+      data[name] = $(`input[name=${name}]`).val()
+  })
+  $.post({
+      url: &apos;./sign_up&apos;,
+      type: &apos;post&apos;,
+      data
+  }).then( response =&gt; {
+      window.location.href = &apos;./sign_in&apos;
+  }).fail( error =&gt; {
+      alert(error.responseText)
+  })</code></pre><p>服务端获取数据readBodyData</p>
+<pre><code>// 因为数据是一个一个上传的
+function readBodyData(request){
+  return new Promise(function(resolve,reject){
+    let data = &apos;&apos;
+    request.on(&apos;data&apos;,chunk =&gt; {
+      data += chunk.toString()
+    })
+    request.on(&apos;end&apos;, ()=&gt;{
+      let params = data.split(&apos;&amp;&apos;)
+      let hash = {}
+      params.forEach(value =&gt; {
+        let temp = value.split(&apos;=&apos;)
+        hash[temp[0]] = temp[1]
+      })
+      resolve(hash)
+    })
+  })
+}</code></pre><p>读取数据库文件,判断用户是否已经注册</p>
+<pre><code>// else if(path === &apos;/sign_up&apos; &amp;&amp; method === &apos;POST&apos;)
+
+readBodyData(request).then(data =&gt; {   
+   let { username,password,password_confirm } = data
+
+  let users = JSON.parse(fs.readFileSync(&apos;./database.json&apos;,&apos;utf8&apos;) || &quot;[]&quot;)
+  let userExist = false
+  for(i=0;i&lt;users.length;i++){
+    if(users[i].username === username){
+      userExist = true
+    }
+  }
+
+  // 已经注册返回400,提示已经注册,注册成功将用户名密码写入数据库
+
+  if(userExist){
+      response.statusCode = 400
+      response.setHeader(&apos;Content-Type&apos;, &apos;application/json;charset=utf-8&apos;)
+      response.write(&apos;该用户已注册,请勿重复注册&apos;)
+    }else{
+      users.push({username,password})
+      fs.writeFileSync(&apos;./database.json&apos;,JSON.stringify(users))
+      response.statusCode = 200
+    }
+    response.end()
+})</code></pre><h4 id="登录流程"><a href="#登录流程" class="headerlink" title="登录流程"></a>登录流程</h4><ul>
+<li>登录时传入用户名密码</li>
+<li>如果与数据库匹配，则登录成功，跳转到主页面 </li>
+<li>如果用户不存在或密码错误，返回404</li>
+</ul>
+<h4 id="登录具体实现"><a href="#登录具体实现" class="headerlink" title="登录具体实现"></a>登录具体实现</h4><p>客户端传递数据与注册类似</p>
+<pre><code>let value = [&apos;username&apos;,&apos;password&apos;]
+value.forEach(name=&gt;{
+    data[name] = $(`input[name=${name}]`).val()
+})
+$.post({
+    url: &apos;./sign_in&apos;,
+    type: &apos;post&apos;,
+    data
+}).then( response =&gt; {
+    // 登录成功 前往主页
+    window.location.href = &apos;./&apos;
+}).fail( error =&gt; {
+    console.log(error,&apos;error&apos;)
+    alert(error.responseText)
+})</code></pre><p>匹配数据库,用户名密码是否匹配</p>
+<pre><code>readBodyData(request).then(data=&gt;{
+  let { username,password } = data
+
+  // 判断数据库是否有该用户
+  let users = JSON.parse(fs.readFileSync(&apos;./database.json&apos;,&apos;utf8&apos;) || &quot;[]&quot;)
+  console.log(users)
+  let userMatch = false
+  for(i=0;i&lt;users.length;i++){
+    if(users[i].username === username &amp;&amp; users[i].password === password){
+      userMatch = true
+    }
+  }
+  if(userMatch){
+    response.statusCode = 200
+  }else{
+    response.setHeader(&apos;Content-Type&apos;, &apos;application/json;charset=utf-8&apos;)
+    response.write(&apos;用户名或密码错误&apos;)
+  }
+  response.end()
+})</code></pre><p>以上已经实现的基本的登录与注册<br>但是我们也可以直接输入主页的url访问主页，并不要经过登录啊，有没有什么方法可以判断,用户访问主页，如果登录了就返回主页面，如果没有登录就跳转到登录页面呢？如果我们还想要在主页显示用户的用户名呢？</p>
+<p>由于Http是无状态协议,也就是说，服务器单从网络连接上无从知道客户身份。</p>
+<blockquote>
+<p>HTTP无状态协议，是指协议对于事务处理没有记忆能力。<br>缺少状态意味着如果后续处理需要前面的信息，则它必须重传，这样可能导致每次连接传送的数据量增大。<br>另一方面，在服务器不需要先前信息时它的应答就较快。</p>
+</blockquote>
+<p>如果每次请求的时候,都带上相关标志呢, 让我们来看看cookie是如何工作的吧</p>
+<h3 id="cookie判断是否登录"><a href="#cookie判断是否登录" class="headerlink" title="cookie判断是否登录"></a>cookie判断是否登录</h3><p>在登录成功的时候, 设置响应头, </p>
+<pre><code>response.setHeader(&apos;Set-Cookie&apos;,`username=${username}`)
+
+// 设置多个cookie
+response.setHeader(&apos;Set-Cookie&apos;,[`username=${username}`,&apos;a=123&apos;,&apos;b=456&apos;])</code></pre><p>这样,客户端在请求同一域名的情况下，都会带上这个cookie<br>比如在登录成功跳转到主页面的时候发送请求,就会带上刚才拿到的cookie</p>
+
+
+
+<p>我们也可以在控制台中看到cookie,并且可以随意修改cookie</p>
+
+
+<p>这时,我们就可以通过请求头的cookie判断用户是否登录</p>
+<pre><code>if(request.headers.cookie){
+  let cookies = request.headers.cookie.split(&apos;; &apos;)
+  let cookieObj = {}
+  cookies.forEach(value =&gt; {
+    let temp = value.split(&apos;=&apos;)
+    cookieObj[temp[0]] = temp[1]
+  })
+  let username = cookieObj.username
+
+  // 登录成功替换页面用户名
+  body = body.replace(&apos;__username__&apos;,username)
+}else(
+  response.writeHead(301, {&apos;Location&apos;: &apos;./sign_in&apos;})
+)</code></pre><p>好啦,通过cookie判断用户是否登录,并且通过cookie可以获取到用户相关信息,当然这个值也是服务器自己设置的</p>
+<p>但是刚才说过cookie是不安全的,它是可以手动修改的,如果我们主页显示的是用户的隐私信息呢,比如余额,薪资什么的,只要将cookie的username改为其他人的,不就想看谁的就看谁的了嘛,那不就太危险了,有什么解决办法呢?</p>
+<h3 id="session存储信息"><a href="#session存储信息" class="headerlink" title="session存储信息"></a>session存储信息</h3><p>如果我们在服务器设立一小块内存,存储用户的隐私信息,并给每个用户信息设置一个Id标志,每次登录成功,生成一个随机数Id传给客户端,用户每次通过cookie将这个随机数传到服务器,那这个内存就存储了所有的session, 这个随机数标志就是sessionId</p>
+<p>因为随机数范围很大,所以用户根本无法篡改<br>那么现在我们登录成功的需要做的事情是这样,假设<code>sessions</code>在内存中是这样的<code>sessions = {}</code></p>
+<pre><code>// 设置sessionId
+let sessionId = Math.random() * 100000
+response.setHeader(&apos;Set-Cookie&apos;,`sessionId=${sessionId}`)
+// 用session存储用户隐私数据
+sessions[sessionId] = { username,password }</code></pre><p>主页面从sessions中获取username</p>
+<pre><code>let username = sessions[cookieObj.sessionId].username</code></pre><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><blockquote>
+<p>一般来说，Session 基于 Cookie 来实现。</p>
+</blockquote>
+<h4 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h4><ul>
+<li>服务器通过 Set-Cookie 头给客户端一串字符串</li>
+<li>客户端每次访问相同域名的网页时，必须带上这段字符串</li>
+<li>客户端要在一段时间内保存这个Cookie</li>
+<li>Cookie 默认在用户关闭页面后就失效，后台代码可以任意设置 Cookie 的过期时间</li>
+<li>大小大概在 4kb 以内</li>
+</ul>
+<h4 id="session"><a href="#session" class="headerlink" title="session"></a>session</h4><ul>
+<li>将 SessionID（随机数）通过 Cookie 发给客户端</li>
+<li>客户端访问服务器时，服务器读取 SessionID</li>
+<li>服务器有一块内存（哈希表）保存了所有 session</li>
+<li>通过 SessionID 我们可以得到对应用户的隐私信息，如 id、email</li>
+<li>这块内存（哈希表）就是服务器上的所有 session</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://cxyxiaoyuyu.github.io/2019/10/24/npm%E5%AE%89%E8%A3%85%E3%80%81%E6%9B%B4%E6%96%B0%E4%B8%8E%E5%8D%B8%E8%BD%BD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1519,124 +1743,6 @@ name  // &apos;1,2,4&apos;</code></pre>
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://cxyxiaoyuyu.github.io/2018/10/13/CSS%E5%B8%83%E5%B1%80/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="xiaoyu">
-      <meta itemprop="description" content="又是元气满满的一天">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小宇的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/10/13/CSS%E5%B8%83%E5%B1%80/" class="post-title-link" itemprop="url">CSS布局</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-10-13 00:50:02" itemprop="dateCreated datePublished" datetime="2018-10-13T00:50:02+08:00">2018-10-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-08 14:57:52" itemprop="dateModified" datetime="2019-12-08T14:57:52+08:00">2019-12-08</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li>左右布局</li>
-<li>左中右布局</li>
-<li>水平居中</li>
-<li>垂直居中</li>
-</ul>
-<h2 id="左右布局"><a href="#左右布局" class="headerlink" title="左右布局"></a>左右布局</h2><pre><code>&lt;div class=&quot;clearfix&quot;&gt;
-    &lt;div class=&quot;a&quot;&gt;左&lt;/a&gt;
-    &lt;div class=&quot;b&quot;&gt;右&lt;/a&gt;
-&lt;/div&gt;
-
-.clearfix {
-    content: &apos;&apos;;
-    display: block;
-    clear: both;
-}
-.a,
-.b {
-        width: 50%;
-        height: 200px;
-        float: left;
-}</code></pre><blockquote>
-<p>  父元素的class设为clearfix<br>  子元素全部设为左浮动,可设置width的百分比决定每个子元素占据的宽度</p>
-</blockquote>
-<h3 id="左中右布局-三列布局"><a href="#左中右布局-三列布局" class="headerlink" title="左中右布局(三列布局)"></a>左中右布局(三列布局)</h3><pre><code>&lt;div class=&quot;left&quot;&gt;左&lt;/div&gt;
-&lt;div class=&quot;middle&quot;&gt;中&lt;/div&gt;
-&lt;div class=&quot;right&quot;&gt;右&lt;/div&gt;
-
-.left{
-    width: 200px;height: 300px; background: yellow; float: left;
-}
-.right{
-    width: 170px; height: 300px; background: green; float: right;
-}
-.middle{
-    height: 300px; background: red; margin-left: 220px; margin-right: 180px;
-}</code></pre><blockquote>
-<p>  通过给左右两边设定宽度,左右元素分别向左右浮动<br>  中间元素设置左右边距</p>
-</blockquote>
-<h3 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h3><ul>
-<li>内联元素<br>给该内联元素所在的块父级元素添加<code>text-align: center;</code> 样式</li>
-<li>块级元素<br>给该元素添加<code>margin: 0 auto;</code> 样式</li>
-</ul>
-<h3 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h3><ul>
-<li><p>居中文字<br>将该元素的<code>line-height</code>设为与<code>height</code> 一样的值</p>
-</li>
-<li><p>块级元素</p>
-<p>.parent {</p>
-<pre><code>position: relative;</code></pre><p>}<br>.child {</p>
-<pre><code>position: absolute;
-top: 50%;
-transform: translateY(-50%);</code></pre><p>}</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1709,7 +1815,7 @@ transform: translateY(-50%);</code></pre><p>}</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1722,7 +1828,7 @@ transform: translateY(-50%);</code></pre><p>}</p>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

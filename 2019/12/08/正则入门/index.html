@@ -46,16 +46,18 @@
   };
 </script>
 
-  <meta name="description" content="又是元气满满的一天">
-<meta property="og:type" content="website">
-<meta property="og:title" content="小宇的博客">
-<meta property="og:url" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;archives&#x2F;page&#x2F;3&#x2F;index.html">
+  <meta name="description" content="创建一个正则表达式可以使用正则表达式字面量，也可以通过RegExp构造函数var re &#x3D; &#x2F;abc&#x2F;givar re &#x3D; new regexp(“abc”,’gi’)">
+<meta name="keywords" content="正则">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于正则的灵活运用">
+<meta property="og:url" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2019&#x2F;12&#x2F;08&#x2F;%E6%AD%A3%E5%88%99%E5%85%A5%E9%97%A8&#x2F;index.html">
 <meta property="og:site_name" content="小宇的博客">
-<meta property="og:description" content="又是元气满满的一天">
+<meta property="og:description" content="创建一个正则表达式可以使用正则表达式字面量，也可以通过RegExp构造函数var re &#x3D; &#x2F;abc&#x2F;givar re &#x3D; new regexp(“abc”,’gi’)">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-06-23T14:45:16.056Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://cxyxiaoyuyu.github.io/archives/page/3/">
+<link rel="canonical" href="http://cxyxiaoyuyu.github.io/2019/12/08/%E6%AD%A3%E5%88%99%E5%85%A5%E9%97%A8/">
 
 
 <script id="page-configurations">
@@ -63,11 +65,11 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false
+    isPost: true
   };
 </script>
 
-  <title>Archive | 小宇的博客</title>
+  <title>关于正则的灵活运用 | 小宇的博客</title>
   
 
 
@@ -179,112 +181,109 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">Um..! 24 posts in total. Keep on posting.</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://cxyxiaoyuyu.github.io/2019/12/08/%E6%AD%A3%E5%88%99%E5%85%A5%E9%97%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="xiaoyu">
+      <meta itemprop="description" content="又是元气满满的一天">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小宇的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          关于正则的灵活运用
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-12-08 19:56:56" itemprop="dateCreated datePublished" datetime="2019-12-08T19:56:56+08:00">2019-12-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-06-23 22:45:16" itemprop="dateModified" datetime="2020-06-23T22:45:16+08:00">2020-06-23</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h1 class="collection-header">2018</h1>
-    </div>
+        <h2 id="创建一个正则表达式"><a href="#创建一个正则表达式" class="headerlink" title="创建一个正则表达式"></a>创建一个正则表达式</h2><p>可以使用正则表达式字面量，也可以通过RegExp构造函数<br>var re = /abc/gi<br>var re = new regexp(“abc”,’gi’)</p>
+<a id="more"></a>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+<p>其中<code>abc</code>是<code>re.source</code> <code>gi</code>是<code>re.flags</code></p>
+<h3 id="lastIndex-改变"><a href="#lastIndex-改变" class="headerlink" title="lastIndex 改变"></a>lastIndex 改变</h3><blockquote>
+<p>注意: 在全局匹配模式下，lastIndex的值在每次调用exec()或test()后都会增加，而在非全局模式下则始终保持不变。</p>
+</blockquote>
+<pre><code>var regex = /foo/g;
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2018-10-13T00:50:02+08:00"
-              content="2018-10-13">
-          10-13
-        </time>
-      </div>
+// regex.lastIndex is at 0
+regex.test(&apos;foo&apos;); // true
 
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2018/10/13/CSS%E5%B8%83%E5%B1%80/" itemprop="url">
-            <span itemprop="name">CSS布局</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2018-10-08T22:28:21+08:00"
-              content="2018-10-08">
-          10-08
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2018/10/08/%E5%87%A0%E4%B8%AA%E5%85%B3%E4%BA%8ECSS%E7%9A%84%E5%A5%97%E8%B7%AF/" itemprop="url">
-            <span itemprop="name">几个关于CSS的套路</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2018-10-07T11:49:03+08:00"
-              content="2018-10-07">
-          10-07
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2018/10/07/HTML%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/" itemprop="url">
-            <span itemprop="name">HTML常用标签</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2018-10-06T22:38:26+08:00"
-              content="2018-10-06">
-          10-06
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2018/10/06/curl%E5%B8%B8%E7%94%A8%E7%94%A8%E6%B3%95%E4%BB%A5%E5%8F%8Ahttp%E5%8D%8F%E8%AE%AE/" itemprop="url">
-            <span itemprop="name">curl常用用法以及http协议</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
+// regex.lastIndex is now at 3
+regex.test(&apos;foo&apos;); // false</code></pre><h3 id="String-prototype-match"><a href="#String-prototype-match" class="headerlink" title="String.prototype.match()"></a>String.prototype.match()</h3><p>返回值</p>
+<blockquote>
+<p>如果使用g标志，则将返回与完整正则表达式匹配的所有结果，但不会返回捕获组。<br>如果未使用g标志，则仅返回第一个完整匹配及其相关的捕获组（Array）。</p>
+</blockquote>
+<pre><code>&apos;hhabcdefxx&apos;.match(/abc(?&lt;xxx&gt;def)/g)  // [&apos;abcdef&apos;]
+let res = &apos;hhabcdefxx&apos;.match(/abc(?&lt;xxx&gt;def)/)   // 
+// [&quot;abcdef&quot;, &quot;def&quot;, index: 2, input: &quot;hhabcdefxx&quot;, groups: {xxx: def}]</code></pre><h4 id="res表示的内容"><a href="#res表示的内容" class="headerlink" title="res表示的内容"></a>res表示的内容</h4><p>res[0] 匹配到的字符串<br>res[1,n] 分组匹配到的字符串<br>res[‘index’] 匹配到的字符串位于原始字符串的索引<br>res[‘input’] 原始字符串<br>res[‘groups’] 各个分组匹配到的字符串 key值为分组名</p>
 
     </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%AD%A3%E5%88%99/" rel="tag"># 正则</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/11/13/JS-RSA-AES-%E5%8A%A0%E8%A7%A3%E5%AF%86/" rel="prev" title="JS RSA AES 加解密">
+      <i class="fa fa-chevron-left"></i> JS RSA AES 加解密
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/12/08/%E5%85%B3%E4%BA%8E%E6%AD%A3%E5%88%99%E7%9A%84%E7%81%B5%E6%B4%BB%E8%BF%90%E7%94%A8/" rel="next" title="关于正则的灵活运用">
+      关于正则的灵活运用 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
   </div>
-  
-  
-  
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span>
-  </nav>
-
 
 
           </div>
@@ -335,6 +334,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建一个正则表达式"><span class="nav-number">1.</span> <span class="nav-text">创建一个正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#lastIndex-改变"><span class="nav-number">1.1.</span> <span class="nav-text">lastIndex 改变</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#String-prototype-match"><span class="nav-number">1.2.</span> <span class="nav-text">String.prototype.match()</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#res表示的内容"><span class="nav-number">1.2.1.</span> <span class="nav-text">res表示的内容</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
