@@ -184,6 +184,130 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://cxyxiaoyuyu.github.io/2020/06/28/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="xiaoyu">
+      <meta itemprop="description" content="又是元气满满的一天">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小宇的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/28/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" class="post-title-link" itemprop="url">二叉树的序列化与反序列化</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-06-28 23:20:30 / Modified: 23:29:51" itemprop="dateCreated datePublished" datetime="2020-06-28T23:20:30+08:00">2020-06-28</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>遍历树的两个策略</p>
+<blockquote>
+<p>BFS 可以按照层次的顺序从上到下遍历所有的节点<br>DFS 分为    先序遍历    中序遍历    后序遍历</p>
+</blockquote>
+<h2 id="准备-TreeNode-构造函数"><a href="#准备-TreeNode-构造函数" class="headerlink" title="准备 TreeNode 构造函数"></a>准备 TreeNode 构造函数</h2><pre><code>function TreeNode(val){
+  this.val = val
+  this.left = this.right = null
+}</code></pre><h2 id="1-DFS-先序遍历"><a href="#1-DFS-先序遍历" class="headerlink" title="1. DFS 先序遍历"></a>1. DFS 先序遍历</h2><h3 id="反序列化"><a href="#反序列化" class="headerlink" title="反序列化"></a>反序列化</h3><pre><code>// 将先序遍历后的字符串 转为二叉树结构
+var deserialize = (data) =&gt; {
+  const list = data.split(&apos;,&apos;)       // 转成list数组
+  return buildTree(list)             // 构建树，dfs的入口
+}
+
+var buildTree = (list) =&gt; {
+  let nodeVal = list.shift()
+  if(nodeVal === &apos;X&apos;) return null
+
+  let node = new TreeNode(nodeVal)
+  node.left = buildTree(list)
+  node.right = buildTree(list)
+  return node
+}</code></pre><h3 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h3><pre><code>// 将二叉树先序遍历 返回字符串
+var serialize = (root) =&gt; {
+  if (root == null) return &apos;X,&apos; // 遇到null节点
+  const leftSerialized = serialize(root.left)   //左子树的序列化字符串
+  const rightSerialized = serialize(root.right) //右子树的序列化字符串
+  return root.val + &apos;,&apos; + leftSerialized + rightSerialized // 根|左|右
+}</code></pre><h2 id="2-BFS"><a href="#2-BFS" class="headerlink" title="2 BFS"></a>2 BFS</h2><h3 id="序列化-1"><a href="#序列化-1" class="headerlink" title="序列化"></a>序列化</h3><pre><code>var serialize = (root) =&gt; {
+  let queue = [root]
+  let res = []
+
+  while(queue.length){
+    let node = queue.shift()
+    if(node){
+      res.push(node.val)
+      queue.push(node.left)
+      queue.push(node.right)
+    }else{
+      res.push(&apos;X&apos;)
+    }
+  }
+  return res.join(&apos;,&apos;)
+}</code></pre><h3 id="反序列化-1"><a href="#反序列化-1" class="headerlink" title="反序列化"></a>反序列化</h3><pre><code>var deserialize = (data) =&gt; {
+  if(data === &apos;X&apos;) return null
+  let list = data.split(&apos;,&apos;)
+  let root = new TreeNode(list[0])
+
+  let queue = [root]
+  let cursor = 1
+  while(cursor &lt; list.length){
+    node = queue.shift()
+    leftVal = list[cursor]
+    rightVal = list[cursor+1]
+    cursor += 2
+    if(leftVal !== &apos;X&apos;){
+      let leftNode = new TreeNode(leftVal)
+      node.left = leftNode
+      queue.push(leftNode)
+    }
+    if(rightVal !== &apos;X&apos;){
+      let rightNode = new TreeNode(rightVal)
+      node.right = rightNode
+      queue.push(rightNode)
+    }
+  }
+  return root
+}</code></pre>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://cxyxiaoyuyu.github.io/2020/05/24/JS%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1013,198 +1137,6 @@ num = parseFloat(num.toFixed(2))             // 2.45</code></pre><p><code>toFixe
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://cxyxiaoyuyu.github.io/2019/10/30/JS%E6%A8%A1%E6%8B%9F%E7%BB%A7%E6%89%BF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="xiaoyu">
-      <meta itemprop="description" content="又是元气满满的一天">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小宇的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/30/JS%E6%A8%A1%E6%8B%9F%E7%BB%A7%E6%89%BF/" class="post-title-link" itemprop="url">JS模拟继承</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-10-30 15:00:52" itemprop="dateCreated datePublished" datetime="2019-10-30T15:00:52+08:00">2019-10-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-08 14:57:52" itemprop="dateModified" datetime="2019-12-08T14:57:52+08:00">2019-12-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%8E%9F%E5%9E%8B%E4%B8%8E%E5%8E%9F%E5%9E%8B%E9%93%BE/" itemprop="url" rel="index">
-                    <span itemprop="name">原型与原型链</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="什么是继承"><a href="#什么是继承" class="headerlink" title="什么是继承"></a>什么是继承</h1><blockquote>
-<p>继承（英语：inheritance）是面向对象软件技术当中的一个概念。如果一个类别B“继承自”另一个类别A，就把这个B称为“A的子类”，而把A称为“B的父类别”也可以称“A是B的超类”。继承可以使得子类具有父类别的各种属性和方法，而不需要再次编写相同的代码。</p>
-</blockquote>
-<p>而javascript中没有类,虽然es6引入了class,但那只是一个语法糖。所以javascript不能继承,只能通过原型模拟继承</p>
-<blockquote>
-<p>每个实例对象( object )都有一个私有属性(称之为 <strong>proto</strong> )指向它的构造函数的原型对象( prototype )。该原型对象也有一个自己的原型对象( <strong>proto</strong> ) ，层层向上直到一个对象的原型对象为 null。根据定义，null 没有原型，并作为这个原型链中的最后一个环节。</p>
-</blockquote>
-<p>比如 </p>
-<pre><code>num = new Number(123)
-num.__proto__ === Number.prototype // true
-Number.prototype.__proto__ === Object.prototype  // true
-Object.prototype.__proto__ === null    // true
-
-num.toString()  // &apos;123&apos;</code></pre><p>这里的<code>num</code>为什么会有<code>toString</code>方法呢,打印一下num看看</p>
-
-
-<p>区域1是<code>Number</code>的原型对象<code>Number.prototype</code><br>区域2是<code>Object</code>的原型对象<code>Object.prototype</code><br>javascript为了节省空间，num在调用toString方法时会先在自身的属性上找，如果没有则继续向<code>__proto__</code>属性中找，找到的话就调用该属性，如果没找到则继续向下一级<code>__proto__</code>中找，找到<code>Object.prototype</code>都还没找到，就返回<code>undefined</code>。而Object的原型对象有<code>toString</code>属性,所以num可以调用该方法</p>
-<p>那我们说Number继承了Object,所以Number实例对象具有<code>Object.prototype</code>的各种属性和方法</p>
-<h1 id="怎样继承"><a href="#怎样继承" class="headerlink" title="怎样继承"></a>怎样继承</h1><p>正是因为<code>Number.prototype.__ptoto__</code> 指向了 <code>Object.prototype</code>对象, num才能具有<code>Object.prototype</code>的属性和方法<br>这里的Number继承Object,是js自身实现,如果我们需要实现一个’类’继承另一个’类’呢？</p>
-<h2 id="继承属性"><a href="#继承属性" class="headerlink" title="继承属性"></a>继承属性</h2><p>比如父类Animal 子类Cat Animal具有方法run Cat具有方法say 我们想让Cat也有run方法通过继承Animal</p>
-<pre><code>function Animal(name){
-  this.name = name
-}
-Animal.prototype.run = function(){
-  console.log(&apos;I can run&apos;)
-}
-function Cat(){
-  this.age = 1
-}
-let animal = new Animal()
-let cat = new Cat()</code></pre><p>这个时候我们看下animal和cat</p>
-
-
-<p>如果我们想让cat也具有name属性,可以在定义Cat时调用一下Animal方法,用<strong>call</strong>绑定this,这样cat的name就是’cat’了</p>
-<pre><code>function Animal(name){
-  this.name = name
-}
-Animal.prototype.run = function(){
-  console.log(&apos;I can run&apos;)
-}
-function Cat(){
-  Animal.call(this,&apos;cat&apos;)
-  this.age = 1
-}
-let animal = new Animal()
-let cat = new Cat()</code></pre>
-
-
-<h2 id="继承方法"><a href="#继承方法" class="headerlink" title="继承方法"></a>继承方法</h2><p>继承属性还不够,我们还需要继承共有方法呢！根据上文,我们要让<code>Cat</code>继承<code>Animal</code>,让<code>Cat.prototype</code> 的 <code>__proto__</code> 指向 <code>Animal.prototype</code> 不就可以了吗？那我们来试试</p>
-<pre><code>Cat.prototype.__proto__ = Animal.prototype</code></pre>{% asset_img cat继承方法.png cat继承方法 %}
-
-<p>真的实现了呢，现在我们的小猫也可以 <code>run</code>了,但是这种方法在IE不兼容,有什么解决办法呢？<br>总结一下我们就是让一个对象的<strong>proto</strong> 只想另一个对象的prototype,好熟悉,有木有？在<code>num = new Number()</code> 的时候 <code>num.__proto ==== Number.prototype</code><br>那就套一下呗</p>
-<pre><code>Cat.prototype = new Animal(&apos;cat&apos;)
-let cat2 = new Cat()</code></pre>
-
-<p>但是这样Cat.prototype却会多出一个name属性,我们并不想要这个name属性<br>我们不应该直接new这个Animal,不然它就会给实例对象添加name属性。<br>通过一个空函数,间接改变指向</p>
-<pre><code>var f = function(){}       
-f.prototype = Animal.prototype
-Cat.prototype = new f()</code></pre><p>这个时候</p>
-<pre><code>Cat.prototype.__proto__ === Animal.prototype  // true</code></pre><p>其实上面的代码就是<code>Object.create()</code>的<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/create" target="_blank" rel="noopener">Polyfill</a><br>所以我们也可以直接这么写</p>
-<p>  Cat.prototype = Object.create(Animal.prototype)</p>
-<h2 id="改变constructor指向"><a href="#改变constructor指向" class="headerlink" title="改变constructor指向"></a>改变constructor指向</h2><p>虽然我们已经实现了<code>Cat.prototype.__proto__ === Animal.prototype</code></p>
-<p>但是<code>Cat.prototype.constructor</code>方法缺丢失了,打印一下看看</p>
-{% asset_img constructor丢失.jpg Cat.prototype.constructor丢失 %}
-
-<p>可以看到<code>Cat.prototype</code>只有一个<code>__proto__</code>属性, </p>
-<p>但是当我们打印<code>Cat.prototype.constructor</code>是有输出的，输出的是Animal函数</p>
-{% asset_img animal_constructor.jpg Cat.prototype.constructor为Animal函数 %}
-
-<p>那为什么会这样呢, 因为</p>
-<p> Cat.prototype.constructor  === Cat.prototype.<strong>proto</strong>.constructor        // true<br> Cat.prototype.<strong>proto</strong>.constructor ===  Animal.prototype.constructor               // true<br> Animal.prototype.constructor === Animal    // true</p>
- {% asset_img Animal与Cat原型关系.jpg Animal与Cat原型关系 %}
-
-<p>所以我们调用的是Animal.prototype的constructor,当然是Animal函数啦</p>
-<p>所以我们需要手动加上<code>Cat.prototype</code>的<code>constructor</code>属性</p>
-<pre><code>Cat.prototype.constructor = Cat</code></pre><p>这时候再看<code>Cat.prototype</code>就会多了一个constructor</p>
-
-
-<h1 id="ES5-写法"><a href="#ES5-写法" class="headerlink" title="ES5 写法"></a>ES5 写法</h1><p>总结一下ES5 的写法</p>
-<pre><code>function Animal(name){
-  this.name = name
-}
-Animal.prototype.run = function(){
-  console.log(&apos;I can run&apos;)
-}
-function Cat(){
-    Animal.call(this,&apos;cat&apos;)
-    this.age = 1
-}
-var f = function(){}       
-f.prototype = Animal.prototype
-Cat.prototype = new f()
-Cat.prototype.constructor = Cat
-
-// 后面再给Cat添加公有属性
-Cat.prototype.say = function(){
-  console.log(&apos;miao miao miao&apos;)
-}
-
-也叫作寄生组合继承</code></pre><h1 id="ES6-写法"><a href="#ES6-写法" class="headerlink" title="ES6 写法"></a>ES6 写法</h1><p>ES6引入了class语法糖,跟java类似</p>
-<pre><code>class Animal{
-    constructor(name){
-        this.name = name
-    }
-    run(){
-        console.log(&quot;I can run&quot;)
-        return undefined
-    }
-}
-class Cat extends Animal{
-    constructor(name){
-        super(name)
-        this.age = 1
-    }
-    say(){
-      console.log(&apos;miao miao miao&apos;)
-    }
-}</code></pre>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1277,7 +1209,7 @@ class Cat extends Animal{
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

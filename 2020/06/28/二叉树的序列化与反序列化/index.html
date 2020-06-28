@@ -46,17 +46,17 @@
   };
 </script>
 
-  <meta name="description" content="横向布局 将子元素全部浮动起来  父元素添加 clearfix 属性  给clearfix类添加三行样式,清除浮动带来的影响        ...                clearfix::after {              content: &amp;apos;&amp;apos;;              display: block;              clear: both;          nav">
+  <meta name="description" content="前言遍历树的两个策略  BFS 可以按照层次的顺序从上到下遍历所有的节点DFS 分为    先序遍历    中序遍历    后序遍历  准备 TreeNode 构造函数function TreeNode(val){   this.val &#x3D; val   this.left &#x3D; this.right &#x3D; null }1. DFS 先序遍历反序列化&#x2F;&#x2F; 将先序遍历后的字符串 转为二叉树结构 var d">
 <meta property="og:type" content="article">
-<meta property="og:title" content="几个关于CSS的套路">
-<meta property="og:url" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2018&#x2F;10&#x2F;08&#x2F;%E5%87%A0%E4%B8%AA%E5%85%B3%E4%BA%8ECSS%E7%9A%84%E5%A5%97%E8%B7%AF&#x2F;index.html">
+<meta property="og:title" content="二叉树的序列化与反序列化">
+<meta property="og:url" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2020&#x2F;06&#x2F;28&#x2F;%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96&#x2F;index.html">
 <meta property="og:site_name" content="小宇的博客">
-<meta property="og:description" content="横向布局 将子元素全部浮动起来  父元素添加 clearfix 属性  给clearfix类添加三行样式,清除浮动带来的影响        ...                clearfix::after {              content: &amp;apos;&amp;apos;;              display: block;              clear: both;          nav">
+<meta property="og:description" content="前言遍历树的两个策略  BFS 可以按照层次的顺序从上到下遍历所有的节点DFS 分为    先序遍历    中序遍历    后序遍历  准备 TreeNode 构造函数function TreeNode(val){   this.val &#x3D; val   this.left &#x3D; this.right &#x3D; null }1. DFS 先序遍历反序列化&#x2F;&#x2F; 将先序遍历后的字符串 转为二叉树结构 var d">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-08T06:57:52.059Z">
+<meta property="og:updated_time" content="2020-06-28T15:29:51.927Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://cxyxiaoyuyu.github.io/2018/10/08/%E5%87%A0%E4%B8%AA%E5%85%B3%E4%BA%8ECSS%E7%9A%84%E5%A5%97%E8%B7%AF/">
+<link rel="canonical" href="http://cxyxiaoyuyu.github.io/2020/06/28/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
 
 
 <script id="page-configurations">
@@ -68,7 +68,7 @@
   };
 </script>
 
-  <title>几个关于CSS的套路 | 小宇的博客</title>
+  <title>二叉树的序列化与反序列化 | 小宇的博客</title>
   
 
 
@@ -185,7 +185,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://cxyxiaoyuyu.github.io/2018/10/08/%E5%87%A0%E4%B8%AA%E5%85%B3%E4%BA%8ECSS%E7%9A%84%E5%A5%97%E8%B7%AF/">
+    <link itemprop="mainEntityOfPage" href="http://cxyxiaoyuyu.github.io/2020/06/28/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -198,7 +198,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          几个关于CSS的套路
+          二叉树的序列化与反序列化
         </h1>
 
         <div class="post-meta">
@@ -207,16 +207,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2018-10-08 22:28:21" itemprop="dateCreated datePublished" datetime="2018-10-08T22:28:21+08:00">2018-10-08</time>
+              <time title="Created: 2020-06-28 23:20:30 / Modified: 23:29:51" itemprop="dateCreated datePublished" datetime="2020-06-28T23:20:30+08:00">2020-06-28</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-08 14:57:52" itemprop="dateModified" datetime="2019-12-08T14:57:52+08:00">2019-12-08</time>
-              </span>
 
           
 
@@ -229,84 +223,73 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="横向布局"><a href="#横向布局" class="headerlink" title="横向布局"></a>横向布局</h2><ol>
-<li><p>将子元素全部浮动起来</p>
-</li>
-<li><p>父元素添加 clearfix 属性</p>
-</li>
-<li><p>给clearfix类添加三行样式,清除浮动带来的影响</p>
- <head>
-     ...
-     <style>
-         clearfix::after {
-             content: '';
-             display: block;
-             clear: both;
-         nav>ul>li {
-                 float: left;
-             }
-    </style>
- </head>
- <body>
-     <nav>
-         <ul class="clearfix">
-             <li></li>
-             <li></li>
-             <li></li>
-             <li></li>
-             <li></li>
-         </ul>
-     </nav>
- <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
->   如果是两列显示在一行可以将li的高度设为50%;
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>遍历树的两个策略</p>
+<blockquote>
+<p>BFS 可以按照层次的顺序从上到下遍历所有的节点<br>DFS 分为    先序遍历    中序遍历    后序遍历</p>
+</blockquote>
+<h2 id="准备-TreeNode-构造函数"><a href="#准备-TreeNode-构造函数" class="headerlink" title="准备 TreeNode 构造函数"></a>准备 TreeNode 构造函数</h2><pre><code>function TreeNode(val){
+  this.val = val
+  this.left = this.right = null
+}</code></pre><h2 id="1-DFS-先序遍历"><a href="#1-DFS-先序遍历" class="headerlink" title="1. DFS 先序遍历"></a>1. DFS 先序遍历</h2><h3 id="反序列化"><a href="#反序列化" class="headerlink" title="反序列化"></a>反序列化</h3><pre><code>// 将先序遍历后的字符串 转为二叉树结构
+var deserialize = (data) =&gt; {
+  const list = data.split(&apos;,&apos;)       // 转成list数组
+  return buildTree(list)             // 构建树，dfs的入口
+}
 
-</li>
-</ol>
-<h2 id="文档流"><a href="#文档流" class="headerlink" title="文档流"></a>文档流</h2><blockquote>
-<p>  文档流就是文档内元素的流动方向，内联:左-&gt;右,块级:上-&gt;下<br>  脱离文档流会影响body的高度<br>  脱离文档流会导致宽度收缩，需设置<code>width: 100%;</code>解决</p>
-</blockquote>
-<h2 id="元素的高度"><a href="#元素的高度" class="headerlink" title="元素的高度"></a>元素的高度</h2><ul>
-<li>块级元素的高度由其内部文档流元素高度的总和<strong>决定</strong></li>
-<li>内联元素的高度</li>
-</ul>
-<h2 id="position-定位"><a href="#position-定位" class="headerlink" title="position 定位"></a>position 定位</h2><ul>
-<li>sticky      粘性定位</li>
-<li>static      当前位置</li>
-<li>relative    相对定位(参照自身原来的位置)</li>
-<li>absolute    绝对定位(参照父级)</li>
-<li>fixed       固定定位(参照浏览器)<blockquote>
-<p>  通常将父级元素设置为相对定位，子元素设置为决定定位，子元素参照父级设定位置</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="背景图片居中，自适应"><a href="#背景图片居中，自适应" class="headerlink" title="背景图片居中，自适应"></a>背景图片居中，自适应</h2><pre><code>background-position: center center;
-background-size: cover;</code></pre><h2 id="引用SVG图标"><a href="#引用SVG图标" class="headerlink" title="引用SVG图标"></a>引用SVG图标</h2><p>常用的网站：<a href="http://www.iconfont.cn" target="_blank" rel="noopener">iconfont.cn</a></p>
-<h2 id="其他很实用的小技巧"><a href="#其他很实用的小技巧" class="headerlink" title="其他很实用的小技巧"></a>其他很实用的小技巧</h2><ul>
-<li><p>max-height,max-weight</p>
-</li>
-<li><p>一般不给元素设定固定的height和width,容易出bug</p>
-<blockquote>
-<p>  通常从内向外加pading，将元素撑到指定宽高</p>
-</blockquote>
-</li>
-<li><p>内联元素不接受宽高度, 设置margin-top和margin-bottom不生效</p>
-<blockquote>
-<p>  display: block / inline-block;</p>
-</blockquote>
-</li>
-<li><p>hr 一条横线,样式设置</p>
-<p>hr {</p>
-<pre><code>height: 0;
-border: none;
-border-top: 1px solid red;
-}</code></pre></li>
-<li><p><code>work-break: break all</code></p>
-<blockquote>
-<p>  对于non-CJK (CJK 指中文/日文/韩文) 文本，可在任意字符间断行。</p>
-</blockquote>
-</li>
-</ul>
+var buildTree = (list) =&gt; {
+  let nodeVal = list.shift()
+  if(nodeVal === &apos;X&apos;) return null
 
+  let node = new TreeNode(nodeVal)
+  node.left = buildTree(list)
+  node.right = buildTree(list)
+  return node
+}</code></pre><h3 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h3><pre><code>// 将二叉树先序遍历 返回字符串
+var serialize = (root) =&gt; {
+  if (root == null) return &apos;X,&apos; // 遇到null节点
+  const leftSerialized = serialize(root.left)   //左子树的序列化字符串
+  const rightSerialized = serialize(root.right) //右子树的序列化字符串
+  return root.val + &apos;,&apos; + leftSerialized + rightSerialized // 根|左|右
+}</code></pre><h2 id="2-BFS"><a href="#2-BFS" class="headerlink" title="2 BFS"></a>2 BFS</h2><h3 id="序列化-1"><a href="#序列化-1" class="headerlink" title="序列化"></a>序列化</h3><pre><code>var serialize = (root) =&gt; {
+  let queue = [root]
+  let res = []
+
+  while(queue.length){
+    let node = queue.shift()
+    if(node){
+      res.push(node.val)
+      queue.push(node.left)
+      queue.push(node.right)
+    }else{
+      res.push(&apos;X&apos;)
+    }
+  }
+  return res.join(&apos;,&apos;)
+}</code></pre><h3 id="反序列化-1"><a href="#反序列化-1" class="headerlink" title="反序列化"></a>反序列化</h3><pre><code>var deserialize = (data) =&gt; {
+  if(data === &apos;X&apos;) return null
+  let list = data.split(&apos;,&apos;)
+  let root = new TreeNode(list[0])
+
+  let queue = [root]
+  let cursor = 1
+  while(cursor &lt; list.length){
+    node = queue.shift()
+    leftVal = list[cursor]
+    rightVal = list[cursor+1]
+    cursor += 2
+    if(leftVal !== &apos;X&apos;){
+      let leftNode = new TreeNode(leftVal)
+      node.left = leftNode
+      queue.push(leftNode)
+    }
+    if(rightVal !== &apos;X&apos;){
+      let rightNode = new TreeNode(rightVal)
+      node.right = rightNode
+      queue.push(rightNode)
+    }
+  }
+  return root
+}</code></pre>
     </div>
 
     
@@ -321,13 +304,10 @@ border-top: 1px solid red;
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2018/10/07/HTML%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/" rel="prev" title="HTML常用标签">
-      <i class="fa fa-chevron-left"></i> HTML常用标签
+    <a href="/2020/05/24/JS%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/" rel="prev" title="JS零碎知识点总结">
+      <i class="fa fa-chevron-left"></i> JS零碎知识点总结
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2018/10/13/CSS%E5%B8%83%E5%B1%80/" rel="next" title="CSS布局">
-      CSS布局 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -387,7 +367,7 @@ border-top: 1px solid red;
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#横向布局"><span class="nav-number">1.</span> <span class="nav-text">横向布局</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文档流"><span class="nav-number">2.</span> <span class="nav-text">文档流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#元素的高度"><span class="nav-number">3.</span> <span class="nav-text">元素的高度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#position-定位"><span class="nav-number">4.</span> <span class="nav-text">position 定位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#背景图片居中，自适应"><span class="nav-number">5.</span> <span class="nav-text">背景图片居中，自适应</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用SVG图标"><span class="nav-number">6.</span> <span class="nav-text">引用SVG图标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他很实用的小技巧"><span class="nav-number">7.</span> <span class="nav-text">其他很实用的小技巧</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备-TreeNode-构造函数"><span class="nav-number">1.1.</span> <span class="nav-text">准备 TreeNode 构造函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-DFS-先序遍历"><span class="nav-number">1.2.</span> <span class="nav-text">1. DFS 先序遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#反序列化"><span class="nav-number">1.2.1.</span> <span class="nav-text">反序列化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#序列化"><span class="nav-number">1.2.2.</span> <span class="nav-text">序列化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-BFS"><span class="nav-number">1.3.</span> <span class="nav-text">2 BFS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#序列化-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">序列化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反序列化-1"><span class="nav-number">1.3.2.</span> <span class="nav-text">反序列化</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
