@@ -46,16 +46,16 @@
   };
 </script>
 
-  <meta name="description" content="回调地狱问题的由来需求： 封装一个方法，给定文件路径，可以读取文件内容，并把文件内容返回，如果错误返回错误结果 const fs &#x3D; require(&amp;apos;fs&amp;apos;) const path &#x3D; require(&amp;apos;path&amp;apos;)  &#x2F;&#x2F; 普通读取文件的方式 function getFileByPath(fpath){   fs.readFile(fpath,&amp;apos">
+  <meta name="description" content="回调地狱问题的由来需求： 封装一个方法，给定文件路径，可以读取文件内容，并把文件内容返回，如果错误返回错误结果">
 <meta name="keywords" content="异步,Promise">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Promise解决回调地狱问题">
 <meta property="og:url" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2019&#x2F;10&#x2F;24&#x2F;Promise%E8%A7%A3%E5%86%B3%E5%9B%9E%E8%B0%83%E5%9C%B0%E7%8B%B1%E9%97%AE%E9%A2%98&#x2F;index.html">
 <meta property="og:site_name" content="小宇的博客">
-<meta property="og:description" content="回调地狱问题的由来需求： 封装一个方法，给定文件路径，可以读取文件内容，并把文件内容返回，如果错误返回错误结果 const fs &#x3D; require(&amp;apos;fs&amp;apos;) const path &#x3D; require(&amp;apos;path&amp;apos;)  &#x2F;&#x2F; 普通读取文件的方式 function getFileByPath(fpath){   fs.readFile(fpath,&amp;apos">
+<meta property="og:description" content="回调地狱问题的由来需求： 封装一个方法，给定文件路径，可以读取文件内容，并把文件内容返回，如果错误返回错误结果">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2019&#x2F;10&#x2F;24&#x2F;Promise%E8%A7%A3%E5%86%B3%E5%9B%9E%E8%B0%83%E5%9C%B0%E7%8B%B1%E9%97%AE%E9%A2%98&#x2F;callback_hell.jpg">
-<meta property="og:updated_time" content="2019-12-08T06:57:52.058Z">
+<meta property="og:updated_time" content="2020-07-05T14:20:17.965Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2019&#x2F;10&#x2F;24&#x2F;Promise%E8%A7%A3%E5%86%B3%E5%9B%9E%E8%B0%83%E5%9C%B0%E7%8B%B1%E9%97%AE%E9%A2%98&#x2F;callback_hell.jpg">
 
@@ -218,7 +218,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-08 14:57:52" itemprop="dateModified" datetime="2019-12-08T14:57:52+08:00">2019-12-08</time>
+                <time title="Modified: 2020-07-05 22:20:17" itemprop="dateModified" datetime="2020-07-05T22:20:17+08:00">2020-07-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -244,6 +244,7 @@
 
       
         <h2 id="回调地狱问题的由来"><a href="#回调地狱问题的由来" class="headerlink" title="回调地狱问题的由来"></a>回调地狱问题的由来</h2><p>需求： 封装一个方法，给定文件路径，可以读取文件内容，并把文件内容返回，如果错误返回错误结果</p>
+<a id="more"></a>
 <pre><code>const fs = require(&apos;fs&apos;)
 const path = require(&apos;path&apos;)
 

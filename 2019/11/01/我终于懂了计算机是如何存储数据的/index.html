@@ -46,15 +46,15 @@
   };
 </script>
 
-  <meta name="description" content="前言 世界上只有10种人, 认识二进制的和不认识的计算机只能存储0和1, 所有信息在新计算内部最终都是以二进制的形式存储。  每一个二进制位(bit)都只有0和1两种状态,八位二进制(一个字节byte)可以表示2**8 &#x3D;&#x3D;&#x3D; 256种状态,从00000000~11111111。 既然计算机只能存储0和1,它是怎么存储数字以及各种字符呢？先从简单的数字说起吧 如何存储数字存储数字很容易,直接转为二">
+  <meta name="description" content="前言 世界上只有10种人, 认识二进制的和不认识的计算机只能存储0和1, 所有信息在新计算内部最终都是以二进制的形式存储。">
 <meta name="keywords" content="编码 js字符串">
 <meta property="og:type" content="article">
 <meta property="og:title" content="计算机编码与js字符串">
 <meta property="og:url" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2019&#x2F;11&#x2F;01&#x2F;%E6%88%91%E7%BB%88%E4%BA%8E%E6%87%82%E4%BA%86%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE%E7%9A%84&#x2F;index.html">
 <meta property="og:site_name" content="小宇的博客">
-<meta property="og:description" content="前言 世界上只有10种人, 认识二进制的和不认识的计算机只能存储0和1, 所有信息在新计算内部最终都是以二进制的形式存储。  每一个二进制位(bit)都只有0和1两种状态,八位二进制(一个字节byte)可以表示2**8 &#x3D;&#x3D;&#x3D; 256种状态,从00000000~11111111。 既然计算机只能存储0和1,它是怎么存储数字以及各种字符呢？先从简单的数字说起吧 如何存储数字存储数字很容易,直接转为二">
+<meta property="og:description" content="前言 世界上只有10种人, 认识二进制的和不认识的计算机只能存储0和1, 所有信息在新计算内部最终都是以二进制的形式存储。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-08T06:57:52.060Z">
+<meta property="og:updated_time" content="2020-07-05T14:25:18.957Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://cxyxiaoyuyu.github.io/2019/11/01/%E6%88%91%E7%BB%88%E4%BA%8E%E6%87%82%E4%BA%86%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE%E7%9A%84/">
@@ -216,7 +216,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-08 14:57:52" itemprop="dateModified" datetime="2019-12-08T14:57:52+08:00">2019-12-08</time>
+                <time title="Modified: 2020-07-05 22:25:18" itemprop="dateModified" datetime="2020-07-05T22:25:18+08:00">2020-07-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -244,6 +244,8 @@
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
 <p>世界上只有10种人, 认识二进制的和不认识的<br>计算机只能存储0和1, 所有信息在新计算内部最终都是以二进制的形式存储。</p>
 </blockquote>
+<a id="more"></a>
+
 <p>每一个二进制位(bit)都只有0和1两种状态,八位二进制(一个字节byte)可以表示<code>2**8 === 256</code>种状态,从00000000~11111111。</p>
 <p>既然计算机只能存储0和1,它是怎么存储数字以及各种字符呢？先从简单的数字说起吧</p>
 <h1 id="如何存储数字"><a href="#如何存储数字" class="headerlink" title="如何存储数字"></a>如何存储数字</h1><p>存储数字很容易,直接转为二进制就好了</p>
