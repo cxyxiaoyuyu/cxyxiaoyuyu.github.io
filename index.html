@@ -184,6 +184,63 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://cxyxiaoyuyu.github.io/2020/07/19/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="xiaoyu">
+      <meta itemprop="description" content="又是元气满满的一天">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小宇的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/19/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">排序算法总结</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-07-19 22:50:45" itemprop="dateCreated datePublished" datetime="2020-07-19T22:50:45+08:00">2020-07-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://cxyxiaoyuyu.github.io/2020/07/19/%E5%8F%91%E5%B8%83%E8%87%AA%E5%B7%B1%E7%9A%84npm%E5%8C%85/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -862,97 +919,6 @@ let textPlain = &quot;{id:&apos;123&apos;,name:&apos;xiaoyu&apos;,address:&apos;
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://cxyxiaoyuyu.github.io/2019/11/01/CSS-BFC%E4%B8%8EIFC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="xiaoyu">
-      <meta itemprop="description" content="又是元气满满的一天">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小宇的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/01/CSS-BFC%E4%B8%8EIFC/" class="post-title-link" itemprop="url">CSS-BFC与IFC</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-11-01 16:53:50" itemprop="dateCreated datePublished" datetime="2019-11-01T16:53:50+08:00">2019-11-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-08 14:57:52" itemprop="dateModified" datetime="2019-12-08T14:57:52+08:00">2019-12-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSS/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="BFC-Block-Formatting-Context"><a href="#BFC-Block-Formatting-Context" class="headerlink" title="BFC (Block Formatting Context)"></a>BFC (Block Formatting Context)</h1>
-
-<p>所以我们没有办法说明什么是BFC, 但我们知道如何创建一个BFC。</p>
-<p>比如 <code>overflow: hidden</code> 的块级元素,但是我们只想让他变成BFC,发挥自己的作用,这个样式却会导致其他问题。 <code>display: flow-root</code>,可以单纯将一个元素变成一个BFC。</p>
-<p>那BFC有什么作用呢</p>
-<h2 id="BFC作用1-父元素包住子元素"><a href="#BFC作用1-父元素包住子元素" class="headerlink" title="BFC作用1-父元素包住子元素"></a>BFC作用1-父元素包住子元素</h2><p>我们知道如果子元素是浮动元素,父元素不设置高度,就不会被子元素撑起来,就不会包住子元素,这会导致很多问题。我们通常利用伪元素清楚浮动，但这里我们可以通过将父元素变为BFC的方式包住子元素</p>
-
-
-
-<h2 id="BFC作用2-兄弟节点划清界限"><a href="#BFC作用2-兄弟节点划清界限" class="headerlink" title="BFC作用2-兄弟节点划清界限"></a>BFC作用2-兄弟节点划清界限</h2><p>两个块级元素一个浮动,浮动元素就会飘到另一个不浮动元素上面,会导致有重合部分,或挡住另一元素</p>
-
-
-<p>将不浮动的节点变为BFC,两个节点就会分开,就不会让兄弟元素挡住自己</p>
-
-
-<p>通俗来说,一个块级元素变为BFC后,里面的元素出不去,外面的元素进不来</p>
-<h1 id="IFC-Inline-Formatting-Context"><a href="#IFC-Inline-Formatting-Context" class="headerlink" title="IFC (Inline Formatting Context)"></a>IFC (Inline Formatting Context)</h1>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1025,7 +991,7 @@ let textPlain = &quot;{id:&apos;123&apos;,name:&apos;xiaoyu&apos;,address:&apos;
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
