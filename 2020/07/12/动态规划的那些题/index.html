@@ -46,16 +46,17 @@
   };
 </script>
 
-  <meta name="description" content="又是元气满满的一天">
-<meta property="og:type" content="website">
-<meta property="og:title" content="小宇的博客">
-<meta property="og:url" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;archives&#x2F;2020&#x2F;index.html">
+  <meta name="description" content="动态规划1 将数字翻译成字符串给定一个数字，我们按照如下规则把它翻译为字符串：0 翻译成 “a” ，1 翻译成 “b”，……，11 翻译成 “l”，……，25 翻译成 “z”。一个数字可能有多个翻译。请编程实现一个函数，用来计算一个数字有多少种不同的翻译方法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动态规划的那些题">
+<meta property="og:url" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2020&#x2F;07&#x2F;12&#x2F;%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%9A%84%E9%82%A3%E4%BA%9B%E9%A2%98&#x2F;index.html">
 <meta property="og:site_name" content="小宇的博客">
-<meta property="og:description" content="又是元气满满的一天">
+<meta property="og:description" content="动态规划1 将数字翻译成字符串给定一个数字，我们按照如下规则把它翻译为字符串：0 翻译成 “a” ，1 翻译成 “b”，……，11 翻译成 “l”，……，25 翻译成 “z”。一个数字可能有多个翻译。请编程实现一个函数，用来计算一个数字有多少种不同的翻译方法。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-07-19T14:48:34.259Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://cxyxiaoyuyu.github.io/archives/2020/">
+<link rel="canonical" href="http://cxyxiaoyuyu.github.io/2020/07/12/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%9A%84%E9%82%A3%E4%BA%9B%E9%A2%98/">
 
 
 <script id="page-configurations">
@@ -63,11 +64,11 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false
+    isPost: true
   };
 </script>
 
-  <title>Archive | 小宇的博客</title>
+  <title>动态规划的那些题 | 小宇的博客</title>
   
 
 
@@ -179,129 +180,155 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">Um..! 28 posts in total. Keep on posting.</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://cxyxiaoyuyu.github.io/2020/07/12/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%9A%84%E9%82%A3%E4%BA%9B%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="xiaoyu">
+      <meta itemprop="description" content="又是元气满满的一天">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小宇的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          动态规划的那些题
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-07-12 21:57:52" itemprop="dateCreated datePublished" datetime="2020-07-12T21:57:52+08:00">2020-07-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-07-19 22:48:34" itemprop="dateModified" datetime="2020-07-19T22:48:34+08:00">2020-07-19</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h1 class="collection-header">2020</h1>
+        <h1 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h1><h3 id="1-将数字翻译成字符串"><a href="#1-将数字翻译成字符串" class="headerlink" title="1 将数字翻译成字符串"></a>1 将数字翻译成字符串</h3><p>给定一个数字，我们按照如下规则把它翻译为字符串：0 翻译成 “a” ，1 翻译成 “b”，……，11 翻译成 “l”，……，25 翻译成 “z”。一个数字可能有多个翻译。请编程实现一个函数，用来计算一个数字有多少种不同的翻译方法。</p>
+<a id="more"></a>
+<p>输入: 12258<br>输出: 5<br>解释: 12258有5种不同的翻译，分别是”bccfi”, “bwfi”, “bczi”, “mcfi”和”mzi”</p>
+<pre><code>// 主要就是判断最后两个数字是否在10-25之间
+var translateNum = function(num) {
+    var num_str = num.toString()
+    var n = num_str.length
+    var d = [1]
+    d[-1] = 1
+    for(let i=1;i&lt;n;i++){
+        let dig = +num_str.substr(i-1,2)
+        if(dig &gt;= 10 &amp;&amp; dig &lt;=25){
+            d[i] = d[i-1] + d[i-2]
+        }else{
+            d[i] = d[i-1]
+        }
+    }
+    return d[n-1]
+}</code></pre><h3 id="2-最长重复子数组"><a href="#2-最长重复子数组" class="headerlink" title="2 最长重复子数组"></a>2 最长重复子数组</h3><p>给两个整数数组 A 和 B ，返回两个数组中公共的、长度最长的子数组的长度。</p>
+<p>输入:<br>A: [1,2,3,2,1]<br>B: [3,2,1,4,7]<br>输出: 3<br>解释: 长度最长的公共子数组是 [3, 2, 1]</p>
+<blockquote>
+<p>状态转移方程 dp[i][j] = dp[i-1][j-1] + 1</p>
+</blockquote>
+<pre><code>const findLength = (A, B) =&gt; {
+    const m = A.length;
+    const n = B.length;
+    const dp = Array.from(Array(n+1),()=&gt;Array(n+1).fill(0))
+    let res = 0;
+    for (let i = 1; i &lt;= m; i++) {
+        for (let j = 1; j &lt;= n; j++) {
+            if (A[i - 1] == B[j - 1]) {
+            dp[i][j] = dp[i - 1][j - 1] + 1;
+            }
+            res = Math.max(dp[i][j], res);
+        }
+    }
+    return res;
+}</code></pre><h3 id="3-交错字符串"><a href="#3-交错字符串" class="headerlink" title="3 交错字符串"></a>3 交错字符串</h3><p>给定三个字符串 s1, s2, s3, 验证 s3 是否是由 s1 和 s2 交错组成的。</p>
+<p>输入: s1 = “aabcc”, s2 = “dbbca”, s3 = “aadbbcbcac”<br>输出: true</p>
+<p>输入: s1 = “aabcc”, s2 = “dbbca”, s3 = “aadbbbaccc”<br>输出: false</p>
+<blockquote>
+<p>f[i][j] |= f[i-1][j] &amp;&amp; s2[i-1] === s3[p]</p>
+</blockquote>
+<pre><code>var isInterleave = function(s1, s2, s3) {
+    let n1 = s1.length
+    let n2 = s2.length
+    let n3 = s3.length
+    if(n1+n2 !== n3){
+        return false
+    }
+
+    let f = new Array(n2+1)
+    for(let i=0;i&lt;n2+1;i++){
+        f[i] = []
+    }
+    f[0][0] = true
+
+    for(let i=0;i&lt;n2+1;i++){
+        for(let j=0;j&lt;n1+1;j++){
+            let p = i+j-1
+            if(i&gt;0){
+                f[i][j] |= f[i-1][j] &amp;&amp; s2[i-1] === s3[p]
+            }
+            if(j&gt;0){
+                f[i][j] |= f[i][j-1] &amp;&amp; s1[j-1] === s3[p]
+            }
+        }
+    }
+    return f[n2][n1]
+}</code></pre>
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-07-19T22:42:45+08:00"
-              content="2020-07-19">
-          07-19
-        </time>
-      </div>
+      <footer class="post-footer">
 
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2020/07/19/%E5%8F%91%E5%B8%83%E8%87%AA%E5%B7%B1%E7%9A%84npm%E5%8C%85/" itemprop="url">
-            <span itemprop="name">发布自己的npm包</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-07-12T21:57:52+08:00"
-              content="2020-07-12">
-          07-12
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2020/07/12/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%9A%84%E9%82%A3%E4%BA%9B%E9%A2%98/" itemprop="url">
-            <span itemprop="name">动态规划的那些题</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-07-05T21:37:43+08:00"
-              content="2020-07-05">
-          07-05
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2020/07/05/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" itemprop="url">
-            <span itemprop="name">二叉树的反序列化</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-06-28T23:20:30+08:00"
-              content="2020-06-28">
-          06-28
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2020/06/28/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96(%E9%81%8D%E5%8E%86%E4%BA%8C%E5%8F%89%E6%A0%91)/" itemprop="url">
-            <span itemprop="name">二叉树的序列化(遍历二叉树)</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-05-24T21:09:56+08:00"
-              content="2020-05-24">
-          05-24
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2020/05/24/JS%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/" itemprop="url">
-            <span itemprop="name">JS零碎知识点总结</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
+        
 
 
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/05/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" rel="prev" title="二叉树的反序列化">
+      <i class="fa fa-chevron-left"></i> 二叉树的反序列化
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/07/19/%E5%8F%91%E5%B8%83%E8%87%AA%E5%B7%B1%E7%9A%84npm%E5%8C%85/" rel="next" title="发布自己的npm包">
+      发布自己的npm包 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
   </div>
-  
-  
-  
-
-  
-
 
 
           </div>
@@ -352,6 +379,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#动态规划"><span class="nav-number">1.</span> <span class="nav-text">动态规划</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-将数字翻译成字符串"><span class="nav-number">1.0.1.</span> <span class="nav-text">1 将数字翻译成字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-最长重复子数组"><span class="nav-number">1.0.2.</span> <span class="nav-text">2 最长重复子数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-交错字符串"><span class="nav-number">1.0.3.</span> <span class="nav-text">3 交错字符串</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

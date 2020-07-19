@@ -184,7 +184,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://cxyxiaoyuyu.github.io/2020/07/19/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
+    <link itemprop="mainEntityOfPage" href="http://cxyxiaoyuyu.github.io/2020/07/19/%E5%8F%91%E5%B8%83%E8%87%AA%E5%B7%B1%E7%9A%84npm%E5%8C%85/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -198,7 +198,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/07/19/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" class="post-title-link" itemprop="url">二叉树的反序列化</a>
+            <a href="/2020/07/19/%E5%8F%91%E5%B8%83%E8%87%AA%E5%B7%B1%E7%9A%84npm%E5%8C%85/" class="post-title-link" itemprop="url">发布自己的npm包</a>
         </h1>
 
         <div class="post-meta">
@@ -207,8 +207,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2020-07-19 21:37:43" itemprop="dateCreated datePublished" datetime="2020-07-19T21:37:43+08:00">2020-07-19</time>
+              <time title="Created: 2020-07-19 22:42:45 / Modified: 22:47:01" itemprop="dateCreated datePublished" datetime="2020-07-19T22:42:45+08:00">2020-07-19</time>
             </span>
 
           
@@ -222,7 +223,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <h2 id="创建npm项目"><a href="#创建npm项目" class="headerlink" title="创建npm项目"></a>创建npm项目</h2><p>1 创建一个目录 进入这个目录<br>2 <code>npm init</code> 创建 package.json</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/07/19/%E5%8F%91%E5%B8%83%E8%87%AA%E5%B7%B1%E7%9A%84npm%E5%8C%85/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -241,7 +250,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://cxyxiaoyuyu.github.io/2020/07/05/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%9A%84%E9%82%A3%E4%BA%9B%E9%A2%98/">
+    <link itemprop="mainEntityOfPage" href="http://cxyxiaoyuyu.github.io/2020/07/12/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%9A%84%E9%82%A3%E4%BA%9B%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -255,7 +264,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/07/05/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%9A%84%E9%82%A3%E4%BA%9B%E9%A2%98/" class="post-title-link" itemprop="url">动态规划的那些题</a>
+            <a href="/2020/07/12/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%9A%84%E9%82%A3%E4%BA%9B%E9%A2%98/" class="post-title-link" itemprop="url">动态规划的那些题</a>
         </h1>
 
         <div class="post-meta">
@@ -265,8 +274,15 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-07-05 21:57:52" itemprop="dateCreated datePublished" datetime="2020-07-05T21:57:52+08:00">2020-07-05</time>
+              <time title="Created: 2020-07-12 21:57:52" itemprop="dateCreated datePublished" datetime="2020-07-12T21:57:52+08:00">2020-07-12</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-07-19 22:48:34" itemprop="dateModified" datetime="2020-07-19T22:48:34+08:00">2020-07-19</time>
+              </span>
 
           
 
@@ -279,7 +295,90 @@
     <div class="post-body" itemprop="articleBody">
 
       
+          <h1 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h1><h3 id="1-将数字翻译成字符串"><a href="#1-将数字翻译成字符串" class="headerlink" title="1 将数字翻译成字符串"></a>1 将数字翻译成字符串</h3><p>给定一个数字，我们按照如下规则把它翻译为字符串：0 翻译成 “a” ，1 翻译成 “b”，……，11 翻译成 “l”，……，25 翻译成 “z”。一个数字可能有多个翻译。请编程实现一个函数，用来计算一个数字有多少种不同的翻译方法。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/07/12/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%9A%84%E9%82%A3%E4%BA%9B%E9%A2%98/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://cxyxiaoyuyu.github.io/2020/07/05/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="xiaoyu">
+      <meta itemprop="description" content="又是元气满满的一天">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小宇的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
           
+            <a href="/2020/07/05/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" class="post-title-link" itemprop="url">二叉树的反序列化</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-07-05 21:37:43" itemprop="dateCreated datePublished" datetime="2020-07-05T21:37:43+08:00">2020-07-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-07-19 21:47:19" itemprop="dateModified" datetime="2020-07-19T21:47:19+08:00">2020-07-19</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>遍历树的两个策略</p>
+<blockquote>
+<p>DFS 分为    先序遍历    中序遍历    后序遍历<br>BFS 可以按照层次的顺序从上到下遍历所有的节点</p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/07/05/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -854,81 +953,6 @@ let textPlain = &quot;{id:&apos;123&apos;,name:&apos;xiaoyu&apos;,address:&apos;
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://cxyxiaoyuyu.github.io/2019/11/01/CSS-%E5%A0%86%E5%8F%A0%E4%B8%8A%E4%B8%8B%E6%96%87/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="xiaoyu">
-      <meta itemprop="description" content="又是元气满满的一天">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小宇的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/01/CSS-%E5%A0%86%E5%8F%A0%E4%B8%8A%E4%B8%8B%E6%96%87/" class="post-title-link" itemprop="url">CSS-堆叠上下文</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-11-01 15:27:34" itemprop="dateCreated datePublished" datetime="2019-11-01T15:27:34+08:00">2019-11-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-08 14:57:52" itemprop="dateModified" datetime="2019-12-08T14:57:52+08:00">2019-12-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSS/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1001,7 +1025,7 @@ let textPlain = &quot;{id:&apos;123&apos;,name:&apos;xiaoyu&apos;,address:&apos;
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
