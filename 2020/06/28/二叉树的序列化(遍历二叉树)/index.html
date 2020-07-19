@@ -46,17 +46,19 @@
   };
 </script>
 
-  <meta name="description" content="又是元气满满的一天">
-<meta property="og:type" content="website">
-<meta property="og:title" content="categories">
-<meta property="og:url" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;categories&#x2F;index.html">
+  <meta name="description" content="前言遍历树的两个策略  DFS 分为    先序遍历    中序遍历    后序遍历BFS 可以按照层次的顺序从上到下遍历所有的节点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二叉树的序列化(遍历二叉树)">
+<meta property="og:url" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2020&#x2F;06&#x2F;28&#x2F;%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96(%E9%81%8D%E5%8E%86%E4%BA%8C%E5%8F%89%E6%A0%91)&#x2F;index.html">
 <meta property="og:site_name" content="小宇的博客">
-<meta property="og:description" content="又是元气满满的一天">
+<meta property="og:description" content="前言遍历树的两个策略  DFS 分为    先序遍历    中序遍历    后序遍历BFS 可以按照层次的顺序从上到下遍历所有的节点">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-08T11:21:53.502Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2020&#x2F;06&#x2F;28&#x2F;%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96(%E9%81%8D%E5%8E%86%E4%BA%8C%E5%8F%89%E6%A0%91)&#x2F;%E9%81%8D%E5%8E%86%E4%BA%8C%E5%8F%89%E6%A0%91.jpg">
+<meta property="og:updated_time" content="2020-07-19T13:44:54.407Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2020&#x2F;06&#x2F;28&#x2F;%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96(%E9%81%8D%E5%8E%86%E4%BA%8C%E5%8F%89%E6%A0%91)&#x2F;%E9%81%8D%E5%8E%86%E4%BA%8C%E5%8F%89%E6%A0%91.jpg">
 
-<link rel="canonical" href="http://cxyxiaoyuyu.github.io/categories/">
+<link rel="canonical" href="http://cxyxiaoyuyu.github.io/2020/06/28/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96(%E9%81%8D%E5%8E%86%E4%BA%8C%E5%8F%89%E6%A0%91)/">
 
 
 <script id="page-configurations">
@@ -64,12 +66,11 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false
+    isPost: true
   };
 </script>
 
-  <title>categories | 小宇的博客
-  </title>
+  <title>二叉树的序列化(遍历二叉树) | 小宇的博客</title>
   
 
 
@@ -177,52 +178,188 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
           <div class="content">
             
 
   <div class="posts-expand">
-    
-    
-    
-    <div class="post-block" lang="zh-Hans">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://cxyxiaoyuyu.github.io/2020/06/28/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96(%E9%81%8D%E5%8E%86%E4%BA%8C%E5%8F%89%E6%A0%91)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="xiaoyu">
+      <meta itemprop="description" content="又是元气满满的一天">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小宇的博客">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          二叉树的序列化(遍历二叉树)
+        </h1>
 
-<h1 class="post-title" itemprop="name headline">categories
-</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
 
-<div class="post-meta">
+              <time title="Created: 2020-06-28 23:20:30" itemprop="dateCreated datePublished" datetime="2020-06-28T23:20:30+08:00">2020-06-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-07-19 21:44:54" itemprop="dateModified" datetime="2020-07-19T21:44:54+08:00">2020-07-19</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>遍历树的两个策略</p>
+<blockquote>
+<p>DFS 分为    先序遍历    中序遍历    后序遍历<br>BFS 可以按照层次的顺序从上到下遍历所有的节点</p>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="构造一颗二叉树"><a href="#构造一颗二叉树" class="headerlink" title="构造一颗二叉树"></a>构造一颗二叉树</h2><pre><code>const node = (value,left,right)=&gt;{
+  return {
+    value,
+    left,
+    right
+  }
+}
+
+const binaryTree = 
+  node(&quot;A&quot;,
+    node(&quot;B&quot;,node(&quot;D&quot;)),
+    node(&quot;C&quot;,
+      node(&quot;E&quot;,undefined,node(&quot;G&quot;)),
+      node(&quot;F&quot;,node(&quot;H&quot;),node(&quot;J&quot;))
+    )
+  )</code></pre><img src="/2020/06/28/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96(%E9%81%8D%E5%8E%86%E4%BA%8C%E5%8F%89%E6%A0%91)/%E9%81%8D%E5%8E%86%E4%BA%8C%E5%8F%89%E6%A0%91.jpg" class="" title="遍历二叉树">
+
+<h2 id="1-DFS-先序遍历"><a href="#1-DFS-先序遍历" class="headerlink" title="1. DFS 先序遍历"></a>1. DFS 先序遍历</h2><h3 id="利用递归先序遍历"><a href="#利用递归先序遍历" class="headerlink" title="利用递归先序遍历"></a>利用递归先序遍历</h3><pre><code>let resultFirst = []
+const traverseRootFirst = (bTree) =&gt; {
+  if(!bTree) { return}
+  resultFirst.push(bTree.value)
+  traverseRootFirst(bTree.left)
+  traverseRootFirst(bTree.right)
+}
+traverseRootFirst(binaryTree)
+console.log(&apos;先序遍历&apos;)
+console.log(resultFirst)  // [&quot;A&quot;, &quot;B&quot;, &quot;D&quot;, &quot;C&quot;, &quot;E&quot;, &quot;G&quot;, &quot;F&quot;, &quot;H&quot;, &quot;J&quot;]</code></pre><h3 id="不利用递归先序遍历"><a href="#不利用递归先序遍历" class="headerlink" title="不利用递归先序遍历"></a>不利用递归先序遍历</h3><pre><code>let resultFirst2 = []
+const traverseRootFirst2 = (bTree) =&gt; {
+  const stack = []
+  let current = bTree
+  while(stack.length || current){
+    if(current){
+      resultFirst2.push(current.value)
+      stack.push(current)
+      current = current.left
+    }else{
+      current = stack.pop()
+      current = current.right
+    }
+  }
+}
+traverseRootFirst2(binaryTree)
+console.log(&apos;\n 不利用递归先序遍历&apos;)
+console.log(resultFirst2)  // [&quot;A&quot;, &quot;B&quot;, &quot;D&quot;, &quot;C&quot;, &quot;E&quot;, &quot;G&quot;, &quot;F&quot;, &quot;H&quot;, &quot;J&quot;]</code></pre><h2 id="2-DFS-中序遍历"><a href="#2-DFS-中序遍历" class="headerlink" title="2 DFS 中序遍历"></a>2 DFS 中序遍历</h2><h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><pre><code>let resultMiddle = []
+const traverseRootMiddle = (bTree) =&gt; {
+  if(!bTree) { return }
+  traverseRootMiddle(bTree.left)
+  resultMiddle.push(bTree.value)
+  traverseRootMiddle(bTree.right)
+}
+traverseRootMiddle(binaryTree)
+console.log(&apos;中序遍历&apos;)
+console.log(resultMiddle)   // [&quot;D&quot;, &quot;B&quot;, &quot;A&quot;, &quot;E&quot;, &quot;G&quot;, &quot;C&quot;, &quot;H&quot;, &quot;F&quot;, &quot;J&quot;]</code></pre><h3 id="不利用递归"><a href="#不利用递归" class="headerlink" title="不利用递归"></a>不利用递归</h3><pre><code>let resultMiddle2 = []
+const traverSeRootMiddle2 = (bTree) =&gt; {
+  const stack = []
+  let current = bTree
+  while(stack.length || current){
+    if(current){
+      stack.push(current)
+      current = current.left
+    }else{
+      current = stack.pop()
+      resultMiddle2.push(current.value)
+      current = current.right
+    }
+  }
+}
+traverSeRootMiddle2(binaryTree)
+console.log(&apos;\n 不利用递归中序遍历&apos;)
+console.log(resultMiddle2)  // [&quot;D&quot;, &quot;B&quot;, &quot;A&quot;, &quot;E&quot;, &quot;G&quot;, &quot;C&quot;, &quot;H&quot;, &quot;F&quot;, &quot;J&quot;]</code></pre><h2 id="3-DFS-后续遍历"><a href="#3-DFS-后续遍历" class="headerlink" title="3 DFS 后续遍历"></a>3 DFS 后续遍历</h2><h3 id="递归-1"><a href="#递归-1" class="headerlink" title="递归"></a>递归</h3><pre><code>let resultLast = []
+const traverseRootLast = (bTree) =&gt; {
+  if(!bTree) { return }
+  traverseRootLast(bTree.left)
+  traverseRootLast(bTree.right)
+  resultLast.push(bTree.value)
+}
+traverseRootLast(binaryTree)
+console.log(&apos;后序遍历&apos;)
+console.log(resultLast)  // [&quot;D&quot;, &quot;B&quot;, &quot;G&quot;, &quot;E&quot;, &quot;H&quot;, &quot;J&quot;, &quot;F&quot;, &quot;C&quot;, &quot;A&quot;]</code></pre><h2 id="4-BFS"><a href="#4-BFS" class="headerlink" title="4 BFS"></a>4 BFS</h2><h3 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h3><pre><code>var serialize = (root) =&gt; {
+  let queue = [root]
+  let res = []
+
+  while(queue.length){
+    let node = queue.shift()
+    if(node){
+      res.push(node.val)
+      queue.push(node.left)
+      queue.push(node.right)
+    }else{
+      res.push(&apos;X&apos;)
+    }
+  }
+  return res.join(&apos;,&apos;)
+}</code></pre>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/24/JS%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/" rel="prev" title="JS零碎知识点总结">
+      <i class="fa fa-chevron-left"></i> JS零碎知识点总结
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/07/05/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%9A%84%E9%82%A3%E4%BA%9B%E9%A2%98/" rel="next" title="动态规划的那些题">
+      动态规划的那些题 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
-          <div class="category-all-page">
-            <div class="category-all-title">
-              9 categories in total
-            </div>
-            <div class="category-all">
-              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Promise/">Promise</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/http/">http</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/js/">js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/npm/">npm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8A%A0%E8%A7%A3%E5%AF%86/">加解密</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8E%9F%E5%9E%8B%E4%B8%8E%E5%8E%9F%E5%9E%8B%E9%93%BE/">原型与原型链</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BC%96%E7%A0%81/">计算机编码</a><span class="category-list-count">1</span></li></ul>
-            </div>
-          </div>
-        
-      </div>
-      
-      
-      
-    </div>
-    
-
-    
-    
-    
   </div>
 
 
@@ -274,6 +411,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#构造一颗二叉树"><span class="nav-number">1.1.</span> <span class="nav-text">构造一颗二叉树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-DFS-先序遍历"><span class="nav-number">1.2.</span> <span class="nav-text">1. DFS 先序遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#利用递归先序遍历"><span class="nav-number">1.2.1.</span> <span class="nav-text">利用递归先序遍历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不利用递归先序遍历"><span class="nav-number">1.2.2.</span> <span class="nav-text">不利用递归先序遍历</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-DFS-中序遍历"><span class="nav-number">1.3.</span> <span class="nav-text">2 DFS 中序遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#递归"><span class="nav-number">1.3.1.</span> <span class="nav-text">递归</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不利用递归"><span class="nav-number">1.3.2.</span> <span class="nav-text">不利用递归</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-DFS-后续遍历"><span class="nav-number">1.4.</span> <span class="nav-text">3 DFS 后续遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#递归-1"><span class="nav-number">1.4.1.</span> <span class="nav-text">递归</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-BFS"><span class="nav-number">1.5.</span> <span class="nav-text">4 BFS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#序列化"><span class="nav-number">1.5.1.</span> <span class="nav-text">序列化</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

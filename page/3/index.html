@@ -184,6 +184,172 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://cxyxiaoyuyu.github.io/2018/11/03/JS%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="xiaoyu">
+      <meta itemprop="description" content="又是元气满满的一天">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小宇的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/11/03/JS%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" class="post-title-link" itemprop="url">JS中的类型转换</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-11-03 20:00:17" itemprop="dateCreated datePublished" datetime="2018-11-03T20:00:17+08:00">2018-11-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-08 14:57:52" itemprop="dateModified" datetime="2019-12-08T14:57:52+08:00">2019-12-08</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="gt-String"><a href="#gt-String" class="headerlink" title="==&gt; String"></a>==&gt; String</h2><h4 id="方法1-toString-方法"><a href="#方法1-toString-方法" class="headerlink" title="方法1  toString()方法"></a>方法1  <code>toString()</code>方法</h4><blockquote>
+<p><code>null</code> 和 <code>undefined</code> 没有<code>toString()</code> API<br><code>object</code> 的 <code>toString()</code> 不能得到想要的结果<br><code>console.log()</code>  默认调用<code>toString()</code>方法</p>
+</blockquote>
+<pre><code>123.toString() // &apos;123&apos;
+true.toString() // &apos;true&apos;
+null.toString()  // Cannot read property &apos;toString&apos; of null
+undefined.toString()  //Cannot read property &apos;toString&apos; of undefined
+var a = {a:1}
+a.toString()  // &quot;[object Object]&quot;
+({a:1}).toString() // &quot;[object Object]&quot;</code></pre><h4 id="方法2-39-39-加空字符串"><a href="#方法2-39-39-加空字符串" class="headerlink" title="方法2  + &#39;&#39; 加空字符串"></a>方法2  <code>+ &#39;&#39;</code> 加空字符串</h4><pre><code>1 + &apos;1&apos; // &apos;11&apos;  ==&gt; &apos;+&apos; 会自动进行类型转换,优先变为字符串
+123 + &apos;&apos; // &apos;123&apos;
+true + &apos;&apos;  // &apos;true&apos;
+null + &apos;&apos; // &apos;null&apos;
+undefined + &apos;&apos; // &apos;undefined&apos;
+({a:1}) + &apos;&apos; // &quot;[object Object]&quot;
+&apos;&apos; + {a:1}  // &quot;[object Object]&quot;</code></pre><h4 id="方法3-全局函数String"><a href="#方法3-全局函数String" class="headerlink" title="方法3  全局函数String()"></a>方法3  全局函数<code>String()</code></h4><pre><code>String(1)  // &apos;1&apos;
+String(true) // &apos;true&apos;
+String(null)  // &apos;null&apos;
+String(undefined) // undefined
+String({a:1})  // &quot;[object Object]&quot;</code></pre><h2 id="gt-Boolean"><a href="#gt-Boolean" class="headerlink" title="==&gt; Boolean"></a>==&gt; Boolean</h2><h4 id="方法1-全局方法Boolean"><a href="#方法1-全局方法Boolean" class="headerlink" title="方法1  全局方法Boolean()"></a>方法1  全局方法<code>Boolean()</code></h4><pre><code>Boolean(1) // true
+Boolean(0) // false
+Boolean(NaN) // false
+Boolean(&apos;&apos;) // false
+Boolean(&apos; &apos;) // true
+Boolean(&apos;123&apos;) // true
+Boolean(null)  // false
+Boolean(undefined) //false
+Boolean({})  // true
+Boolean({a:1}) //true</code></pre><h4 id="方法2-双重取反-gt"><a href="#方法2-双重取反-gt" class="headerlink" title="方法2 双重取反 ==&gt; !!"></a>方法2 双重取反 ==&gt; <code>!!</code></h4><pre><code>!! 1  // true
+!! NaN // false
+!! 0 // false
+!! &apos;&apos; // false
+!! &apos; &apos; // true
+!! &apos;123&apos; // true
+!! null // false
+!! undefined //false
+!! {}  // true
+!! {a:1} // true</code></pre><h4 id="五个falsy值"><a href="#五个falsy值" class="headerlink" title="五个falsy值"></a>五个<strong>falsy</strong>值</h4><blockquote>
+<p> 0<br>NaN<br>null<br>undefined<br>‘’</p>
+</blockquote>
+<h2 id="gt-Number"><a href="#gt-Number" class="headerlink" title="==&gt; Number"></a>==&gt; Number</h2><h4 id="方法1-Number"><a href="#方法1-Number" class="headerlink" title="方法1  Number()"></a>方法1  <code>Number()</code></h4><pre><code>Number(&apos;1&apos;) // 1
+Number(&apos;1.123&apos;) // 1.123
+Number(&apos;1.abc&apos;) // NaN
+Number(&apos;&apos;)    // 0
+Number(true)  // 1
+Number(false) // 0
+Number(null) // 0
+Number(undefined) // NaN
+Number({a:1})  // NaN</code></pre><h4 id="方法2-parseInt"><a href="#方法2-parseInt" class="headerlink" title="方法2  parseInt()"></a>方法2  <code>parseInt()</code></h4><p>关于parseInt 和parseFloat 我后面会单独写一篇博客，详细解释，这里只简单演示</p>
+<blockquote>
+<p><code>parseInt()</code> 主要是将字符串转为整数<br>它会从第一个字符开始，直到不是数字结束</p>
+</blockquote>
+<pre><code>parseInt(&apos;1&apos;) //1
+parseInt(&apos;1.23&apos;) // 1
+parseInt(&apos;  123&apos;) // 123
+parseInt(&apos;1234abc&apos;)  // 1234
+parseInt(&apos;abc&apos;) // NaN
+parseInt(&apos;a567bc&apos;) // NaN
+parseInt(true) // NaN
+parseInt(null) // NaN
+parseInt(undefined) // NaN
+parseInt({a:1}) // NaN
+parseInt([1,2,3]) // 1</code></pre><h4 id="方法3-parseFloat"><a href="#方法3-parseFloat" class="headerlink" title="方法3  parseFloat()"></a>方法3  <code>parseFloat()</code></h4><blockquote>
+<p>parseFloat() 主要是将字符串转为浮点数</p>
+</blockquote>
+<pre><code>parseFloat(&apos;3.14&apos;) // 3.14
+parseFloat(&apos;314e-2&apos;) // 3.14
+parseFloat(&apos;0.0314E+2&apos;) // 3.14
+// 其他与parseInt()结果相同</code></pre><h4 id="方法4-0"><a href="#方法4-0" class="headerlink" title="方法4  - 0"></a>方法4  <code>- 0</code></h4><pre><code>&apos;1&apos; - 0 // 1
+&apos;1.23&apos; - 0  // 1.23
+&apos;1.abc&apos; -0 // NaN
+&apos;&apos; - 0  // 0
+true -0 // 1
+false - 0  // 0
+null - 0 // 0
+undefined - 0 // NaN
+({a:1}) - 0</code></pre><h4 id="方法5-取正"><a href="#方法5-取正" class="headerlink" title="方法5  取正"></a>方法5  取正</h4><pre><code>+ &apos;1&apos; // 1
++ &apos;1.23&apos; // 1.23
++ &apos;1.abc&apos; // NaN
++ &apos;&apos; // 0
++ true // 1
++ false // 0
++ null // 0
++ undefined // NaN
++ {a:1} // NaN</code></pre><h2 id="JS中普通类型与对象的区别"><a href="#JS中普通类型与对象的区别" class="headerlink" title="JS中普通类型与对象的区别"></a>JS中普通类型与对象的区别</h2><h4 id="普通类型-Number-Bool-String-Symbol-Null-Undefined"><a href="#普通类型-Number-Bool-String-Symbol-Null-Undefined" class="headerlink" title="普通类型  Number Bool String Symbol Null Undefined"></a>普通类型  Number Bool String Symbol Null Undefined</h4><blockquote>
+<p>数据直接存在栈内存中</p>
+</blockquote>
+<pre><code>var a = 1
+var b = a
+a = 2
+b // 1</code></pre><p>将a中的数据直接赋值给b，所以改变a，不会影响b ==&gt; 深复制<br>所以普通类型之间的复制都是深复制</p>
+<h4 id="引用类型-Object"><a href="#引用类型-Object" class="headerlink" title="引用类型  Object"></a>引用类型  Object</h4><blockquote>
+<p>栈内存中保存的是对象在堆内存中的引用地址<br>通过这个引用地址可以快速查找到保存中堆内存中的对象</p>
+</blockquote>
+<pre><code>var a = {name:1}
+var b = a
+a.name = 2
+b // {name:2}</code></pre><p>将a赋值给b的时候，实际上是b也指向了与a地址相同的对象，<br>改变a会影响b == &gt; 浅复制</p>
+<pre><code>var a = {name:1}
+var b = a
+a = {name:2}
+b // {name:1}</code></pre><p><code>a = {name:2}</code> 时，a指向了另一个对象的地址,而b还指向原来地址的对象,所以给a重新赋值不会影响b</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://cxyxiaoyuyu.github.io/2018/11/01/CSS-REM%E4%B8%8E%E5%8A%A8%E6%80%81REM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1125,7 +1291,7 @@ border-top: 1px solid red;
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
