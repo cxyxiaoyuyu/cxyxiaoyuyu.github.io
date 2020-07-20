@@ -46,15 +46,15 @@
   };
 </script>
 
-  <meta name="description" content="BFC (Block Formatting Context)  所以我们没有办法说明什么是BFC, 但我们知道如何创建一个BFC。 比如 overflow: hidden 的块级元素,但是我们只想让他变成BFC,发挥自己的作用,这个样式却会导致其他问题。 display: flow-root,可以单纯将一个元素变成一个BFC。 那BFC有什么作用呢 BFC作用1-父元素包住子元素我们知道如果子元素">
+  <meta name="description" content="BFC (Block Formatting Context)  所以我们没有办法说明什么是BFC, 但我们知道如何创建一个BFC。">
 <meta name="keywords" content="CSS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS-BFC与IFC">
 <meta property="og:url" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2019&#x2F;11&#x2F;01&#x2F;CSS-BFC%E4%B8%8EIFC&#x2F;index.html">
 <meta property="og:site_name" content="小宇的博客">
-<meta property="og:description" content="BFC (Block Formatting Context)  所以我们没有办法说明什么是BFC, 但我们知道如何创建一个BFC。 比如 overflow: hidden 的块级元素,但是我们只想让他变成BFC,发挥自己的作用,这个样式却会导致其他问题。 display: flow-root,可以单纯将一个元素变成一个BFC。 那BFC有什么作用呢 BFC作用1-父元素包住子元素我们知道如果子元素">
+<meta property="og:description" content="BFC (Block Formatting Context)  所以我们没有办法说明什么是BFC, 但我们知道如何创建一个BFC。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-08T06:57:52.055Z">
+<meta property="og:updated_time" content="2020-07-20T14:26:33.786Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://cxyxiaoyuyu.github.io/2019/11/01/CSS-BFC%E4%B8%8EIFC/">
@@ -216,7 +216,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-08 14:57:52" itemprop="dateModified" datetime="2019-12-08T14:57:52+08:00">2019-12-08</time>
+                <time title="Modified: 2020-07-20 22:26:33" itemprop="dateModified" datetime="2020-07-20T22:26:33+08:00">2020-07-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -244,6 +244,7 @@
         <h1 id="BFC-Block-Formatting-Context"><a href="#BFC-Block-Formatting-Context" class="headerlink" title="BFC (Block Formatting Context)"></a>BFC (Block Formatting Context)</h1>
 
 <p>所以我们没有办法说明什么是BFC, 但我们知道如何创建一个BFC。</p>
+<a id="more"></a>
 <p>比如 <code>overflow: hidden</code> 的块级元素,但是我们只想让他变成BFC,发挥自己的作用,这个样式却会导致其他问题。 <code>display: flow-root</code>,可以单纯将一个元素变成一个BFC。</p>
 <p>那BFC有什么作用呢</p>
 <h2 id="BFC作用1-父元素包住子元素"><a href="#BFC作用1-父元素包住子元素" class="headerlink" title="BFC作用1-父元素包住子元素"></a>BFC作用1-父元素包住子元素</h2><p>我们知道如果子元素是浮动元素,父元素不设置高度,就不会被子元素撑起来,就不会包住子元素,这会导致很多问题。我们通常利用伪元素清楚浮动，但这里我们可以通过将父元素变为BFC的方式包住子元素</p>
@@ -364,13 +365,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -378,6 +379,9 @@
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
         <a href="https://github.com/cxyxiaoyuyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cxyxiaoyuyu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://leetcode-cn.com/u/qian-yu-qian-xun-17/" title="LeetCode → https:&#x2F;&#x2F;leetcode-cn.com&#x2F;u&#x2F;qian-yu-qian-xun-17&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-database"></i>LeetCode</a>
       </span>
   </div>
 

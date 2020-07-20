@@ -46,14 +46,15 @@
   };
 </script>
 
-  <meta name="description" content="左右布局 左中右布局 水平居中 垂直居中  左右布局&amp;lt;div class&#x3D;&amp;quot;clearfix&amp;quot;&amp;gt;     &amp;lt;div class&#x3D;&amp;quot;a&amp;quot;&amp;gt;左&amp;lt;&#x2F;a&amp;gt;     &amp;lt;div class&#x3D;&amp;quot;b&amp;quot;&amp;gt;右&amp;lt;&#x2F;a&amp;gt; &amp;lt;&#x2F;div&amp;gt;  .clearfix {     content: &amp;">
+  <meta name="description" content="左右布局  左中右布局  水平居中  垂直居中">
+<meta name="keywords" content="CSS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS布局">
 <meta property="og:url" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2018&#x2F;10&#x2F;13&#x2F;CSS%E5%B8%83%E5%B1%80&#x2F;index.html">
 <meta property="og:site_name" content="小宇的博客">
-<meta property="og:description" content="左右布局 左中右布局 水平居中 垂直居中  左右布局&amp;lt;div class&#x3D;&amp;quot;clearfix&amp;quot;&amp;gt;     &amp;lt;div class&#x3D;&amp;quot;a&amp;quot;&amp;gt;左&amp;lt;&#x2F;a&amp;gt;     &amp;lt;div class&#x3D;&amp;quot;b&amp;quot;&amp;gt;右&amp;lt;&#x2F;a&amp;gt; &amp;lt;&#x2F;div&amp;gt;  .clearfix {     content: &amp;">
+<meta property="og:description" content="左右布局  左中右布局  水平居中  垂直居中">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-08T06:57:52.056Z">
+<meta property="og:updated_time" content="2020-07-20T14:34:13.737Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://cxyxiaoyuyu.github.io/2018/10/13/CSS%E5%B8%83%E5%B1%80/">
@@ -215,8 +216,19 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-08 14:57:52" itemprop="dateModified" datetime="2019-12-08T14:57:52+08:00">2019-12-08</time>
+                <time title="Modified: 2020-07-20 22:34:13" itemprop="dateModified" datetime="2020-07-20T22:34:13+08:00">2020-07-20</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+            </span>
 
           
 
@@ -230,29 +242,31 @@
 
       
         <ul>
-<li>左右布局</li>
-<li>左中右布局</li>
-<li>水平居中</li>
-<li>垂直居中</li>
-</ul>
-<h2 id="左右布局"><a href="#左右布局" class="headerlink" title="左右布局"></a>左右布局</h2><pre><code>&lt;div class=&quot;clearfix&quot;&gt;
-    &lt;div class=&quot;a&quot;&gt;左&lt;/a&gt;
-    &lt;div class=&quot;b&quot;&gt;右&lt;/a&gt;
-&lt;/div&gt;
+<li><p>左右布局</p>
+</li>
+<li><p>左中右布局</p>
+</li>
+<li><p>水平居中</p>
+</li>
+<li><p>垂直居中</p>
+<a id="more"></a>
+<h2 id="左右布局"><a href="#左右布局" class="headerlink" title="左右布局"></a>左右布局</h2> <div class="clearfix">
+     <div class="a">左</a>
+     <div class="b">右</a>
+ </div>
 
-.clearfix {
-    content: &apos;&apos;;
-    display: block;
-    clear: both;
-}
-.a,
-.b {
-        width: 50%;
-        height: 200px;
-        float: left;
-}</code></pre><blockquote>
+<p> .clearfix {</p>
+<pre><code>content: &apos;&apos;;
+display: block;
+clear: both;</code></pre><p> }<br> .a,<br> .b {</p>
+<pre><code>width: 50%;
+height: 200px;
+float: left;</code></pre><p> }</p>
+<blockquote>
 <p>  父元素的class设为clearfix<br>  子元素全部设为左浮动,可设置width的百分比决定每个子元素占据的宽度</p>
 </blockquote>
+</li>
+</ul>
 <h3 id="左中右布局-三列布局"><a href="#左中右布局-三列布局" class="headerlink" title="左中右布局(三列布局)"></a>左中右布局(三列布局)</h3><pre><code>&lt;div class=&quot;left&quot;&gt;左&lt;/div&gt;
 &lt;div class=&quot;middle&quot;&gt;中&lt;/div&gt;
 &lt;div class=&quot;right&quot;&gt;右&lt;/div&gt;
@@ -291,6 +305,9 @@ transform: translateY(-50%);</code></pre><p>}</p>
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CSS/" rel="tag"># CSS</a>
+          </div>
 
         
 
@@ -387,13 +404,13 @@ transform: translateY(-50%);</code></pre><p>}</p>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -401,6 +418,9 @@ transform: translateY(-50%);</code></pre><p>}</p>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
         <a href="https://github.com/cxyxiaoyuyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cxyxiaoyuyu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://leetcode-cn.com/u/qian-yu-qian-xun-17/" title="LeetCode → https:&#x2F;&#x2F;leetcode-cn.com&#x2F;u&#x2F;qian-yu-qian-xun-17&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-database"></i>LeetCode</a>
       </span>
   </div>
 

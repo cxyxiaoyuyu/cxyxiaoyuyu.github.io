@@ -46,15 +46,15 @@
   };
 </script>
 
-  <meta name="description" content="字符串反转利用数组的reverse方法 &amp;apos;abcdef&amp;apos;.split(&amp;apos;&amp;apos;).reverse().join(&amp;apos;&amp;apos;)  &#x2F;&#x2F; &amp;apos;fedcba&amp;apos;字符串转为二进制利用charCodeAt得到字符的unicode编码，一个字节的字符，与ascii码相同这个得到的是10进制的，再利用toString转为2进制 &amp;apos;a&amp;a">
-<meta name="keywords" content="js">
+  <meta name="description" content="字符串反转利用数组的reverse方法 &amp;apos;abcdef&amp;apos;.split(&amp;apos;&amp;apos;).reverse().join(&amp;apos;&amp;apos;)  &#x2F;&#x2F; &amp;apos;fedcba&amp;apos;">
+<meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一些零碎的JS应用">
 <meta property="og:url" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2019&#x2F;10&#x2F;31&#x2F;%E4%B8%80%E4%BA%9B%E9%9B%B6%E7%A2%8E%E7%9A%84JS%E5%BA%94%E7%94%A8&#x2F;index.html">
 <meta property="og:site_name" content="小宇的博客">
-<meta property="og:description" content="字符串反转利用数组的reverse方法 &amp;apos;abcdef&amp;apos;.split(&amp;apos;&amp;apos;).reverse().join(&amp;apos;&amp;apos;)  &#x2F;&#x2F; &amp;apos;fedcba&amp;apos;字符串转为二进制利用charCodeAt得到字符的unicode编码，一个字节的字符，与ascii码相同这个得到的是10进制的，再利用toString转为2进制 &amp;apos;a&amp;a">
+<meta property="og:description" content="字符串反转利用数组的reverse方法 &amp;apos;abcdef&amp;apos;.split(&amp;apos;&amp;apos;).reverse().join(&amp;apos;&amp;apos;)  &#x2F;&#x2F; &amp;apos;fedcba&amp;apos;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-08T06:57:52.059Z">
+<meta property="og:updated_time" content="2020-07-20T14:37:04.124Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://cxyxiaoyuyu.github.io/2019/10/31/%E4%B8%80%E4%BA%9B%E9%9B%B6%E7%A2%8E%E7%9A%84JS%E5%BA%94%E7%94%A8/">
@@ -216,7 +216,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-08 14:57:52" itemprop="dateModified" datetime="2019-12-08T14:57:52+08:00">2019-12-08</time>
+                <time title="Modified: 2020-07-20 22:37:04" itemprop="dateModified" datetime="2020-07-20T22:37:04+08:00">2020-07-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -224,8 +224,8 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/js/" itemprop="url" rel="index">
-                    <span itemprop="name">js</span>
+                  <a href="/categories/Javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">Javascript</span>
                   </a>
                 </span>
             </span>
@@ -242,7 +242,8 @@
 
       
         <h1 id="字符串反转"><a href="#字符串反转" class="headerlink" title="字符串反转"></a>字符串反转</h1><p>利用数组的reverse方法</p>
-<pre><code>&apos;abcdef&apos;.split(&apos;&apos;).reverse().join(&apos;&apos;)  // &apos;fedcba&apos;</code></pre><h1 id="字符串转为二进制"><a href="#字符串转为二进制" class="headerlink" title="字符串转为二进制"></a>字符串转为二进制</h1><p>利用charCodeAt得到字符的unicode编码，一个字节的字符，与ascii码相同<br>这个得到的是10进制的，再利用toString转为2进制</p>
+<pre><code>&apos;abcdef&apos;.split(&apos;&apos;).reverse().join(&apos;&apos;)  // &apos;fedcba&apos;</code></pre><a id="more"></a>
+<h1 id="字符串转为二进制"><a href="#字符串转为二进制" class="headerlink" title="字符串转为二进制"></a>字符串转为二进制</h1><p>利用charCodeAt得到字符的unicode编码，一个字节的字符，与ascii码相同<br>这个得到的是10进制的，再利用toString转为2进制</p>
 <pre><code>&apos;a&apos;.charCodeAt().toString(2) //  &quot;1100001&quot;</code></pre><h1 id="保留两位小数"><a href="#保留两位小数" class="headerlink" title="保留两位小数"></a>保留两位小数</h1><h3 id="四舍五入"><a href="#四舍五入" class="headerlink" title="四舍五入"></a>四舍五入</h3><pre><code>var num = 2.446242342
 num = parseFloat(num.toFixed(2))             // 2.45</code></pre><p><code>toFixed</code> 返回的是 <strong>字符串</strong></p>
 <h3 id="不四舍五入"><a href="#不四舍五入" class="headerlink" title="不四舍五入"></a>不四舍五入</h3><pre><code>Math.floor(15.7784514000 * 100) / 100      // 15.77</code></pre>
@@ -254,7 +255,7 @@ num = parseFloat(num.toFixed(2))             // 2.45</code></pre><p><code>toFixe
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/js/" rel="tag"># js</a>
+              <a href="/tags/javascript/" rel="tag"># javascript</a>
           </div>
 
         
@@ -352,13 +353,13 @@ num = parseFloat(num.toFixed(2))             // 2.45</code></pre><p><code>toFixe
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -366,6 +367,9 @@ num = parseFloat(num.toFixed(2))             // 2.45</code></pre><p><code>toFixe
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
         <a href="https://github.com/cxyxiaoyuyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cxyxiaoyuyu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://leetcode-cn.com/u/qian-yu-qian-xun-17/" title="LeetCode → https:&#x2F;&#x2F;leetcode-cn.com&#x2F;u&#x2F;qian-yu-qian-xun-17&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-database"></i>LeetCode</a>
       </span>
   </div>
 

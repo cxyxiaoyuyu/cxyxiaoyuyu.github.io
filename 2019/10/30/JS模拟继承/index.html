@@ -46,15 +46,15 @@
   };
 </script>
 
-  <meta name="description" content="什么是继承 继承（英语：inheritance）是面向对象软件技术当中的一个概念。如果一个类别B“继承自”另一个类别A，就把这个B称为“A的子类”，而把A称为“B的父类别”也可以称“A是B的超类”。继承可以使得子类具有父类别的各种属性和方法，而不需要再次编写相同的代码。  而javascript中没有类,虽然es6引入了class,但那只是一个语法糖。所以javascript不能继承,只能通过原型">
+  <meta name="description" content="什么是继承 继承（英语：inheritance）是面向对象软件技术当中的一个概念。如果一个类别B“继承自”另一个类别A，就把这个B称为“A的子类”，而把A称为“B的父类别”也可以称“A是B的超类”。继承可以使得子类具有父类别的各种属性和方法，而不需要再次编写相同的代码。">
 <meta name="keywords" content="原型链,js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS模拟继承">
 <meta property="og:url" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2019&#x2F;10&#x2F;30&#x2F;JS%E6%A8%A1%E6%8B%9F%E7%BB%A7%E6%89%BF&#x2F;index.html">
 <meta property="og:site_name" content="小宇的博客">
-<meta property="og:description" content="什么是继承 继承（英语：inheritance）是面向对象软件技术当中的一个概念。如果一个类别B“继承自”另一个类别A，就把这个B称为“A的子类”，而把A称为“B的父类别”也可以称“A是B的超类”。继承可以使得子类具有父类别的各种属性和方法，而不需要再次编写相同的代码。  而javascript中没有类,虽然es6引入了class,但那只是一个语法糖。所以javascript不能继承,只能通过原型">
+<meta property="og:description" content="什么是继承 继承（英语：inheritance）是面向对象软件技术当中的一个概念。如果一个类别B“继承自”另一个类别A，就把这个B称为“A的子类”，而把A称为“B的父类别”也可以称“A是B的超类”。继承可以使得子类具有父类别的各种属性和方法，而不需要再次编写相同的代码。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-08T06:57:52.057Z">
+<meta property="og:updated_time" content="2020-07-20T14:27:39.878Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://cxyxiaoyuyu.github.io/2019/10/30/JS%E6%A8%A1%E6%8B%9F%E7%BB%A7%E6%89%BF/">
@@ -216,7 +216,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-08 14:57:52" itemprop="dateModified" datetime="2019-12-08T14:57:52+08:00">2019-12-08</time>
+                <time title="Modified: 2020-07-20 22:27:39" itemprop="dateModified" datetime="2020-07-20T22:27:39+08:00">2020-07-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -244,6 +244,7 @@
         <h1 id="什么是继承"><a href="#什么是继承" class="headerlink" title="什么是继承"></a>什么是继承</h1><blockquote>
 <p>继承（英语：inheritance）是面向对象软件技术当中的一个概念。如果一个类别B“继承自”另一个类别A，就把这个B称为“A的子类”，而把A称为“B的父类别”也可以称“A是B的超类”。继承可以使得子类具有父类别的各种属性和方法，而不需要再次编写相同的代码。</p>
 </blockquote>
+<a id="more"></a>
 <p>而javascript中没有类,虽然es6引入了class,但那只是一个语法糖。所以javascript不能继承,只能通过原型模拟继承</p>
 <blockquote>
 <p>每个实例对象( object )都有一个私有属性(称之为 <strong>proto</strong> )指向它的构造函数的原型对象( prototype )。该原型对象也有一个自己的原型对象( <strong>proto</strong> ) ，层层向上直到一个对象的原型对象为 null。根据定义，null 没有原型，并作为这个原型链中的最后一个环节。</p>
@@ -466,13 +467,13 @@ class Cat extends Animal{
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -480,6 +481,9 @@ class Cat extends Animal{
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
         <a href="https://github.com/cxyxiaoyuyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cxyxiaoyuyu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://leetcode-cn.com/u/qian-yu-qian-xun-17/" title="LeetCode → https:&#x2F;&#x2F;leetcode-cn.com&#x2F;u&#x2F;qian-yu-qian-xun-17&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-database"></i>LeetCode</a>
       </span>
   </div>
 

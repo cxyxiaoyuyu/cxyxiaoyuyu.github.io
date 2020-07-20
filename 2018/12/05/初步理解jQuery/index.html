@@ -46,14 +46,15 @@
   };
 </script>
 
-  <meta name="description" content="封装addClass函数function addClass(node,classes) {     classes.forEach( (value) &#x3D;&amp;gt; node.classList.add(value) ) }  let divNode &#x3D; document.getElementById(&amp;apos;xxx&amp;apos;) addClass(divNode,[&amp;apos;a&amp;apos;,&amp;">
+  <meta name="description" content="封装addClass函数function addClass(node,classes) {     classes.forEach( (value) &#x3D;&amp;gt; node.classList.add(value) ) }">
+<meta name="keywords" content="jquery">
 <meta property="og:type" content="article">
 <meta property="og:title" content="初步理解jQuery">
 <meta property="og:url" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2018&#x2F;12&#x2F;05&#x2F;%E5%88%9D%E6%AD%A5%E7%90%86%E8%A7%A3jQuery&#x2F;index.html">
 <meta property="og:site_name" content="小宇的博客">
-<meta property="og:description" content="封装addClass函数function addClass(node,classes) {     classes.forEach( (value) &#x3D;&amp;gt; node.classList.add(value) ) }  let divNode &#x3D; document.getElementById(&amp;apos;xxx&amp;apos;) addClass(divNode,[&amp;apos;a&amp;apos;,&amp;">
+<meta property="og:description" content="封装addClass函数function addClass(node,classes) {     classes.forEach( (value) &#x3D;&amp;gt; node.classList.add(value) ) }">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-08T06:57:52.059Z">
+<meta property="og:updated_time" content="2020-07-20T14:32:32.020Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://cxyxiaoyuyu.github.io/2018/12/05/%E5%88%9D%E6%AD%A5%E7%90%86%E8%A7%A3jQuery/">
@@ -215,8 +216,19 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-08 14:57:52" itemprop="dateModified" datetime="2019-12-08T14:57:52+08:00">2019-12-08</time>
+                <time title="Modified: 2020-07-20 22:32:32" itemprop="dateModified" datetime="2020-07-20T22:32:32+08:00">2020-07-20</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">Javascript</span>
+                  </a>
+                </span>
+            </span>
 
           
 
@@ -231,9 +243,8 @@
       
         <h2 id="封装addClass函数"><a href="#封装addClass函数" class="headerlink" title="封装addClass函数"></a>封装addClass函数</h2><pre><code>function addClass(node,classes) {
     classes.forEach( (value) =&gt; node.classList.add(value) )
-}
-
-let divNode = document.getElementById(&apos;xxx&apos;)
+}</code></pre><a id="more"></a>
+<pre><code>let divNode = document.getElementById(&apos;xxx&apos;)
 addClass(divNode,[&apos;a&apos;,&apos;b&apos;,&apos;c&apos;])</code></pre><h2 id="命名空间"><a href="#命名空间" class="headerlink" title="命名空间"></a>命名空间</h2><pre><code>&gt; 如果别人也写了addClass这个函数，就会重复，所以需要命名空间
 
     window.xiaoyu = {}
@@ -334,6 +345,9 @@ $div.text(&apos;hello jquery&apos;)</code></pre>
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/jquery/" rel="tag"># jquery</a>
+          </div>
 
         
 
@@ -430,13 +444,13 @@ $div.text(&apos;hello jquery&apos;)</code></pre>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -444,6 +458,9 @@ $div.text(&apos;hello jquery&apos;)</code></pre>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
         <a href="https://github.com/cxyxiaoyuyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cxyxiaoyuyu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://leetcode-cn.com/u/qian-yu-qian-xun-17/" title="LeetCode → https:&#x2F;&#x2F;leetcode-cn.com&#x2F;u&#x2F;qian-yu-qian-xun-17&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-database"></i>LeetCode</a>
       </span>
   </div>
 
