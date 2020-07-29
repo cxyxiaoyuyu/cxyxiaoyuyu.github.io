@@ -54,7 +54,7 @@
 <meta property="og:site_name" content="小宇的博客">
 <meta property="og:description" content="前言 世界上只有10种人, 认识二进制的和不认识的计算机只能存储0和1, 所有信息在新计算内部最终都是以二进制的形式存储。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-07-05T14:25:18.957Z">
+<meta property="og:updated_time" content="2020-07-29T14:20:40.338Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://cxyxiaoyuyu.github.io/2019/11/01/%E6%88%91%E7%BB%88%E4%BA%8E%E6%87%82%E4%BA%86%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE%E7%9A%84/">
@@ -216,7 +216,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-05 22:25:18" itemprop="dateModified" datetime="2020-07-05T22:25:18+08:00">2020-07-05</time>
+                <time title="Modified: 2020-07-29 22:20:40" itemprop="dateModified" datetime="2020-07-29T22:20:40+08:00">2020-07-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -332,13 +332,23 @@ hell\u{6F}  // 123   因为&apos;\u{6f}&apos;表示字符&apos;o&apos;
 &apos;\u007A&apos; === &apos;z&apos; // true
 &apos;\u{7A}&apos; === &apos;z&apos; // true</code></pre><h2 id="将字符串转为数组"><a href="#将字符串转为数组" class="headerlink" title="将字符串转为数组"></a>将字符串转为数组</h2><pre><code>(&apos;𠮷𠮷𠮷&apos;).split(&apos;&apos;)  //  [&quot;�&quot;, &quot;�&quot;, &quot;�&quot;, &quot;�&quot;, &quot;�&quot;, &quot;�&quot;] 超过两个字节的字符无法正确识别</code></pre><p>解决办法: ES6推出了<code>Array.from</code>方法</p>
 <pre><code>Array.from(&apos;𠮷𠮷𠮷&apos;)  //  [&quot;𠮷&quot;, &quot;𠮷&quot;, &quot;𠮷&quot;]</code></pre><h2 id="码点与字符互换"><a href="#码点与字符互换" class="headerlink" title="码点与字符互换"></a>码点与字符互换</h2><blockquote>
-<p>String.prototype.charCodeAt()  返回字符的UTF-16编码(十进制)<br>String.fromCharCode()  返回由指定的UTF-16代码单元序列创建的字符串<br>String.fromCodePoint()  返回由指定的UTF-16代码单元序列创建的字符串  ES6语法</p>
+<p>String.prototype.charCodeAt()  返回 0 到 65535 之间的整数(十进制)，表示给定索引处的 UTF-16 代码单元<br>String.fromCharCode()  返回由指定的UTF-16代码单元序列创建的字符串</p>
 </blockquote>
 <pre><code>&apos;z&apos;.charCodeAt()              // 122
-String.fromCharCode(&apos;122&apos;,&apos;0o172&apos;,&apos;0x7a&apos;)    // &quot;zzz&quot;
+String.fromCharCode(&apos;122&apos;,&apos;0o172&apos;,&apos;0x7a&apos;)    // &quot;zzz&quot;</code></pre><p>但是对于超过两个字节的字符ES5无法正确转换</p>
+<pre><code>String.fromCharCode(0x20BB7)   // &quot;ஷ&quot;  乱码  因为0x20BB7超过两个字节,无法正确解读</code></pre><p><strong>ES6的两个方法可以解决这一bug</strong></p>
+<blockquote>
+<p>String.codePointAt()  返回UTF-16的完整码点<br>String.fromCodePoint()  返回由指定的UTF-16代码单元序列创建的字符串 </p>
+</blockquote>
+<pre><code>&quot;🚀&quot;.codePointAt()              // 128640
+String.fromCodePoint(128640)    // &quot;🚀&quot;
+&quot;𠮷&quot;.codePointAt()              // 134071
+String.fromCodePoint(0x20BB7,134071)   // &quot;𠮷𠮷&quot;
 
-String.fromCharCode(0x20BB7)   // &quot;ஷ&quot;  乱码  因为0x20BB7超过两个字节,无法正确解读</code></pre><p>ES6的fromCodePoint()可以解决这一bug</p>
-<pre><code>String.fromCodePoint(0x20BB7)
+// 对于小于两个字节的也完全适用
+&quot;a&quot;.codePointAt()               // 97
+String.fromCodePoint(97)        // &quot;a&quot;
+&quot;z&quot;.codePointAt()               // 122
 String.fromCodePoint(&apos;122&apos;,&apos;0o172&apos;,&apos;0x7a&apos;)   // &quot;zzz&quot;</code></pre><p>另外一些bug,请参考<a href="http://www.alloyteam.com/2016/12/javascript-has-a-unicode-sinkhole/" target="_blank" rel="noopener">javascript有个unicode的天坑</a></p>
 
     </div>
