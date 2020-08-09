@@ -55,7 +55,7 @@
 <meta property="og:description" content="前言遍历树的两个策略  DFS 分为    先序遍历    中序遍历    后序遍历BFS 可以按照层次的顺序从上到下遍历所有的节点">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2020&#x2F;06&#x2F;28&#x2F;%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96(%E9%81%8D%E5%8E%86%E4%BA%8C%E5%8F%89%E6%A0%91)&#x2F;%E9%81%8D%E5%8E%86%E4%BA%8C%E5%8F%89%E6%A0%91.jpg">
-<meta property="og:updated_time" content="2020-07-20T14:37:38.487Z">
+<meta property="og:updated_time" content="2020-08-09T13:48:12.629Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2020&#x2F;06&#x2F;28&#x2F;%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96(%E9%81%8D%E5%8E%86%E4%BA%8C%E5%8F%89%E6%A0%91)&#x2F;%E9%81%8D%E5%8E%86%E4%BA%8C%E5%8F%89%E6%A0%91.jpg">
 
@@ -218,7 +218,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-20 22:37:38" itemprop="dateModified" datetime="2020-07-20T22:37:38+08:00">2020-07-20</time>
+                <time title="Modified: 2020-08-09 21:48:12" itemprop="dateModified" datetime="2020-08-09T21:48:12+08:00">2020-08-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -275,7 +275,13 @@ const traverseRootFirst = (bTree) =&gt; {
 }
 traverseRootFirst(binaryTree)
 console.log(&apos;先序遍历&apos;)
-console.log(resultFirst)  // [&quot;A&quot;, &quot;B&quot;, &quot;D&quot;, &quot;C&quot;, &quot;E&quot;, &quot;G&quot;, &quot;F&quot;, &quot;H&quot;, &quot;J&quot;]</code></pre><h3 id="不利用递归先序遍历"><a href="#不利用递归先序遍历" class="headerlink" title="不利用递归先序遍历"></a>不利用递归先序遍历</h3><pre><code>let resultFirst2 = []
+console.log(resultFirst)  // [&quot;A&quot;, &quot;B&quot;, &quot;D&quot;, &quot;C&quot;, &quot;E&quot;, &quot;G&quot;, &quot;F&quot;, &quot;H&quot;, &quot;J&quot;]</code></pre><h3 id="不利用递归先序遍历"><a href="#不利用递归先序遍历" class="headerlink" title="不利用递归先序遍历"></a>不利用递归先序遍历</h3><p>自己维护一个栈 当前节点指向根节点</p>
+<ul>
+<li>如果当前节点不为空 就将当前节点入栈 并push到结果数组中 并让当前节点指向该节点的左节点</li>
+<li>如果当前节点为空 就从栈中pop一个节点 并让当前节点指向pop出节点的右节点</li>
+</ul>
+<p>如果栈不为空 或者 当前节点不为空 重复以上步骤</p>
+<pre><code>let resultFirst2 = []
 const traverseRootFirst2 = (bTree) =&gt; {
   const stack = []
   let current = bTree
@@ -301,7 +307,14 @@ const traverseRootMiddle = (bTree) =&gt; {
 }
 traverseRootMiddle(binaryTree)
 console.log(&apos;中序遍历&apos;)
-console.log(resultMiddle)   // [&quot;D&quot;, &quot;B&quot;, &quot;A&quot;, &quot;E&quot;, &quot;G&quot;, &quot;C&quot;, &quot;H&quot;, &quot;F&quot;, &quot;J&quot;]</code></pre><h3 id="不利用递归"><a href="#不利用递归" class="headerlink" title="不利用递归"></a>不利用递归</h3><pre><code>let resultMiddle2 = []
+console.log(resultMiddle)   // [&quot;D&quot;, &quot;B&quot;, &quot;A&quot;, &quot;E&quot;, &quot;G&quot;, &quot;C&quot;, &quot;H&quot;, &quot;F&quot;, &quot;J&quot;]</code></pre><h3 id="不利用递归"><a href="#不利用递归" class="headerlink" title="不利用递归"></a>不利用递归</h3><p>自己维护一个栈 当前节点指向根节点</p>
+<ul>
+<li>如果当前节点不为空 就让当前节点指向该节点的左节点</li>
+<li>如果当前节点为空 就从栈中pop一个节点 并将该节点push到结果数组中  并将当前节点指向该节点的右节点</li>
+</ul>
+<p>如果栈不为空 或者 当前节点不为空 重复以上步骤</p>
+<p><strong>与先序遍历唯一不同的就是什么时候放入结果数组</strong></p>
+<pre><code>let resultMiddle2 = []
 const traverSeRootMiddle2 = (bTree) =&gt; {
   const stack = []
   let current = bTree
@@ -327,7 +340,14 @@ const traverseRootLast = (bTree) =&gt; {
 }
 traverseRootLast(binaryTree)
 console.log(&apos;后序遍历&apos;)
-console.log(resultLast)  // [&quot;D&quot;, &quot;B&quot;, &quot;G&quot;, &quot;E&quot;, &quot;H&quot;, &quot;J&quot;, &quot;F&quot;, &quot;C&quot;, &quot;A&quot;]</code></pre><h2 id="4-BFS"><a href="#4-BFS" class="headerlink" title="4 BFS"></a>4 BFS</h2><h3 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h3><pre><code>var serialize = (root) =&gt; {
+console.log(resultLast)  // [&quot;D&quot;, &quot;B&quot;, &quot;G&quot;, &quot;E&quot;, &quot;H&quot;, &quot;J&quot;, &quot;F&quot;, &quot;C&quot;, &quot;A&quot;]</code></pre><h2 id="4-BFS"><a href="#4-BFS" class="headerlink" title="4 BFS"></a>4 BFS</h2><p>维护一个队列 将根节点放入队列中</p>
+<ul>
+<li>从队列中取出一个节点node</li>
+<li>如果node节点为空的话 就将当前的左右节点先后放入队列中</li>
+<li>如果当前节点为空 队列中push null</li>
+</ul>
+<p>如果队列部位空 重复以上步骤 直到队列中的节点全部被取出 遍历完成</p>
+<pre><code>var serialize = (root) =&gt; {
   let queue = [root]
   let res = []
 
@@ -341,7 +361,7 @@ console.log(resultLast)  // [&quot;D&quot;, &quot;B&quot;, &quot;G&quot;, &quot;
       res.push(&apos;X&apos;)
     }
   }
-  return res.join(&apos;,&apos;)
+  return res
 }</code></pre>
     </div>
 
@@ -426,7 +446,7 @@ console.log(resultLast)  // [&quot;D&quot;, &quot;B&quot;, &quot;G&quot;, &quot;
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#构造一颗二叉树"><span class="nav-number">1.1.</span> <span class="nav-text">构造一颗二叉树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-DFS-先序遍历"><span class="nav-number">1.2.</span> <span class="nav-text">1. DFS 先序遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#利用递归先序遍历"><span class="nav-number">1.2.1.</span> <span class="nav-text">利用递归先序遍历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不利用递归先序遍历"><span class="nav-number">1.2.2.</span> <span class="nav-text">不利用递归先序遍历</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-DFS-中序遍历"><span class="nav-number">1.3.</span> <span class="nav-text">2 DFS 中序遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#递归"><span class="nav-number">1.3.1.</span> <span class="nav-text">递归</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不利用递归"><span class="nav-number">1.3.2.</span> <span class="nav-text">不利用递归</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-DFS-后续遍历"><span class="nav-number">1.4.</span> <span class="nav-text">3 DFS 后续遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#递归-1"><span class="nav-number">1.4.1.</span> <span class="nav-text">递归</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-BFS"><span class="nav-number">1.5.</span> <span class="nav-text">4 BFS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#序列化"><span class="nav-number">1.5.1.</span> <span class="nav-text">序列化</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#构造一颗二叉树"><span class="nav-number">1.1.</span> <span class="nav-text">构造一颗二叉树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-DFS-先序遍历"><span class="nav-number">1.2.</span> <span class="nav-text">1. DFS 先序遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#利用递归先序遍历"><span class="nav-number">1.2.1.</span> <span class="nav-text">利用递归先序遍历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不利用递归先序遍历"><span class="nav-number">1.2.2.</span> <span class="nav-text">不利用递归先序遍历</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-DFS-中序遍历"><span class="nav-number">1.3.</span> <span class="nav-text">2 DFS 中序遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#递归"><span class="nav-number">1.3.1.</span> <span class="nav-text">递归</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不利用递归"><span class="nav-number">1.3.2.</span> <span class="nav-text">不利用递归</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-DFS-后续遍历"><span class="nav-number">1.4.</span> <span class="nav-text">3 DFS 后续遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#递归-1"><span class="nav-number">1.4.1.</span> <span class="nav-text">递归</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-BFS"><span class="nav-number">1.5.</span> <span class="nav-text">4 BFS</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
