@@ -54,7 +54,7 @@
 <meta property="og:site_name" content="小宇的博客">
 <meta property="og:description" content="快速排序什么是快速排序 ？通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-08-09T14:38:32.933Z">
+<meta property="og:updated_time" content="2020-08-09T14:42:39.410Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://cxyxiaoyuyu.github.io/2020/08/09/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95--%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">
@@ -210,7 +210,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-08-09 12:50:45 / Modified: 22:38:32" itemprop="dateCreated datePublished" datetime="2020-08-09T12:50:45+08:00">2020-08-09</time>
+              <time title="Created: 2020-08-09 12:50:45 / Modified: 22:42:39" itemprop="dateCreated datePublished" datetime="2020-08-09T12:50:45+08:00">2020-08-09</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -259,7 +259,7 @@
         }
         return [...quick_sort(left),pivot,...quick_sort(right)]
     }
-}</code></pre><h3 id="原地快速排序"><a href="#原地快速排序" class="headerlink" title="原地快速排序"></a>原地快速排序</h3><p>只在原数组上修改元素位置 通过交换元素直接的位置来排序</p>
+}</code></pre><h3 id="原地快速排序"><a href="#原地快速排序" class="headerlink" title="原地快速排序"></a>原地快速排序</h3><p>不能创建新数组 必须<strong>就地排序</strong></p>
 <pre><code>function quick_sort_in_place(arr){
     var quick_sort = (arr,start,end)=&gt;{
         if(end - start &lt;=1) return 
