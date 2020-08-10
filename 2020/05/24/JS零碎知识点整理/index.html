@@ -46,18 +46,18 @@
   };
 </script>
 
-  <meta name="description" content="前言 世界上只有10种人, 认识二进制的和不认识的计算机只能存储0和1, 所有信息在新计算内部最终都是以二进制的形式存储。">
-<meta name="keywords" content="编码 js字符串">
+  <meta name="description" content="关于JS的零碎知识点整理1. 保留两位小数四舍五入var num &#x3D; 2.446242342 num &#x3D; num.toFixed(2)     &#x2F;&#x2F; 输出是字符串 需要用parseFloat或Number再转一下">
+<meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="计算机编码与js字符串">
-<meta property="og:url" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2019&#x2F;11&#x2F;01&#x2F;%E6%88%91%E7%BB%88%E4%BA%8E%E6%87%82%E4%BA%86%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE%E7%9A%84&#x2F;index.html">
+<meta property="og:title" content="JS零碎知识点整理">
+<meta property="og:url" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2020&#x2F;05&#x2F;24&#x2F;JS%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86&#x2F;index.html">
 <meta property="og:site_name" content="小宇的博客">
-<meta property="og:description" content="前言 世界上只有10种人, 认识二进制的和不认识的计算机只能存储0和1, 所有信息在新计算内部最终都是以二进制的形式存储。">
+<meta property="og:description" content="关于JS的零碎知识点整理1. 保留两位小数四舍五入var num &#x3D; 2.446242342 num &#x3D; num.toFixed(2)     &#x2F;&#x2F; 输出是字符串 需要用parseFloat或Number再转一下">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-07-29T14:20:40.338Z">
+<meta property="og:updated_time" content="2020-08-10T11:44:27.023Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://cxyxiaoyuyu.github.io/2019/11/01/%E6%88%91%E7%BB%88%E4%BA%8E%E6%87%82%E4%BA%86%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE%E7%9A%84/">
+<link rel="canonical" href="http://cxyxiaoyuyu.github.io/2020/05/24/JS%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86/">
 
 
 <script id="page-configurations">
@@ -69,7 +69,7 @@
   };
 </script>
 
-  <title>计算机编码与js字符串 | 小宇的博客</title>
+  <title>JS零碎知识点整理 | 小宇的博客</title>
   
 
 
@@ -186,7 +186,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://cxyxiaoyuyu.github.io/2019/11/01/%E6%88%91%E7%BB%88%E4%BA%8E%E6%87%82%E4%BA%86%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE%E7%9A%84/">
+    <link itemprop="mainEntityOfPage" href="http://cxyxiaoyuyu.github.io/2020/05/24/JS%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -199,7 +199,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          计算机编码与js字符串
+          JS零碎知识点整理
         </h1>
 
         <div class="post-meta">
@@ -209,14 +209,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2019-11-01 09:25:27" itemprop="dateCreated datePublished" datetime="2019-11-01T09:25:27+08:00">2019-11-01</time>
+              <time title="Created: 2020-05-24 21:09:56" itemprop="dateCreated datePublished" datetime="2020-05-24T21:09:56+08:00">2020-05-24</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-29 22:20:40" itemprop="dateModified" datetime="2020-07-29T22:20:40+08:00">2020-07-29</time>
+                <time title="Modified: 2020-08-10 19:44:27" itemprop="dateModified" datetime="2020-08-10T19:44:27+08:00">2020-08-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -224,8 +224,8 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BC%96%E7%A0%81/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机编码</span>
+                  <a href="/categories/Javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">Javascript</span>
                   </a>
                 </span>
             </span>
@@ -241,97 +241,53 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
-<p>世界上只有10种人, 认识二进制的和不认识的<br>计算机只能存储0和1, 所有信息在新计算内部最终都是以二进制的形式存储。</p>
-</blockquote>
-<a id="more"></a>
+        <h1 id="关于JS的零碎知识点整理"><a href="#关于JS的零碎知识点整理" class="headerlink" title="关于JS的零碎知识点整理"></a>关于JS的零碎知识点整理</h1><h2 id=""><a href="#" class="headerlink" title=""></a></h2><h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><h4 id="1-保留两位小数"><a href="#1-保留两位小数" class="headerlink" title="1. 保留两位小数"></a>1. 保留两位小数</h4><h6 id="四舍五入"><a href="#四舍五入" class="headerlink" title="四舍五入"></a>四舍五入</h6><pre><code>var num = 2.446242342
+num = num.toFixed(2)     // 输出是字符串 需要用parseFloat或Number再转一下</code></pre><a id="more"></a>
 
-<p>每一个二进制位(bit)都只有0和1两种状态,八位二进制(一个字节byte)可以表示<code>2**8 === 256</code>种状态,从00000000~11111111。</p>
-<p>既然计算机只能存储0和1,它是怎么存储数字以及各种字符呢？先从简单的数字说起吧</p>
-<h1 id="如何存储数字"><a href="#如何存储数字" class="headerlink" title="如何存储数字"></a>如何存储数字</h1><p>存储数字很容易,直接转为二进制就好了</p>
-<pre><code>15 =&gt; 0b1111
--15 =&gt; -0b1111
-0.75 =&gt; 0b0.11</code></pre><blockquote>
-<p>计算机只能存储1和0<br>负数以<a href="https://zh.wikipedia.org/wiki/%E4%BA%8C%E8%A3%9C%E6%95%B8" target="_blank" rel="noopener">补码</a>的形式存储<br>小数以<a href="https://zh.wikipedia.org/wiki/浮点数" target="_blank" rel="noopener">浮点数</a>的形式存储</p>
+<h6 id="不四舍五入"><a href="#不四舍五入" class="headerlink" title="不四舍五入"></a>不四舍五入</h6><pre><code>Math.floor(15.7784514000 * 100) / 100       // 15.77</code></pre><h4 id="2-字符串反转"><a href="#2-字符串反转" class="headerlink" title="2. 字符串反转"></a>2. 字符串反转</h4><p>利用数组的reverse方法</p>
+<pre><code>let str = &apos;abcdefg&apos;
+let str_r1 = str.split(&apos;&apos;).reverse().join(&apos;&apos;)    // &apos;gfedcba&apos;
+let str_r2 = [...str].reverse().join(&apos;&apos;)         // &apos;gfedcba&apos; </code></pre><h4 id="3-一位数左边补0"><a href="#3-一位数左边补0" class="headerlink" title="3. 一位数左边补0"></a>3. 一位数左边补0</h4><pre><code>(&apos;0&apos;+9).slice(-2)       // &apos;09&apos;
+(&apos;0&apos;+12).slice(-2)      // &apos;12&apos;
+(&apos;&apos;+9).padStart(2,0)    // &apos;09&apos;
+(&apos;&apos;+12).padSart(2,0)    // &apos;12&apos;</code></pre><h4 id="4-Object-is-判断两个值是否相等"><a href="#4-Object-is-判断两个值是否相等" class="headerlink" title="4. Object.is()判断两个值是否相等"></a>4. Object.is()判断两个值是否相等</h4><pre><code>isNaN(NaN)           // true
+Object.is(NaN,NaN)   // true
+Object.is(1,1)       // true</code></pre><h4 id="5-字符与ASCII码互转"><a href="#5-字符与ASCII码互转" class="headerlink" title="5. 字符与ASCII码互转"></a>5. 字符与ASCII码互转</h4><pre><code>String.fromCharCode(97)  // &apos;a&apos;
+String.fromCharCode(65)  // &apos;A&apos;
+&apos;a&apos;.charCodeAt()         // 97
+&apos;abc&apos;.charCodeAt(1)      // 98</code></pre><h4 id="6-Object-getOwnPropertyDescriptors"><a href="#6-Object-getOwnPropertyDescriptors" class="headerlink" title="6. Object.getOwnPropertyDescriptors()"></a>6. Object.getOwnPropertyDescriptors()</h4><p>ES5 的Object.getOwnPropertyDescriptor()方法会返回某个对象属性的描述（descriptor）。<br>ES8 引入了Object.getOwnPropertyDescriptors()方法，返回指定对象所有自身属性（非继承属性）的描述对象。</p>
+<h4 id="7-Object-getOwnPropertyDescriptors-实现深拷贝"><a href="#7-Object-getOwnPropertyDescriptors-实现深拷贝" class="headerlink" title="7.Object.getOwnPropertyDescriptors() 实现深拷贝"></a>7.Object.getOwnPropertyDescriptors() 实现深拷贝</h4><blockquote>
+<p>该方法的引入目的，主要是为了解决Object.assign()无法正确拷贝get属性和set属性的问题 </p>
 </blockquote>
-<h1 id="如何存储字符"><a href="#如何存储字符" class="headerlink" title="如何存储字符"></a>如何存储字符</h1><blockquote>
-<p>上个世纪60年代，美国制定了一套字符编码，对英语字符与二进制位之间的关系，做了统一规定。这被称为 ASCII 码，一直沿用至今。</p>
-</blockquote>
+<h4 id="8-右移一位可以实现除以2并向下取整"><a href="#8-右移一位可以实现除以2并向下取整" class="headerlink" title="8. 右移一位可以实现除以2并向下取整"></a>8. 右移一位可以实现除以2并向下取整</h4><pre><code>5 &gt;&gt; 1   // 2
+4 &gt;&gt; 1   // 2
+9 &gt;&gt; 1   // 4
+10 &gt;&gt; 1  // 5</code></pre><h4 id="9-typeof"><a href="#9-typeof" class="headerlink" title="9. typeof"></a>9. typeof</h4><p>typeof 对初始化(未赋值)的变量返回undefined  对未声明的变量也会返回undefined ，而不是报错</p>
+<pre><code>var message
+typeof message    // undefined 
+typeof message2   // undefined</code></pre><h4 id="10-isFinite-判断一个数值是否有穷"><a href="#10-isFinite-判断一个数值是否有穷" class="headerlink" title="10. isFinite() 判断一个数值是否有穷"></a>10. isFinite() 判断一个数值是否有穷</h4><p>正或负的infinity不能参与计算</p>
+<pre><code>isFinite(3)          // true
+isFinite(Infinity)   // false</code></pre><h4 id="11-isNaN-的用法"><a href="#11-isNaN-的用法" class="headerlink" title="11. isNaN()的用法"></a>11. isNaN()的用法</h4><p>接受一个参数，会先将这个值转为数值，如果不能转为数字，直接返回true </p>
+<pre><code>isNaN(true)       // false
+isNaN(&apos;abc&apos;)      // true
+isNaN(10)         // false
+isNaN(&apos;10&apos;)       // false
+isNaN(null)       // false
+isNaN(undefined)  // true</code></pre><h4 id="12-123-toString-与-‘123’-toString"><a href="#12-123-toString-与-‘123’-toString" class="headerlink" title="12. (123).toString() 与 ‘123’.toString()"></a>12. (123).toString() 与 ‘123’.toString()</h4><p><code>(123.toString())</code> 是 <code>Number.prototype.toString</code> 可用于数字转为各种进制</p>
+<pre><code>(45).toString(2)  // &quot;101101&quot;
+(45).toString(8)  // &quot;55&quot;
+(45).toString(16) // &quot;2d&quot;
+(45).toString()   // &quot;45&quot;  为空则默认为10进制</code></pre><p><code>&#39;123&#39;.toString()</code> 是 <code>String.prototype.toString</code></p>
+<h4 id="13-Array-from-生成值为0的二维数组"><a href="#13-Array-from-生成值为0的二维数组" class="headerlink" title="13. Array.from()生成值为0的二维数组"></a>13. Array.from()生成值为0的二维数组</h4><pre><code>// 错误的写法
+arr = new Array(5).fill(new Array(5).fill(0))
+// 如果这时只改变arr[0][1] 那么其他项的第一列也会跟着变换
+arr[0][1] = 3
+console.log(arr[1][1])   // 3
 
-
-<p>比如 字符a的ascii码对应的十进制是97, 二进制是0110 0001; 字符5的ascii码对应的十进制是53, 二进制是0011 0101。</p>
-<blockquote>
-<p>ASCII 码一共规定了128个字符的编码,只用了一个字节。</p>
-</blockquote>
-<h1 id="如何存储中文字符"><a href="#如何存储中文字符" class="headerlink" title="如何存储中文字符"></a>如何存储中文字符</h1><p>ASCII码只能存储128个英文字符, 不能存储中文字符,所以在ASCII的基础上,中国推出了<a href="https://zh.wikipedia.org/wiki/GB_2312" target="_blank" rel="noopener">GB2321</a>编码</p>
-
-
-<blockquote>
-<p>GB2312 共收录 6763 个汉字，同时收录了包括拉丁字母、希腊字母、日文平假名及片假名字母、俄语西里尔字母在内的 682 个字符。</p>
-</blockquote>
-<blockquote>
-<p>后来为了存储生僻字、繁体字、日语、朝鲜语等，微软推出了 GBK 字符集</p>
-</blockquote>
-<h1 id="如何存储所有字符"><a href="#如何存储所有字符" class="headerlink" title="如何存储所有字符"></a>如何存储所有字符</h1><p>为了存储全球字符，将全球字符编号,有了unicode编码,包括中日韩文字、藏文、盲文、楔形文字、 颜文字:-)、 绘文字😂</p>
-
-
-<p>比如 汉字<strong>严</strong>的 Unicode 是十六进制数4E25，转换成二进制数10011100 00100101 汉字<strong>你</strong>的 Unicode 是十六进制数4f60, 转换成二进制数01001111 01100000，</p>
-<blockquote>
-<p>Unicode只规定了每个字符的码点，到底用什么样的字节序表示这个码点，就涉及到编码方法。</p>
-</blockquote>
-<p>最直观的编码方法是，每个码点使用四个字节表示，字节内容一一对应码点。这种编码方法就叫做UTF-32。</p>
-<blockquote>
-<p>4个字节表示一个字符<br>完全对应unicode编码</p>
-</blockquote>
-<p>比如 a的utf-32为0x00000061 即二进制 00000000 00000000 00000000 01100001 </p>
-<h1 id="如何节省空间-UTF-8编码"><a href="#如何节省空间-UTF-8编码" class="headerlink" title="如何节省空间 (UTF-8编码)"></a>如何节省空间 (UTF-8编码)</h1><p>虽然utf-32编码简单直观,查找起来很方便,但是浪费空间,比如字符’a’,ascii码只用了一个字节存储,utf-32却用了四个字节<br>所以我们需要一种节省空间的表示方法，这导致了utf-8的诞生</p>
-<blockquote>
-<p>UTF-8是一种变长的编码方法，字符长度从1个字节到4个字节不等。</p>
-</blockquote>
-<blockquote>
-<p>所以这里我们知道,unicode是一种字符集,而utf-8是为了节省存储空间的编码方法</p>
-</blockquote>
-<p>以下是utf-8编码规则</p>
-<p>00000000 00000000 00000000 01111111 即 0x0000007F 以下<br>0XXXXXXX </p>
-<p>00000000 00000000 00000111 11111111 即 0x000007FF 以下<br>110XXXXX 10XXXXXX  </p>
-<p>00000000 00000000 11111111 11111111 即 0x0000FFFF 以下<br>1110XXXX 10XXXXXX 10XXXXXX </p>
-<p>00000000 00011111 11111111 11111111 即 0x001FFFFF 以下<br>11110XXX 10XXXXXX 10XXXXXX 10XXXXXX  </p>
-<p>如果一个字节的第一位是0，则这个字节单独就是一个字符；如果第一位是1，则连续有多少个1，就表示当前字符占用多少个字节。</p>
-<p>比如 字符’你’的unicode编码是 <code>0100 1111 0110 0000</code> 即 <code>0x4f60</code> 在0x000007FF~0x0000FFFF之间,所以需要三个字节<br>格式是<code>1110XXXX 10XXXXXX 10XXXXXX</code> ,从’你’的二进制最后一位开始,从右向左替换’X’,高位补0 会得到<br><code>11100100 10111101 10100000</code> 即 <code>E4BDA0</code>,所以’你’的UTF-8编码是<code>E4BDA0</code></p>
-<p>还有更多的<a href="http://www.ruanyifeng.com/blog/2014/12/unicode.html" target="_blank" rel="noopener">unicode编码方式</a>,请参考</p>
-<blockquote>
-<p>UTF-8 可变字节序列，用 1 到 4 个字节表示一个码点<br>UTF-16 可变字节序列，用 2 或 4 个字节表示一个码点<br>UTF-32 固定字节序列，用 4 个字节表示一个码点</p>
-</blockquote>
-<h1 id="Javascript采用的编码方式-USC-2编码"><a href="#Javascript采用的编码方式-USC-2编码" class="headerlink" title="Javascript采用的编码方式 (USC-2编码)"></a>Javascript采用的编码方式 (USC-2编码)</h1><p>由于js诞生的时候只有UCS-2编码, 所以js采用的编码是UCS-2编码</p>
-<blockquote>
-<p>USC-2 1990年发布 使用2个字节表示已经有码点的字符<br>js是1995年诞生的<br>UTF-16 1996年7月发布</p>
-</blockquote>
-<p>由于js采用的是USC-2编码,只能读取2个字节的字符(即范围在0x0000~0xFFFF),这会导致很多问题</p>
-<h2 id="字符的unicode表示法"><a href="#字符的unicode表示法" class="headerlink" title="字符的unicode表示法"></a>字符的unicode表示法</h2><p>这里请参考<a href="http://es6.ruanyifeng.com/#docs/string" target="_blank" rel="noopener">字符的unicode表示法</a></p>
-<blockquote>
-<p>ES6 加强了对 Unicode 的支持, 允许采用\uxxxx形式表示一个字符，其中xxxx表示字符的 Unicode 码点。</p>
-</blockquote>
-<pre><code>&apos;\u4f60&apos; // &apos;你&apos;</code></pre><p>但是在读取超过两个字节的字符时,就会只读取前两个字节</p>
-<pre><code>&apos;\u20bb7&apos;  // &quot;₻7&quot;</code></pre><p>而大于两字节的字符的length也会显示错误</p>
-<pre><code>&quot;𠮷&quot;.length  // 2</code></pre><blockquote>
-<p>ES6 对这一点做出了改进，只要将码点放入大括号，就能正确解读该字符,以UTF-16的编码方式。</p>
-</blockquote>
-<pre><code>&quot;\u{20BB7}&quot;    // &quot;𠮷&quot;
-
-
-&quot;\u{41}\u{42}\u{43}&quot;     // &quot;ABC&quot;
-
-
-let hello = 123;
-hell\u{6F}  // 123   因为&apos;\u{6f}&apos;表示字符&apos;o&apos;
-
-&apos;\u{1F680}&apos; === &apos;\uD83D\uDE80&apos; // true  都表示字符&quot;🚀&quot;</code></pre><p>javaScript 共有 6 种方法可以表示一个字符。</p>
-<pre><code>&apos;\z&apos; === &apos;z&apos;  // true    
-&apos;\172&apos; === &apos;z&apos; // true     这里是unicode码的八进制
-&apos;\x7A&apos; === &apos;z&apos; // true
-&apos;\u007A&apos; === &apos;z&apos; // true
-&apos;\u{7A}&apos; === &apos;z&apos; // true</code></pre><h2 id="将字符串转为数组"><a href="#将字符串转为数组" class="headerlink" title="将字符串转为数组"></a>将字符串转为数组</h2><pre><code>(&apos;𠮷𠮷𠮷&apos;).split(&apos;&apos;)  //  [&quot;�&quot;, &quot;�&quot;, &quot;�&quot;, &quot;�&quot;, &quot;�&quot;, &quot;�&quot;] 超过两个字节的字符无法正确识别</code></pre><p>解决办法: ES6推出了<code>Array.from</code>方法</p>
-<pre><code>Array.from(&apos;𠮷𠮷𠮷&apos;)  //  [&quot;𠮷&quot;, &quot;𠮷&quot;, &quot;𠮷&quot;]</code></pre><h2 id="码点与字符互换"><a href="#码点与字符互换" class="headerlink" title="码点与字符互换"></a>码点与字符互换</h2><blockquote>
+// 正确的写法 
+arr = Array.from(Array(5),()=&gt;Array(5).fill(0))
+arr[0][1] = 3
+console.log(arr[1][1]) // 0</code></pre><h3 id="14-码点与字符串互换"><a href="#14-码点与字符串互换" class="headerlink" title="14 码点与字符串互换"></a>14 码点与字符串互换</h3><blockquote>
 <p>String.prototype.charCodeAt()  返回 0 到 65535 之间的整数(十进制)，表示给定索引处的 UTF-16 代码单元<br>String.fromCharCode()  返回由指定的UTF-16代码单元序列创建的字符串</p>
 </blockquote>
 <pre><code>&apos;z&apos;.charCodeAt()              // 122
@@ -350,7 +306,19 @@ String.fromCodePoint(0x20BB7,134071)   // &quot;𠮷𠮷&quot;
 String.fromCodePoint(97)        // &quot;a&quot;
 &quot;z&quot;.codePointAt()               // 122
 String.fromCodePoint(&apos;122&apos;,&apos;0o172&apos;,&apos;0x7a&apos;)   // &quot;zzz&quot;</code></pre><p>另外一些bug,请参考<a href="http://www.alloyteam.com/2016/12/javascript-has-a-unicode-sinkhole/" target="_blank" rel="noopener">javascript有个unicode的天坑</a></p>
+<h3 id="15-生成指定范围的随机数-随机整数"><a href="#15-生成指定范围的随机数-随机整数" class="headerlink" title="15 生成指定范围的随机数 随机整数"></a>15 生成指定范围的随机数 随机整数</h3><pre><code>Math.random            //  [0,1)
+Math.random()*10       //  [0,10)
 
+Math.ceil(Math.random()*10)       //  [0,10] 为0的概率极小 向上取整
+Math.floor(Math.random()*10)      //  [0,9]
+
+Math.round(Math.random())         //  只能是0或者1  概率各一半
+Math.round(Math.random()*10)      //  [0,10]，其中获取最小值0和最大值10的几率少一半
+
+所以希望生成[min,max]的随机数，公式如下： 
+// parseInt() 和 Math.floor()结果都是向下取整
+parseInt(Math.random()*(max - min + 1) + min,10)
+Math.floor(Math.random()*(max - min +1) + min)</code></pre>
     </div>
 
     
@@ -359,7 +327,7 @@ String.fromCodePoint(&apos;122&apos;,&apos;0o172&apos;,&apos;0x7a&apos;)   // &q
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E7%BC%96%E7%A0%81-js%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag"># 编码 js字符串</a>
+              <a href="/tags/javascript/" rel="tag"># javascript</a>
           </div>
 
         
@@ -368,12 +336,12 @@ String.fromCodePoint(&apos;122&apos;,&apos;0o172&apos;,&apos;0x7a&apos;)   // &q
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/10/30/JS%E6%A8%A1%E6%8B%9F%E7%BB%A7%E6%89%BF/" rel="prev" title="JS模拟继承">
-      <i class="fa fa-chevron-left"></i> JS模拟继承
+    <a href="/2019/12/08/%E5%85%B3%E4%BA%8E%E6%AD%A3%E5%88%99%E7%9A%84%E7%81%B5%E6%B4%BB%E8%BF%90%E7%94%A8/" rel="prev" title="关于正则的灵活运用">
+      <i class="fa fa-chevron-left"></i> 关于正则的灵活运用
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/11/01/CSS-%E5%A0%86%E5%8F%A0%E4%B8%8A%E4%B8%8B%E6%96%87/" rel="next" title="CSS-堆叠上下文">
-      CSS-堆叠上下文 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/06/28/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96(%E9%81%8D%E5%8E%86%E4%BA%8C%E5%8F%89%E6%A0%91)/" rel="next" title="二叉树的序列化(遍历二叉树)">
+      二叉树的序列化(遍历二叉树) <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -434,7 +402,7 @@ String.fromCodePoint(&apos;122&apos;,&apos;0o172&apos;,&apos;0x7a&apos;)   // &q
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何存储数字"><span class="nav-number">2.</span> <span class="nav-text">如何存储数字</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何存储字符"><span class="nav-number">3.</span> <span class="nav-text">如何存储字符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何存储中文字符"><span class="nav-number">4.</span> <span class="nav-text">如何存储中文字符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何存储所有字符"><span class="nav-number">5.</span> <span class="nav-text">如何存储所有字符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何节省空间-UTF-8编码"><span class="nav-number">6.</span> <span class="nav-text">如何节省空间 (UTF-8编码)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Javascript采用的编码方式-USC-2编码"><span class="nav-number">7.</span> <span class="nav-text">Javascript采用的编码方式 (USC-2编码)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符的unicode表示法"><span class="nav-number">7.1.</span> <span class="nav-text">字符的unicode表示法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将字符串转为数组"><span class="nav-number">7.2.</span> <span class="nav-text">将字符串转为数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#码点与字符互换"><span class="nav-number">7.3.</span> <span class="nav-text">码点与字符互换</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#关于JS的零碎知识点整理"><span class="nav-number">1.</span> <span class="nav-text">关于JS的零碎知识点整理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">1.1.</span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#-1"><span class="nav-number">1.1.1.</span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-保留两位小数"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">1. 保留两位小数</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#四舍五入"><span class="nav-number">1.1.1.1.0.1.</span> <span class="nav-text">四舍五入</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#不四舍五入"><span class="nav-number">1.1.1.1.0.2.</span> <span class="nav-text">不四舍五入</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-字符串反转"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">2. 字符串反转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-一位数左边补0"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">3. 一位数左边补0</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Object-is-判断两个值是否相等"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">4. Object.is()判断两个值是否相等</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-字符与ASCII码互转"><span class="nav-number">1.1.1.5.</span> <span class="nav-text">5. 字符与ASCII码互转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-Object-getOwnPropertyDescriptors"><span class="nav-number">1.1.1.6.</span> <span class="nav-text">6. Object.getOwnPropertyDescriptors()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-Object-getOwnPropertyDescriptors-实现深拷贝"><span class="nav-number">1.1.1.7.</span> <span class="nav-text">7.Object.getOwnPropertyDescriptors() 实现深拷贝</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-右移一位可以实现除以2并向下取整"><span class="nav-number">1.1.1.8.</span> <span class="nav-text">8. 右移一位可以实现除以2并向下取整</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-typeof"><span class="nav-number">1.1.1.9.</span> <span class="nav-text">9. typeof</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-isFinite-判断一个数值是否有穷"><span class="nav-number">1.1.1.10.</span> <span class="nav-text">10. isFinite() 判断一个数值是否有穷</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-isNaN-的用法"><span class="nav-number">1.1.1.11.</span> <span class="nav-text">11. isNaN()的用法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-123-toString-与-‘123’-toString"><span class="nav-number">1.1.1.12.</span> <span class="nav-text">12. (123).toString() 与 ‘123’.toString()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-Array-from-生成值为0的二维数组"><span class="nav-number">1.1.1.13.</span> <span class="nav-text">13. Array.from()生成值为0的二维数组</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-码点与字符串互换"><span class="nav-number">1.1.2.</span> <span class="nav-text">14 码点与字符串互换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-生成指定范围的随机数-随机整数"><span class="nav-number">1.1.3.</span> <span class="nav-text">15 生成指定范围的随机数 随机整数</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
