@@ -54,8 +54,10 @@
 <meta property="og:site_name" content="小宇的博客">
 <meta property="og:description" content="1 替换字符串中最后出现的字符串(?!exp)  零宽度负预测先行断言 &amp;apos;abcxxyyabczioewf&amp;apos;.replace(&#x2F;abc(?!\w*abc)&#x2F;,&amp;apos;ABC&amp;apos;)   &#x2F;&#x2F; &amp;quot;abcxxyyABCzioewf&amp;quot; &amp;apos;abcabcxxxabcbxx&amp;apos;.replace(&#x2F;abc(?!\w*abc)&#x2F;,&amp;apos;AB">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-07-20T14:38:08.290Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2019&#x2F;12&#x2F;08&#x2F;%E5%85%B3%E4%BA%8E%E6%AD%A3%E5%88%99%E7%9A%84%E7%81%B5%E6%B4%BB%E8%BF%90%E7%94%A8&#x2F;%E5%8C%B9%E9%85%8D%E5%AF%86%E7%A0%81.png">
+<meta property="og:updated_time" content="2020-08-10T12:42:54.267Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2019&#x2F;12&#x2F;08&#x2F;%E5%85%B3%E4%BA%8E%E6%AD%A3%E5%88%99%E7%9A%84%E7%81%B5%E6%B4%BB%E8%BF%90%E7%94%A8&#x2F;%E5%8C%B9%E9%85%8D%E5%AF%86%E7%A0%81.png">
 
 <link rel="canonical" href="http://cxyxiaoyuyu.github.io/2019/12/08/%E5%85%B3%E4%BA%8E%E6%AD%A3%E5%88%99%E7%9A%84%E7%81%B5%E6%B4%BB%E8%BF%90%E7%94%A8/">
 
@@ -216,7 +218,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-20 22:38:08" itemprop="dateModified" datetime="2020-07-20T22:38:08+08:00">2020-07-20</time>
+                <time title="Modified: 2020-08-10 20:42:54" itemprop="dateModified" datetime="2020-08-10T20:42:54+08:00">2020-08-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -275,7 +277,16 @@ var patternMatching = function(pattern, value) {
 <pre><code>// match 使用g标志，则将返回与完整正则表达式匹配的所有结果
 function duplicateCount(text){
   return (text.toLowerCase().split(&apos;&apos;).sort().join(&apos;&apos;).match(/(.)\1+/g) || []).length
-}</code></pre>
+}</code></pre><h3 id="11-6-20位-密码的正则-字母与数字的组合"><a href="#11-6-20位-密码的正则-字母与数字的组合" class="headerlink" title="11 6-20位 密码的正则 字母与数字的组合"></a>11 6-20位 密码的正则 字母与数字的组合</h3><p>要求字母与数字的组合 不能全为数字 也不能全为字母</p>
+<pre><code>// 1 排除法
+/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9a-zA-Z]{6,20}$/
+// 2 包含法
+/^(?=.*[0-9])(?=.*[a-zA-Z])(.{6,20})$/      // 最后的一组括号可以不要</code></pre><p><strong>如果要求还要包含大写字母</strong>  </p>
+<pre><code>/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(.{6,20})$/</code></pre><p><strong>我的问题</strong><br>为什么 (?=exp)可以判断 而 (?&lt;=exp) 不可以</p>
+<img src="/2019/12/08/%E5%85%B3%E4%BA%8E%E6%AD%A3%E5%88%99%E7%9A%84%E7%81%B5%E6%B4%BB%E8%BF%90%E7%94%A8/%E5%8C%B9%E9%85%8D%E5%AF%86%E7%A0%81.png" class="" title="为什么(?&lt;&#x3D;exp)是false">
+
+<p>原来是因为 <strong>?&lt;=不能匹配任意长度的东西</strong></p>
+
     </div>
 
     
@@ -359,7 +370,7 @@ function duplicateCount(text){
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-替换字符串中最后出现的字符串"><span class="nav-number">1.</span> <span class="nav-text">1 替换字符串中最后出现的字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-将数字转为金额表示"><span class="nav-number">2.</span> <span class="nav-text">2 将数字转为金额表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-计算字符串中重复出现的字符的个数"><span class="nav-number">3.</span> <span class="nav-text">3 计算字符串中重复出现的字符的个数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-交换字符串中的两个单词-mdn"><span class="nav-number">4.</span> <span class="nav-text">4 交换字符串中的两个单词  (mdn)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-修改日期格式"><span class="nav-number">5.</span> <span class="nav-text">5 修改日期格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-将驼峰命名法改为-“-“-命名"><span class="nav-number">6.</span> <span class="nav-text">6 将驼峰命名法改为 “-“ 命名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-将华氏温度转为摄氏温度-mdn"><span class="nav-number">7.</span> <span class="nav-text">7 将华氏温度转为摄氏温度  (mdn)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-leetCode-8-字符串转整数-规则与parseInt相同"><span class="nav-number">8.</span> <span class="nav-text">8 leetCode 8 字符串转整数 (规则与parseInt相同)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-leetCode-16-18-模式匹配"><span class="nav-number">9.</span> <span class="nav-text">9 leetCode 16.18 模式匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-计算字符串中重复出现的字符的个数"><span class="nav-number">10.</span> <span class="nav-text">10 计算字符串中重复出现的字符的个数</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-替换字符串中最后出现的字符串"><span class="nav-number">1.</span> <span class="nav-text">1 替换字符串中最后出现的字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-将数字转为金额表示"><span class="nav-number">2.</span> <span class="nav-text">2 将数字转为金额表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-计算字符串中重复出现的字符的个数"><span class="nav-number">3.</span> <span class="nav-text">3 计算字符串中重复出现的字符的个数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-交换字符串中的两个单词-mdn"><span class="nav-number">4.</span> <span class="nav-text">4 交换字符串中的两个单词  (mdn)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-修改日期格式"><span class="nav-number">5.</span> <span class="nav-text">5 修改日期格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-将驼峰命名法改为-“-“-命名"><span class="nav-number">6.</span> <span class="nav-text">6 将驼峰命名法改为 “-“ 命名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-将华氏温度转为摄氏温度-mdn"><span class="nav-number">7.</span> <span class="nav-text">7 将华氏温度转为摄氏温度  (mdn)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-leetCode-8-字符串转整数-规则与parseInt相同"><span class="nav-number">8.</span> <span class="nav-text">8 leetCode 8 字符串转整数 (规则与parseInt相同)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-leetCode-16-18-模式匹配"><span class="nav-number">9.</span> <span class="nav-text">9 leetCode 16.18 模式匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-计算字符串中重复出现的字符的个数"><span class="nav-number">10.</span> <span class="nav-text">10 计算字符串中重复出现的字符的个数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-6-20位-密码的正则-字母与数字的组合"><span class="nav-number">11.</span> <span class="nav-text">11 6-20位 密码的正则 字母与数字的组合</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
