@@ -184,6 +184,135 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://cxyxiaoyuyu.github.io/2018/10/07/HTML%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="xiaoyu">
+      <meta itemprop="description" content="又是元气满满的一天">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小宇的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/10/07/HTML%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/" class="post-title-link" itemprop="url">HTML常用标签</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-10-07 11:49:03" itemprop="dateCreated datePublished" datetime="2018-10-07T11:49:03+08:00">2018-10-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-07-20 22:35:41" itemprop="dateModified" datetime="2020-07-20T22:35:41+08:00">2020-07-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/HTML/" itemprop="url" rel="index">
+                    <span itemprop="name">HTML</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="iframe-和-a"><a href="#iframe-和-a" class="headerlink" title="iframe 和 a"></a>iframe 和 a</h2><ol>
+<li><p>iframe 标签通常用于<strong>嵌套页面</strong></p>
+</li>
+<li><p>framborder 属性设置为0用于消除边框</p>
+</li>
+<li><p><strong>name</strong> 属性与a标签<strong>结合</strong>起来</p>
+<blockquote>
+<p>target=”xxx”         #跳转到name为xxx的窗口或iframe<br>target=”_blank”     #在新的窗口打开<br>target=”_self”      #在当前窗口打开<br>target=”_parent”    #在父级窗口打开<br>target=”_top”       #在顶层窗口打开</p>
+</blockquote>
+<pre><code>&lt;iframe src=&quot;https://www.baidu.com&quot; name=&quot;xxx&quot;&gt;&lt;/iframe&gt;
+&lt;a target=&quot;xxx&quot; href=&quot;http://qq.com&quot;&gt;QQ&lt;/a&gt;</code></pre></li>
+</ol>
+<ol start="4">
+<li><p>a标签的download属性提供下载功能</p>
+<pre><code>&lt;a herf=&quot;./test.png&quot; download&gt;test&lt;/a&gt;</code></pre></li>
+<li><p>a标签的href属性可以发送http请求(只有<strong>锚点</strong>不发送请求，其他全部发送<strong>get</strong>       &lt;请求)</p>
+<blockquote>
+<p>href=”#”     #跳到页面顶部，锚点变为”#”<br>href=””      #刷新页面，跳转自身<br>href=”//qq.com”  #以当前协议访问qq.com<br>href=”?q=xxx”    #发送get请求,在地址栏显示<br>href=”javascript:;”  #鼠标点击什么也不做,javascript<strong>伪协议</strong></p>
+</blockquote>
+</li>
+</ol>
+<h2 id="form-和-table"><a href="#form-和-table" class="headerlink" title="form 和 table"></a>form 和 table</h2><ol>
+<li><h3 id="form"><a href="#form" class="headerlink" title="form"></a>form</h3><blockquote>
+<p>  除了a标签可以发送请求外，form标签也可以发送请求，通常是post请求<br>  action 指定请求路径，请求路径中也可加查询参数，method指定请求动词<br>  form 中提交信息的标签，必须添加name属性<br>  要想发送请求，form标签里必须有提交按钮</p>
+<blockquote>
+<p> form 中有<code>&lt;button&gt;</code>,没写type属性，自动升级为提交按钮<br> form 中如果有<code>&lt;input&gt;</code>,只有type为<strong>submit</strong>时,才为提交按钮</p>
+</blockquote>
+</blockquote>
+<pre><code>&lt;form action=&apos;query&apos; method=&quot;post&quot;&gt;
+    &lt;label&gt;Username&lt;input type=&quot;text&quot; name=&quot;name&quot;&gt;&lt;/label&gt;
+    &lt;label&gt;Password&lt;input type=&quot;password&quot; name=&quot;pwd&quot;&gt;&lt;/label&gt;
+    &lt;input type=&quot;submit&quot; value=&quot;submit&quot;&gt;
+&lt;/form&gt;</code></pre></li>
+</ol>
+<p>input与文字关联</p>
+<ul>
+<li><p>通常写法,id与for关联</p>
+<pre><code>&lt;input type=&quot;checkbox&quot; id=&quot;xxx&quot;&gt;&lt;label for=&quot;xxx&quot;&gt;Something&lt;/label&gt;</code></pre></li>
+<li><p>常用套路,label将input包起来</p>
+<pre><code>&lt;label&gt;&lt;input type=&quot;checkbox&quot;&gt;Something&lt;/label&gt;</code></pre></li>
+</ul>
+<ol start="2">
+<li><h3 id="table"><a href="#table" class="headerlink" title="table"></a>table</h3>table的全部用法见下图<br><img src="/img/table.png" alt="table" title="table的全部用法"></li>
+</ol>
+<h2 id="其他标签"><a href="#其他标签" class="headerlink" title="其他标签"></a>其他标签</h2><ul>
+<li>nav,navigation 用来写导航条</li>
+<li>ul,un-ordered list 无序列表</li>
+<li>ol,ordered list    有序列表</li>
+<li>除了span标签和div标签，其他标签都有默认样式</li>
+<li>body默认margin为8px</li>
+<li>strong和b都是加粗，strong表示语气上的强调，b只是单纯加粗</li>
+<li>空元素   <code>&lt;img&gt;</code> <code>&lt;input&gt;</code> <code>&lt;meta&gt;</code> <code>&lt;link&gt;</code> <code>&lt;br&gt;</code> <code>&lt;hr&gt;</code> <code>&lt;col&gt;</code> <code>&lt;colgroup&gt;</code></li>
+<li>可替代元素  <code>&lt;img&gt;</code> <code>&lt;object&gt;</code> <code>&lt;video&gt;</code> <code>&lt;textarea&gt;</code> <code>&lt;input&gt;</code></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://cxyxiaoyuyu.github.io/2018/10/06/curl%E5%B8%B8%E7%94%A8%E7%94%A8%E6%B3%95%E4%BB%A5%E5%8F%8Ahttp%E5%8D%8F%E8%AE%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -411,20 +540,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

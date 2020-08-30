@@ -46,18 +46,18 @@
   };
 </script>
 
-  <meta name="description" content="BFC (Block Formatting Context)  所以我们没有办法说明什么是BFC, 但我们知道如何创建一个BFC。">
-<meta name="keywords" content="CSS">
+  <meta name="description" content="前言我们都知道v-model可以实现双向绑定，之前对v-model的了解还比较单一，今天来总结一下 单向绑定与双向绑定 单向绑定就是当我们用JavaScript代码更新Model时，View就会自动更新。如果用户更新了View，Model的数据也自动被更新了，这种情况就是双向绑定。">
+<meta name="keywords" content="vue">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CSS-BFC与IFC">
-<meta property="og:url" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2019&#x2F;11&#x2F;01&#x2F;CSS-BFC%E4%B8%8EIFC&#x2F;index.html">
+<meta property="og:title" content="Vue-双向绑定v-model">
+<meta property="og:url" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2020&#x2F;08&#x2F;30&#x2F;Vue-%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9Av-model&#x2F;index.html">
 <meta property="og:site_name" content="小宇的博客">
-<meta property="og:description" content="BFC (Block Formatting Context)  所以我们没有办法说明什么是BFC, 但我们知道如何创建一个BFC。">
+<meta property="og:description" content="前言我们都知道v-model可以实现双向绑定，之前对v-model的了解还比较单一，今天来总结一下 单向绑定与双向绑定 单向绑定就是当我们用JavaScript代码更新Model时，View就会自动更新。如果用户更新了View，Model的数据也自动被更新了，这种情况就是双向绑定。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-07-20T14:26:33.786Z">
+<meta property="og:updated_time" content="2020-08-30T07:03:10.686Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://cxyxiaoyuyu.github.io/2019/11/01/CSS-BFC%E4%B8%8EIFC/">
+<link rel="canonical" href="http://cxyxiaoyuyu.github.io/2020/08/30/Vue-%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9Av-model/">
 
 
 <script id="page-configurations">
@@ -69,7 +69,7 @@
   };
 </script>
 
-  <title>CSS-BFC与IFC | 小宇的博客</title>
+  <title>Vue-双向绑定v-model | 小宇的博客</title>
   
 
 
@@ -186,7 +186,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://cxyxiaoyuyu.github.io/2019/11/01/CSS-BFC%E4%B8%8EIFC/">
+    <link itemprop="mainEntityOfPage" href="http://cxyxiaoyuyu.github.io/2020/08/30/Vue-%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9Av-model/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -199,7 +199,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          CSS-BFC与IFC
+          Vue-双向绑定v-model
         </h1>
 
         <div class="post-meta">
@@ -208,24 +208,18 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2019-11-01 16:53:50" itemprop="dateCreated datePublished" datetime="2019-11-01T16:53:50+08:00">2019-11-01</time>
+              <time title="Created: 2020-08-30 13:48:42 / Modified: 15:03:10" itemprop="dateCreated datePublished" datetime="2020-08-30T13:48:42+08:00">2020-08-30</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-20 22:26:33" itemprop="dateModified" datetime="2020-07-20T22:26:33+08:00">2020-07-20</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSS/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS</span>
+                  <a href="/categories/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
                   </a>
                 </span>
             </span>
@@ -241,24 +235,58 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="BFC-Block-Formatting-Context"><a href="#BFC-Block-Formatting-Context" class="headerlink" title="BFC (Block Formatting Context)"></a>BFC (Block Formatting Context)</h1>
-
-<p>所以我们没有办法说明什么是BFC, 但我们知道如何创建一个BFC。</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>我们都知道v-model可以实现双向绑定，之前对v-model的了解还比较单一，今天来总结一下</p>
+<h2 id="单向绑定与双向绑定"><a href="#单向绑定与双向绑定" class="headerlink" title="单向绑定与双向绑定"></a>单向绑定与双向绑定</h2><blockquote>
+<p>单向绑定就是当我们用JavaScript代码更新Model时，View就会自动更新。<br>如果用户更新了View，Model的数据也自动被更新了，这种情况就是双向绑定。</p>
+</blockquote>
 <a id="more"></a>
-<p>比如 <code>overflow: hidden</code> 的块级元素,但是我们只想让他变成BFC,发挥自己的作用,这个样式却会导致其他问题。 <code>display: flow-root</code>,可以单纯将一个元素变成一个BFC。</p>
-<p>那BFC有什么作用呢</p>
-<h2 id="BFC作用1-父元素包住子元素"><a href="#BFC作用1-父元素包住子元素" class="headerlink" title="BFC作用1-父元素包住子元素"></a>BFC作用1-父元素包住子元素</h2><p>我们知道如果子元素是浮动元素,父元素不设置高度,就不会被子元素撑起来,就不会包住子元素,这会导致很多问题。我们通常利用伪元素清楚浮动，但这里我们可以通过将父元素变为BFC的方式包住子元素</p>
 
+<p>首先 单向绑定 vue的响应式系统已经帮我们做了，那么我们如何在用户更新视图时更新数据呢？<br>对于文本输入框，在用户修改时，就会触发input事件，那么可以监听这个input事件，将这个输入框的值赋值到对应的数据</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;input type=<span class="string">'text'</span> :value=<span class="string">"value"</span> @input=<span class="string">"value = $event.target.value"</span>/&gt;</span></pre></td></tr></table></figure>
 
+<h3 id="v-model是个语法糖"><a href="#v-model是个语法糖" class="headerlink" title="v-model是个语法糖"></a>v-model是个语法糖</h3><p>以上我们已经实现了双向绑定 用v-model刚好可以替代这种复杂的语法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;input type=<span class="string">'text'</span> v-model=<span class="string">"value"</span> /&gt;</span></pre></td></tr></table></figure>
 
-<h2 id="BFC作用2-兄弟节点划清界限"><a href="#BFC作用2-兄弟节点划清界限" class="headerlink" title="BFC作用2-兄弟节点划清界限"></a>BFC作用2-兄弟节点划清界限</h2><p>两个块级元素一个浮动,浮动元素就会飘到另一个不浮动元素上面,会导致有重合部分,或挡住另一元素</p>
+<p>哈哈，简洁了不少 </p>
+<h2 id="其他元素上的v-model"><a href="#其他元素上的v-model" class="headerlink" title="其他元素上的v-model"></a>其他元素上的v-model</h2><blockquote>
+<p>v-model会根据控件类型自动选取正确的方法来更新元素</p>
+</blockquote>
+<ul>
+<li>text 和 textarea 元素使用 value property 和 input 事件；</li>
+<li>checkbox 和 radio 使用 checked property 和 change 事件；</li>
+<li>select 字段将 value 作为 prop 并将 change 作为事件。</li>
+</ul>
+<p>具体参考 <a href="https://cn.vuejs.org/v2/guide/forms.html" target="_blank" rel="noopener">表单输入绑定</a></p>
+<h2 id="自定义组件实现v-model"><a href="#自定义组件实现v-model" class="headerlink" title="自定义组件实现v-model"></a>自定义组件实现v-model</h2><p>当用在组件上时，v-model 则会这样：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;custom-input </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  :value=<span class="string">"searchText"</span> </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  @input=<span class="string">"searchText = $event"</span>&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&lt;<span class="regexp">/custom-input&gt;</span></span></pre></td></tr></table></figure>
 
+<p><strong>这里的$event表示子组件传回来的值</strong></p>
+<p>为了让它正常工作，这个组件内的<code>&lt;input&gt;</code>必须：</p>
+<ul>
+<li>将其 value attribute 绑定到一个名叫 value 的 prop 上</li>
+<li>在其 input 事件被触发时，将新的值通过自定义的 input 事件抛出</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'custom-input'</span>, &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  props: [<span class="string">'value'</span>],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  template: <span class="string">`</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="string">    &lt;input</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="string">      v-bind:value="value"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="string">      v-on:input="$emit('input', $event.target.value)"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="string">    &gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="string">  `</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
 
-<p>将不浮动的节点变为BFC,两个节点就会分开,就不会让兄弟元素挡住自己</p>
+<p>现在 v-model 就应该可以在这个组件上完美地工作起来了：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;custom-input v-model=<span class="string">"searchText"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">custom-input</span>&gt;</span></span></span></pre></td></tr></table></figure>
 
+<h2 id="vue3的v-model"><a href="#vue3的v-model" class="headerlink" title="vue3的v-model"></a>vue3的v-model</h2><p>以上都是vue2的v-model vue3对v-model进行了<a href="https://v3.vuejs.org/guide/migration/v-model.html" target="_blank" rel="noopener">一些改进</a></p>
+<ul>
+<li>首先属性名任意 不一定要是value (这里以xxx举例)</li>
+<li>事件变成了update:xxx</li>
+</ul>
+<p>那么vue3的v-model 对searchText属性进行双向绑定时就是</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;custom-input </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  :xxx=<span class="string">"searchText"</span> </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  @updae:xxx=<span class="string">"searchText = $event"</span>&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&lt;<span class="regexp">/custom-input&gt;</span></span></pre></td></tr></table></figure>
 
-<p>通俗来说,一个块级元素变为BFC后,里面的元素出不去,外面的元素进不来</p>
-<h1 id="IFC-Inline-Formatting-Context"><a href="#IFC-Inline-Formatting-Context" class="headerlink" title="IFC (Inline Formatting Context)"></a>IFC (Inline Formatting Context)</h1>
+<p>子组件接收xxx属性 并触发<code>update:xxx</code>事件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'custom-input'</span>, &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  props: [<span class="string">'xxx'</span>],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  template: <span class="string">`</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="string">    &lt;input</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="string">      v-bind:value="xxx"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="string">      v-on:input="$emit('update:xxx', $event.target.value)"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="string">    &gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="string">  `</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
+
+<p>在父组件中使用v-model</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;custom-input v-model:xxx=<span class="string">"searchText"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">custom-input</span>&gt;</span></span></span></pre></td></tr></table></figure>
+
+<p>需要注意的是 vue3的v-model语法取代了.sync语法</p>
+
     </div>
 
     
@@ -267,7 +295,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/CSS/" rel="tag"># CSS</a>
+              <a href="/tags/vue/" rel="tag"># vue</a>
           </div>
 
         
@@ -276,13 +304,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/11/01/CSS-%E5%A0%86%E5%8F%A0%E4%B8%8A%E4%B8%8B%E6%96%87/" rel="prev" title="CSS-堆叠上下文">
-      <i class="fa fa-chevron-left"></i> CSS-堆叠上下文
+    <a href="/2020/08/17/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%AC%A6%E4%B8%8E%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6/" rel="prev" title="位操作符与逻辑操作符">
+      <i class="fa fa-chevron-left"></i> 位操作符与逻辑操作符
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2019/11/06/JS%E4%B8%8ENodeJS-AES-RSA-%E5%8A%A0%E8%A7%A3%E5%AF%86/" rel="next" title="NodeJS AES RSA 加解密">
-      NodeJS AES RSA 加解密 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -342,7 +367,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#BFC-Block-Formatting-Context"><span class="nav-number">1.</span> <span class="nav-text">BFC (Block Formatting Context)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#BFC作用1-父元素包住子元素"><span class="nav-number">1.1.</span> <span class="nav-text">BFC作用1-父元素包住子元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BFC作用2-兄弟节点划清界限"><span class="nav-number">1.2.</span> <span class="nav-text">BFC作用2-兄弟节点划清界限</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IFC-Inline-Formatting-Context"><span class="nav-number">2.</span> <span class="nav-text">IFC (Inline Formatting Context)</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#单向绑定与双向绑定"><span class="nav-number">1.1.</span> <span class="nav-text">单向绑定与双向绑定</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#v-model是个语法糖"><span class="nav-number">1.1.1.</span> <span class="nav-text">v-model是个语法糖</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他元素上的v-model"><span class="nav-number">1.2.</span> <span class="nav-text">其他元素上的v-model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义组件实现v-model"><span class="nav-number">1.3.</span> <span class="nav-text">自定义组件实现v-model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue3的v-model"><span class="nav-number">1.4.</span> <span class="nav-text">vue3的v-model</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
