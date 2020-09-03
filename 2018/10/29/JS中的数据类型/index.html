@@ -46,15 +46,15 @@
   };
 </script>
 
-  <meta name="description" content="JS中一共有七大数据类型1. 数值(number) 整数和浮点数  JavaScript 内部，所有数字都是以64位浮点数形式储存，即使整数也是如此。所以，1与1.0是相同的，是同一个数   1 &#x3D;&#x3D;&#x3D; 1.0  &#x2F;&#x2F; true">
+  <meta name="description" content="JS中一共有七大数据类型2. 字符串(string) 字符串也可以叫做字符数组  字符串就是零个或多个排在一起的字符，放在单引号或双引号之中。   空字符串与空格字符串  空字符串    没有字符,长度为0空格字符串  只有一个空格的字符串，空格也是一个字符，所以长度为1   多行字符串(3种) ,ES6新语法 var s&#x3D;&amp;apos;1234\    &#x2F;&#x2F;使用&amp;quot;\&amp;quot;换行 56">
 <meta name="keywords" content="js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS中的数据类型">
 <meta property="og:url" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2018&#x2F;10&#x2F;29&#x2F;JS%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B&#x2F;index.html">
 <meta property="og:site_name" content="小宇的博客">
-<meta property="og:description" content="JS中一共有七大数据类型1. 数值(number) 整数和浮点数  JavaScript 内部，所有数字都是以64位浮点数形式储存，即使整数也是如此。所以，1与1.0是相同的，是同一个数   1 &#x3D;&#x3D;&#x3D; 1.0  &#x2F;&#x2F; true">
+<meta property="og:description" content="JS中一共有七大数据类型2. 字符串(string) 字符串也可以叫做字符数组  字符串就是零个或多个排在一起的字符，放在单引号或双引号之中。   空字符串与空格字符串  空字符串    没有字符,长度为0空格字符串  只有一个空格的字符串，空格也是一个字符，所以长度为1   多行字符串(3种) ,ES6新语法 var s&#x3D;&amp;apos;1234\    &#x2F;&#x2F;使用&amp;quot;\&amp;quot;换行 56">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-07-20T14:36:16.779Z">
+<meta property="og:updated_time" content="2020-09-03T14:36:47.027Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://cxyxiaoyuyu.github.io/2018/10/29/JS%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
@@ -216,7 +216,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-20 22:36:16" itemprop="dateModified" datetime="2020-07-20T22:36:16+08:00">2020-07-20</time>
+                <time title="Modified: 2020-09-03 22:36:47" itemprop="dateModified" datetime="2020-09-03T22:36:47+08:00">2020-09-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -241,38 +241,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="JS中一共有七大数据类型"><a href="#JS中一共有七大数据类型" class="headerlink" title="JS中一共有七大数据类型"></a>JS中一共有七大数据类型</h2><h3 id="1-数值-number"><a href="#1-数值-number" class="headerlink" title="1. 数值(number)"></a>1. 数值(number)</h3><ol>
-<li><p>整数和浮点数</p>
-<blockquote>
-<p>JavaScript 内部，所有数字都是以64位浮点数形式储存，即使整数也是如此。所以，1与1.0是相同的，是同一个数   <code>1 === 1.0</code>  // true</p>
-</blockquote>
-<a id="more"></a></li>
-<li><p>数值的进制</p>
-<blockquote>
-<p>十进制：没有前导0的数值<br>八进制：有前缀0o或0O的数值，或者有前导0、且只用到0-7的八个阿拉伯数字的数值<br>十六进制：有前缀0x或0X的数值<br>二进制：有前缀0b或0B的数值<br>默认情况下，JavaScript 内部会自动将八进制、十六进制、二进制转为十进制</p>
-</blockquote>
-</li>
-<li><p>NaN</p>
-<blockquote>
-<p>NaN是 JavaScript 的特殊值，表示“非数字”（Not a Number），主要出现在将字符串解析成数字出错的场合<br>0除以0也会得到NaN<br>一些数学函数的运算结果会出现NaN<br>需要注意的是，NaN不是独立的数据类型，而是一个特殊数值，它的数据类型依然属于Number<br>NaN不等于任何值，包括它本身<br>isNaN方法可以用来判断一个值是否为NaN</p>
-</blockquote>
-<pre><code>NaN === NaN // false
-isNaN(NaN)  // true
-isNaN(123)  // false
-
-// isNaN()只对数值有效，如果传入其他值，会先转成数值类型
-isNaN(&apos;hello&apos;) // true
-//相当于
-isNaN(Number(&apos;hello&apos;)) //true
-isNaN({})              //true
-isNaN([1,2])           //true
-// 所以isNaN() 为true的时候，有可能是一个字符串，或对象或数组
-// 所以使用isNaN()时，需要先判断下数据类型
-// 但是当数组为空，或数组长度为1时返回false
-isNaN([]) //false
-isNaN([1]) //false</code></pre></li>
-</ol>
-<h3 id="2-字符串-string"><a href="#2-字符串-string" class="headerlink" title="2. 字符串(string)"></a>2. 字符串(string)</h3><ol>
+        <h1 id="JS中一共有七大数据类型"><a href="#JS中一共有七大数据类型" class="headerlink" title="JS中一共有七大数据类型"></a>JS中一共有七大数据类型</h1><h2 id="2-字符串-string"><a href="#2-字符串-string" class="headerlink" title="2. 字符串(string)"></a>2. 字符串(string)</h2><ol>
 <li><p>字符串也可以叫做字符数组</p>
 <blockquote>
 <p>字符串就是零个或多个排在一起的字符，放在单引号或双引号之中。</p>
@@ -341,16 +310,16 @@ s[-1] // undefined</code></pre></li>
 delete s[0]
 s // &apos;hello&apos;
 s[0] = &quot;G&quot;
-s// &apos;hello&apos;</code></pre><h3 id="3-布尔-boolean"><a href="#3-布尔-boolean" class="headerlink" title="3. 布尔(boolean)"></a>3. 布尔(boolean)</h3><p>只有true 和 false 两个值,用于条件判断</p>
-<h3 id="4-符号-symbol-ES6新增"><a href="#4-符号-symbol-ES6新增" class="headerlink" title="4. 符号(symbol)  ES6新增"></a>4. 符号(symbol)  ES6新增</h3><h3 id="5-unidefine-只有一个值-gt-undefined"><a href="#5-unidefine-只有一个值-gt-undefined" class="headerlink" title="5. unidefine  只有一个值==&gt; undefined"></a>5. unidefine  只有一个值==&gt; undefined</h3><h3 id="6-null-只有一个值-gt-null"><a href="#6-null-只有一个值-gt-null" class="headerlink" title="6. null       只有一个值==&gt; null"></a>6. null       只有一个值==&gt; null</h3><p>undefined 与 null 都表示什么也没有</p>
-<h4 id="undefined-与-null-的区别"><a href="#undefined-与-null-的区别" class="headerlink" title="undefined 与 null 的区别"></a>undefined 与 null 的区别</h4><blockquote>
+s// &apos;hello&apos;</code></pre><h2 id="3-布尔-boolean"><a href="#3-布尔-boolean" class="headerlink" title="3. 布尔(boolean)"></a>3. 布尔(boolean)</h2><p>只有true 和 false 两个值,用于条件判断</p>
+<h2 id="4-符号-symbol-ES6新增"><a href="#4-符号-symbol-ES6新增" class="headerlink" title="4. 符号(symbol)  ES6新增"></a>4. 符号(symbol)  ES6新增</h2><h2 id="5-unidefine-只有一个值-gt-undefined"><a href="#5-unidefine-只有一个值-gt-undefined" class="headerlink" title="5. unidefine  只有一个值==&gt; undefined"></a>5. unidefine  只有一个值==&gt; undefined</h2><h2 id="6-null-只有一个值-gt-null"><a href="#6-null-只有一个值-gt-null" class="headerlink" title="6. null       只有一个值==&gt; null"></a>6. null       只有一个值==&gt; null</h2><p>undefined 与 null 都表示什么也没有</p>
+<h3 id="undefined-与-null-的区别"><a href="#undefined-与-null-的区别" class="headerlink" title="undefined 与 null 的区别"></a>undefined 与 null 的区别</h3><blockquote>
 <ol>
 <li>一个变量被声明而没有赋值，则返回<code>undefined</code></li>
 <li>一个非空对象，现在不想给值，<code>var xxx=undefined</code> ==&gt; 空非对象</li>
 <li>一个对象，不想给值， <code>var obj=null</code> ==&gt; 空对象</li>
 </ol>
 </blockquote>
-<h3 id="7-对象-object"><a href="#7-对象-object" class="headerlink" title="7. 对象(object)"></a>7. 对象(object)</h3><blockquote>
+<h2 id="7-对象-object"><a href="#7-对象-object" class="headerlink" title="7. 对象(object)"></a>7. 对象(object)</h2><blockquote>
 <p>简单说，对象就是一组“键值对”（key-value）的集合，是一种无序的复合数据集合。<br>数组和方法也是对象</p>
 </blockquote>
 <pre><code>var obj = {a:1,b:2}</code></pre><ol>
@@ -491,7 +460,7 @@ name  // &apos;1,2,4&apos;</code></pre>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JS中一共有七大数据类型"><span class="nav-number">1.</span> <span class="nav-text">JS中一共有七大数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-数值-number"><span class="nav-number">1.1.</span> <span class="nav-text">1. 数值(number)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-字符串-string"><span class="nav-number">1.2.</span> <span class="nav-text">2. 字符串(string)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-布尔-boolean"><span class="nav-number">1.3.</span> <span class="nav-text">3. 布尔(boolean)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-符号-symbol-ES6新增"><span class="nav-number">1.4.</span> <span class="nav-text">4. 符号(symbol)  ES6新增</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-unidefine-只有一个值-gt-undefined"><span class="nav-number">1.5.</span> <span class="nav-text">5. unidefine  只有一个值==&gt; undefined</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-null-只有一个值-gt-null"><span class="nav-number">1.6.</span> <span class="nav-text">6. null       只有一个值==&gt; null</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined-与-null-的区别"><span class="nav-number">1.6.1.</span> <span class="nav-text">undefined 与 null 的区别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-对象-object"><span class="nav-number">1.7.</span> <span class="nav-text">7. 对象(object)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">2.</span> <span class="nav-text">其他</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JS中一共有七大数据类型"><span class="nav-number">1.</span> <span class="nav-text">JS中一共有七大数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-字符串-string"><span class="nav-number">1.1.</span> <span class="nav-text">2. 字符串(string)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-布尔-boolean"><span class="nav-number">1.2.</span> <span class="nav-text">3. 布尔(boolean)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-符号-symbol-ES6新增"><span class="nav-number">1.3.</span> <span class="nav-text">4. 符号(symbol)  ES6新增</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-unidefine-只有一个值-gt-undefined"><span class="nav-number">1.4.</span> <span class="nav-text">5. unidefine  只有一个值==&gt; undefined</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-null-只有一个值-gt-null"><span class="nav-number">1.5.</span> <span class="nav-text">6. null       只有一个值==&gt; null</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined-与-null-的区别"><span class="nav-number">1.5.1.</span> <span class="nav-text">undefined 与 null 的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-对象-object"><span class="nav-number">1.6.</span> <span class="nav-text">7. 对象(object)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">1.7.</span> <span class="nav-text">其他</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -507,7 +476,7 @@ name  // &apos;1,2,4&apos;</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">35</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -520,7 +489,7 @@ name  // &apos;1,2,4&apos;</code></pre>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-count">26</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

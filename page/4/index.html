@@ -184,6 +184,216 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://cxyxiaoyuyu.github.io/2018/10/29/JS%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="xiaoyu">
+      <meta itemprop="description" content="又是元气满满的一天">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小宇的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/10/29/JS%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="post-title-link" itemprop="url">JS中的数据类型</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-10-29 18:46:30" itemprop="dateCreated datePublished" datetime="2018-10-29T18:46:30+08:00">2018-10-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-09-03 22:36:47" itemprop="dateModified" datetime="2020-09-03T22:36:47+08:00">2020-09-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">Javascript</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="JS中一共有七大数据类型"><a href="#JS中一共有七大数据类型" class="headerlink" title="JS中一共有七大数据类型"></a>JS中一共有七大数据类型</h1><h2 id="2-字符串-string"><a href="#2-字符串-string" class="headerlink" title="2. 字符串(string)"></a>2. 字符串(string)</h2><ol>
+<li><p>字符串也可以叫做字符数组</p>
+<blockquote>
+<p>字符串就是零个或多个排在一起的字符，放在单引号或双引号之中。</p>
+</blockquote>
+</li>
+<li><p>空字符串与空格字符串</p>
+<blockquote>
+<p>空字符串    没有字符,长度为0<br>空格字符串  只有一个空格的字符串，空格也是一个字符，所以长度为1</p>
+</blockquote>
+</li>
+<li><p>多行字符串(3种) ,ES6新语法</p>
+<pre><code>var s=&apos;1234\    //使用&quot;\&quot;换行
+5677&apos;
+s
+&quot;12345677&quot;     //输出还是一行
+
+var s=&apos;1234&apos;+   //使用&quot;+&quot;连接字符串
+&apos;5677&apos;
+s
+&quot;12345677&quot;    //输出还是一行
+
+//ES6新语法
+var s=`1234    //使用&quot;`&quot; 换行
+5678`
+s
+&quot;1234        //输出为两行,length为9，换行符也为一个字符
+5678&quot;
+
+//使用转义符
+var s=&apos;1234\n5678&apos;   //&quot;\n&quot;表示换行符
+s
+&quot;1234        //输出为两行
+5678&quot;</code></pre></li>
+<li><p>转义</p>
+<blockquote>
+<p>反斜杠（\）在字符串内有特殊含义，用来表示一些特殊字符，所以又称为转义符。</p>
+</blockquote>
+</li>
+</ol>
+<ul>
+<li>\0 : null</li>
+<li>\b : 后退键</li>
+<li>\f : 换页符</li>
+<li>\n : 换行符</li>
+<li>\r : 回车键</li>
+<li>\t : 制表符</li>
+<li>\v : 垂直制表符</li>
+<li>&#39; : 单引号</li>
+<li>\ : 反斜杠</li>
+</ul>
+<ol start="5">
+<li><p>字符串与数组</p>
+<blockquote>
+<p>字符串可以被视为字符数组，因此可以使用数组的方括号运算符，用来返回某个位置的字符（位置编号从0开始）</p>
+</blockquote>
+<pre><code>var s = &quot;hello&quot;
+s[0] // &apos;h&apos;
+s[1] // &apos;e&apos;
+s[4] // &apos;o&apos;
+s[-1] // undefined</code></pre></li>
+</ol>
+<blockquote>
+<p> 字符串是不可变的数据类型，不可以通过此方法改变字符串</p>
+</blockquote>
+<pre><code>var s = &quot;hello&quot;
+delete s[0]
+s // &apos;hello&apos;
+s[0] = &quot;G&quot;
+s// &apos;hello&apos;</code></pre><h2 id="3-布尔-boolean"><a href="#3-布尔-boolean" class="headerlink" title="3. 布尔(boolean)"></a>3. 布尔(boolean)</h2><p>只有true 和 false 两个值,用于条件判断</p>
+<h2 id="4-符号-symbol-ES6新增"><a href="#4-符号-symbol-ES6新增" class="headerlink" title="4. 符号(symbol)  ES6新增"></a>4. 符号(symbol)  ES6新增</h2><h2 id="5-unidefine-只有一个值-gt-undefined"><a href="#5-unidefine-只有一个值-gt-undefined" class="headerlink" title="5. unidefine  只有一个值==&gt; undefined"></a>5. unidefine  只有一个值==&gt; undefined</h2><h2 id="6-null-只有一个值-gt-null"><a href="#6-null-只有一个值-gt-null" class="headerlink" title="6. null       只有一个值==&gt; null"></a>6. null       只有一个值==&gt; null</h2><p>undefined 与 null 都表示什么也没有</p>
+<h3 id="undefined-与-null-的区别"><a href="#undefined-与-null-的区别" class="headerlink" title="undefined 与 null 的区别"></a>undefined 与 null 的区别</h3><blockquote>
+<ol>
+<li>一个变量被声明而没有赋值，则返回<code>undefined</code></li>
+<li>一个非空对象，现在不想给值，<code>var xxx=undefined</code> ==&gt; 空非对象</li>
+<li>一个对象，不想给值， <code>var obj=null</code> ==&gt; 空对象</li>
+</ol>
+</blockquote>
+<h2 id="7-对象-object"><a href="#7-对象-object" class="headerlink" title="7. 对象(object)"></a>7. 对象(object)</h2><blockquote>
+<p>简单说，对象就是一组“键值对”（key-value）的集合，是一种无序的复合数据集合。<br>数组和方法也是对象</p>
+</blockquote>
+<pre><code>var obj = {a:1,b:2}</code></pre><ol>
+<li><p>如果键名是数字，会自动转为字符串，如果不加引号，会按照标识符规则，不符合就报错</p>
+</li>
+<li><p>键名又称为属性，值可以为任意数据类型</p>
+</li>
+<li><p>对象的引用</p>
+<blockquote>
+<p>如果不同的变量名指向同一个对象，那么它们都是这个对象的引用，也就是说指向同一个内存地址。修改其中一个变量，会影响到其他所有变量。</p>
+</blockquote>
+<pre><code>var o1 = {}
+var o2 = o1
+
+o1.a = 1
+o2.a //1 o1改变，也会影响到o2
+
+o2.b = 2
+o1.b //2 o2改变，也会影响到o1
+
+o1 = 1    //取消o1对原对象的引用
+o2 // {a:1,b:2}  //o2不变</code></pre></li>
+<li><p>对属性的读取</p>
+<pre><code>var obj = {&apos;name&apos;:&apos;xiaoyu&apos;}
+obj[&apos;name&apos;] // &apos;xiaoyu&apos;
+obj.name    // &apos;xiaoyu&apos;  &lt;==&gt; obj[&apos;name&apos;]
+
+var key =  &apos;name&apos;
+obj.key  //error!  obj[&apos;key&apos;],这个对象没有key这个属性</code></pre></li>
+<li><p>对象有哪些属性</p>
+<pre><code>var obj = {&apos;name&apos;:&apos;xiaoyu&apos;,&apos;age&apos;:&apos;18&apos;}
+Object.keys(obj) //[&apos;name&apos;,&apos;age&apos;]</code></pre></li>
+<li><p>对象的遍历</p>
+<blockquote>
+<p><code>for...in</code> 循环用来遍历一个对象的全部属性。<br>它遍历的是对象所有可遍历（enumerable）的属性，会跳过不可遍历的属性。<br>它不仅遍历对象自身的属性，还遍历继承的属性。</p>
+</blockquote>
+</li>
+</ol>
+<pre><code>var obj = {&apos;name&apos;:&apos;xiaoyu&apos;,&apos;age&apos;:&apos;18&apos;}
+for(var attr in obj){
+    console.log(attr+&apos;==&gt;&apos;+obj[attr]) // name==&gt;xiaoyu age==&gt;18
+}</code></pre><h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>typeof 查看数据类型，两个bug，一个特殊的name</p>
+<pre><code>var num = 1
+typeof num  //number
+
+//bug1
+function f(){]
+typeof f //function  js没function这个数据类型
+
+//bug2
+var a = null
+typeof a //object
+
+//特殊的name  ==&gt;  window.name 会将值通过toString()方法转为字符串
+var name = [1,2,4]
+typeof name // string
+name  // &apos;1,2,4&apos;</code></pre>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://cxyxiaoyuyu.github.io/2018/10/13/CSS%E5%B8%83%E5%B1%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -782,7 +992,7 @@ border-top: 1px solid red;
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">35</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -795,7 +1005,7 @@ border-top: 1px solid red;
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-count">26</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
