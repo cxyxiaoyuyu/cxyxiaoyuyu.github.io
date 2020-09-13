@@ -56,7 +56,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2020&#x2F;08&#x2F;30&#x2F;JS%E5%9F%BA%E7%A1%80%E5%B7%A9%E5%9B%BA%E7%AF%87&#x2F;getOwnPropertyDescriptor.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2020&#x2F;08&#x2F;30&#x2F;JS%E5%9F%BA%E7%A1%80%E5%B7%A9%E5%9B%BA%E7%AF%87&#x2F;getOwnPropertyDescriptors.png">
-<meta property="og:updated_time" content="2020-08-30T15:28:07.467Z">
+<meta property="og:updated_time" content="2020-09-13T10:31:08.957Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2020&#x2F;08&#x2F;30&#x2F;JS%E5%9F%BA%E7%A1%80%E5%B7%A9%E5%9B%BA%E7%AF%87&#x2F;getOwnPropertyDescriptor.png">
 
@@ -211,10 +211,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-08-30 21:27:48 / Modified: 23:28:07" itemprop="dateCreated datePublished" datetime="2020-08-30T21:27:48+08:00">2020-08-30</time>
+              <time title="Created: 2020-08-30 21:27:48" itemprop="dateCreated datePublished" datetime="2020-08-30T21:27:48+08:00">2020-08-30</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-09-13 18:31:08" itemprop="dateModified" datetime="2020-09-13T18:31:08+08:00">2020-09-13</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -290,6 +296,26 @@
 
 <p>同理 <strong>Object.getOwnPropertyDescriptors()方法用来获取一个对象的所有自身属性的描述符</strong></p>
 <img src="/2020/08/30/JS%E5%9F%BA%E7%A1%80%E5%B7%A9%E5%9B%BA%E7%AF%87/getOwnPropertyDescriptors.png" class="" title="getOwnPropertyDescriptors">
+
+<h2 id="call-bind-apply的区别"><a href="#call-bind-apply的区别" class="headerlink" title="call bind apply的区别"></a>call bind apply的区别</h2><p>这三个方法都是在函数的原型链上的方法，作用是用来改变this指向<br>这三个函数的第一个参数都是指定this</p>
+<h3 id="call方法"><a href="#call方法" class="headerlink" title="call方法"></a>call方法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过数组的方法将类数组转为数组avascript</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr3 = &#123;<span class="number">0</span>:<span class="number">1</span>,<span class="number">1</span>:<span class="number">0</span>,<span class="number">2</span>:<span class="number">3</span>,<span class="number">3</span>:<span class="number">2</span>,<span class="attr">length</span>:<span class="number">4</span>&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.slice.call(arr3)  <span class="comment">// 这样arr3本来没有slice方法 现在也可以使用了</span></span></pre></td></tr></table></figure>
+
+<h3 id="apply方法"><a href="#apply方法" class="headerlink" title="apply方法"></a>apply方法</h3><blockquote>
+<p>apply() 方法调用一个具有给定this值的函数，以及以一个数组（或类数组对象）的形式提供的参数。</p>
+</blockquote>
+<p>appyl与call的区别</p>
+<ul>
+<li>call的第二个参数传的是参数列表</li>
+<li>apply的第二个参数传的的数组</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 求最大值</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.max(<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">2</span>)  <span class="comment">// 4</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.max.call(<span class="literal">null</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.max.apply(<span class="literal">null</span>,[<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>])  <span class="comment">// 这样可以直接求数组中的最大值</span></span></pre></td></tr></table></figure>
+
+<h3 id="bind方法"><a href="#bind方法" class="headerlink" title="bind方法"></a>bind方法</h3><blockquote>
+<p>bind() 方法创建一个新的函数，在 bind() 被调用时，这个新函数的 this 被指定为 bind() 的第一个参数，而其余参数将作为新函数的参数，供调用时使用。<br>bind改变this指向后不会立即调用 而是返回一个yongq8</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  say()&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">setTimeout(obj.say,<span class="number">1000</span>)   <span class="comment">// 调用的时候打印的this是window,1000)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 我们可以通过bind绑定this</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">setTimeout(obj.say.bind(obj),<span class="number">2000</span>)   <span class="comment">// 打印的时候是obj</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fn = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  name: <span class="string">'obj 的name'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> objFn = fn.bind(obj)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">objFn()  <span class="comment">// 'obj'的name</span></span></pre></td></tr></table></figure>
+
+
 
 
 
@@ -376,7 +402,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一些关于JS的基础知识巩固复习、整理"><span class="nav-number">1.</span> <span class="nav-text">一些关于JS的基础知识巩固复习、整理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-instanceof"><span class="nav-number">1.1.</span> <span class="nav-text">1 instanceof</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自己实现-instanceof"><span class="nav-number">1.1.1.</span> <span class="nav-text">自己实现 instanceof</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Object-defineProperty"><span class="nav-number">1.2.</span> <span class="nav-text">2 Object.defineProperty</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Object-getOwnPropertyDescriptor"><span class="nav-number">1.3.</span> <span class="nav-text">3 Object.getOwnPropertyDescriptor</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一些关于JS的基础知识巩固复习、整理"><span class="nav-number">1.</span> <span class="nav-text">一些关于JS的基础知识巩固复习、整理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-instanceof"><span class="nav-number">1.1.</span> <span class="nav-text">1 instanceof</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自己实现-instanceof"><span class="nav-number">1.1.1.</span> <span class="nav-text">自己实现 instanceof</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Object-defineProperty"><span class="nav-number">1.2.</span> <span class="nav-text">2 Object.defineProperty</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Object-getOwnPropertyDescriptor"><span class="nav-number">1.3.</span> <span class="nav-text">3 Object.getOwnPropertyDescriptor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#call-bind-apply的区别"><span class="nav-number">1.4.</span> <span class="nav-text">call bind apply的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#call方法"><span class="nav-number">1.4.1.</span> <span class="nav-text">call方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#apply方法"><span class="nav-number">1.4.2.</span> <span class="nav-text">apply方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bind方法"><span class="nav-number">1.4.3.</span> <span class="nav-text">bind方法</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
