@@ -46,17 +46,17 @@
   };
 </script>
 
-  <meta name="description" content="一些关于JS的基础知识巩固复习、整理学了忘 忘了学。。。 1 instanceof instanceof 运算符用于检测构造函数的 prototype 属性是否出现在某个实例对象的原型链上">
+  <meta name="description" content="一些关于JS的基础知识巩固复习、整理学了忘 忘了学。。。 一 instanceof instanceof 运算符用于检测构造函数的 prototype 属性是否出现在某个实例对象的原型链上">
 <meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS基础巩固篇">
 <meta property="og:url" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2020&#x2F;08&#x2F;30&#x2F;JS%E5%9F%BA%E7%A1%80%E5%B7%A9%E5%9B%BA%E7%AF%87&#x2F;index.html">
 <meta property="og:site_name" content="小宇的博客">
-<meta property="og:description" content="一些关于JS的基础知识巩固复习、整理学了忘 忘了学。。。 1 instanceof instanceof 运算符用于检测构造函数的 prototype 属性是否出现在某个实例对象的原型链上">
+<meta property="og:description" content="一些关于JS的基础知识巩固复习、整理学了忘 忘了学。。。 一 instanceof instanceof 运算符用于检测构造函数的 prototype 属性是否出现在某个实例对象的原型链上">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2020&#x2F;08&#x2F;30&#x2F;JS%E5%9F%BA%E7%A1%80%E5%B7%A9%E5%9B%BA%E7%AF%87&#x2F;getOwnPropertyDescriptor.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2020&#x2F;08&#x2F;30&#x2F;JS%E5%9F%BA%E7%A1%80%E5%B7%A9%E5%9B%BA%E7%AF%87&#x2F;getOwnPropertyDescriptors.png">
-<meta property="og:updated_time" content="2020-09-13T10:31:08.957Z">
+<meta property="og:updated_time" content="2020-09-13T10:34:33.863Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2020&#x2F;08&#x2F;30&#x2F;JS%E5%9F%BA%E7%A1%80%E5%B7%A9%E5%9B%BA%E7%AF%87&#x2F;getOwnPropertyDescriptor.png">
 
@@ -219,7 +219,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-13 18:31:08" itemprop="dateModified" datetime="2020-09-13T18:31:08+08:00">2020-09-13</time>
+                <time title="Modified: 2020-09-13 18:34:33" itemprop="dateModified" datetime="2020-09-13T18:34:33+08:00">2020-09-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -245,7 +245,7 @@
 
       
         <h1 id="一些关于JS的基础知识巩固复习、整理"><a href="#一些关于JS的基础知识巩固复习、整理" class="headerlink" title="一些关于JS的基础知识巩固复习、整理"></a>一些关于JS的基础知识巩固复习、整理</h1><p>学了忘 忘了学。。。</p>
-<h2 id="1-instanceof"><a href="#1-instanceof" class="headerlink" title="1 instanceof"></a>1 instanceof</h2><blockquote>
+<h2 id="一-instanceof"><a href="#一-instanceof" class="headerlink" title="一 instanceof"></a>一 instanceof</h2><blockquote>
 <p>instanceof 运算符用于检测构造函数的 prototype 属性是否出现在某个实例对象的原型链上</p>
 </blockquote>
 <a id="more"></a>
@@ -261,7 +261,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">myInstanceof(<span class="number">123</span>,<span class="built_in">Object</span>)         <span class="comment">// false</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">myInstanceof(<span class="string">'abc'</span>,<span class="built_in">String</span>)       <span class="comment">// false</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">myInstanceof([],<span class="built_in">Array</span>)           <span class="comment">// true</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">myInstanceof([],<span class="built_in">Object</span>)          <span class="comment">// true</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">myInstanceof(&#123;&#125;,<span class="built_in">Array</span>)           <span class="comment">// false</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">myInstanceof(&#123;&#125;,<span class="built_in">Object</span>)          <span class="comment">// true</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">myInstanceof(<span class="built_in">Math</span>.max,<span class="built_in">Function</span>)  <span class="comment">// true</span></span></pre></td></tr></table></figure>
 
 
-<h2 id="2-Object-defineProperty"><a href="#2-Object-defineProperty" class="headerlink" title="2 Object.defineProperty"></a>2 Object.defineProperty</h2><blockquote>
+<h2 id="二-Object-defineProperty"><a href="#二-Object-defineProperty" class="headerlink" title="二 Object.defineProperty"></a>二 Object.defineProperty</h2><blockquote>
 <p>Object.defineProperty() 方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回此对象。</p>
 </blockquote>
 <p>对象数据属性默认有四个特性 </p>
@@ -288,7 +288,7 @@
 <p><strong>定义多个属性时可以用 Object.defineProperties方法</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.defineProperties(obj, &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="string">'property1'</span>: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    value: <span class="literal">true</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    writable: <span class="literal">true</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="string">'property2'</span>: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    value: <span class="string">'Hello'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    writable: <span class="literal">false</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">// etc. etc.</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
 
-<h2 id="3-Object-getOwnPropertyDescriptor"><a href="#3-Object-getOwnPropertyDescriptor" class="headerlink" title="3 Object.getOwnPropertyDescriptor"></a>3 Object.getOwnPropertyDescriptor</h2><blockquote>
+<h2 id="三-Object-getOwnPropertyDescriptor"><a href="#三-Object-getOwnPropertyDescriptor" class="headerlink" title="三 Object.getOwnPropertyDescriptor"></a>三 Object.getOwnPropertyDescriptor</h2><blockquote>
 <p>Object.getOwnPropertyDescriptor()方法可以读取属性的描述符 </p>
 </blockquote>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.getOwnPropertyDescriptor(object,<span class="string">'property1'</span>)</span></pre></td></tr></table></figure>
@@ -297,7 +297,7 @@
 <p>同理 <strong>Object.getOwnPropertyDescriptors()方法用来获取一个对象的所有自身属性的描述符</strong></p>
 <img src="/2020/08/30/JS%E5%9F%BA%E7%A1%80%E5%B7%A9%E5%9B%BA%E7%AF%87/getOwnPropertyDescriptors.png" class="" title="getOwnPropertyDescriptors">
 
-<h2 id="call-bind-apply的区别"><a href="#call-bind-apply的区别" class="headerlink" title="call bind apply的区别"></a>call bind apply的区别</h2><p>这三个方法都是在函数的原型链上的方法，作用是用来改变this指向<br>这三个函数的第一个参数都是指定this</p>
+<h2 id="四-call-bind-apply的区别"><a href="#四-call-bind-apply的区别" class="headerlink" title="四 call bind apply的区别"></a>四 call bind apply的区别</h2><p>这三个方法都是在函数的原型链上的方法，作用是用来改变this指向<br>这三个函数的第一个参数都是指定this</p>
 <h3 id="call方法"><a href="#call方法" class="headerlink" title="call方法"></a>call方法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过数组的方法将类数组转为数组avascript</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr3 = &#123;<span class="number">0</span>:<span class="number">1</span>,<span class="number">1</span>:<span class="number">0</span>,<span class="number">2</span>:<span class="number">3</span>,<span class="number">3</span>:<span class="number">2</span>,<span class="attr">length</span>:<span class="number">4</span>&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.slice.call(arr3)  <span class="comment">// 这样arr3本来没有slice方法 现在也可以使用了</span></span></pre></td></tr></table></figure>
 
 <h3 id="apply方法"><a href="#apply方法" class="headerlink" title="apply方法"></a>apply方法</h3><blockquote>
@@ -402,7 +402,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一些关于JS的基础知识巩固复习、整理"><span class="nav-number">1.</span> <span class="nav-text">一些关于JS的基础知识巩固复习、整理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-instanceof"><span class="nav-number">1.1.</span> <span class="nav-text">1 instanceof</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自己实现-instanceof"><span class="nav-number">1.1.1.</span> <span class="nav-text">自己实现 instanceof</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Object-defineProperty"><span class="nav-number">1.2.</span> <span class="nav-text">2 Object.defineProperty</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Object-getOwnPropertyDescriptor"><span class="nav-number">1.3.</span> <span class="nav-text">3 Object.getOwnPropertyDescriptor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#call-bind-apply的区别"><span class="nav-number">1.4.</span> <span class="nav-text">call bind apply的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#call方法"><span class="nav-number">1.4.1.</span> <span class="nav-text">call方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#apply方法"><span class="nav-number">1.4.2.</span> <span class="nav-text">apply方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bind方法"><span class="nav-number">1.4.3.</span> <span class="nav-text">bind方法</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一些关于JS的基础知识巩固复习、整理"><span class="nav-number">1.</span> <span class="nav-text">一些关于JS的基础知识巩固复习、整理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-instanceof"><span class="nav-number">1.1.</span> <span class="nav-text">一 instanceof</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自己实现-instanceof"><span class="nav-number">1.1.1.</span> <span class="nav-text">自己实现 instanceof</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-Object-defineProperty"><span class="nav-number">1.2.</span> <span class="nav-text">二 Object.defineProperty</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三-Object-getOwnPropertyDescriptor"><span class="nav-number">1.3.</span> <span class="nav-text">三 Object.getOwnPropertyDescriptor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四-call-bind-apply的区别"><span class="nav-number">1.4.</span> <span class="nav-text">四 call bind apply的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#call方法"><span class="nav-number">1.4.1.</span> <span class="nav-text">call方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#apply方法"><span class="nav-number">1.4.2.</span> <span class="nav-text">apply方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bind方法"><span class="nav-number">1.4.3.</span> <span class="nav-text">bind方法</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
