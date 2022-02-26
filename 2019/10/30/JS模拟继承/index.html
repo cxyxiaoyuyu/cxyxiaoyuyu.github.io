@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://cxyxiaoyuyu.github.io').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="什么是继承 继承（英语：inheritance）是面向对象软件技术当中的一个概念。如果一个类别B“继承自”另一个类别A，就把这个B称为“A的子类”，而把A称为“B的父类别”也可以称“A是B的超类”。继承可以使得子类具有父类别的各种属性和方法，而不需要再次编写相同的代码。">
+<meta name="keywords" content="js,原型链">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS模拟继承">
+<meta property="og:url" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2019&#x2F;10&#x2F;30&#x2F;JS%E6%A8%A1%E6%8B%9F%E7%BB%A7%E6%89%BF&#x2F;index.html">
+<meta property="og:site_name" content="小宇的博客">
+<meta property="og:description" content="什么是继承 继承（英语：inheritance）是面向对象软件技术当中的一个概念。如果一个类别B“继承自”另一个类别A，就把这个B称为“A的子类”，而把A称为“B的父类别”也可以称“A是B的超类”。继承可以使得子类具有父类别的各种属性和方法，而不需要再次编写相同的代码。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-07-20T14:27:39.878Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://cxyxiaoyuyu.github.io/2019/10/30/JS%E6%A8%A1%E6%8B%9F%E7%BB%A7%E6%89%BF/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>JS模拟继承 | 小宇的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband">
+      <a href="https://github.com/cxyxiaoyuyu" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub">
+      <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true">
+      <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+      <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+      <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg>
+      </a> 
+    </div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小宇的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">越努力,越幸运,做个ccode～</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://cxyxiaoyuyu.github.io/2019/10/30/JS%E6%A8%A1%E6%8B%9F%E7%BB%A7%E6%89%BF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="xiaoyu">
+      <meta itemprop="description" content="又是元气满满的一天">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小宇的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JS模拟继承
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-10-30 15:00:52" itemprop="dateCreated datePublished" datetime="2019-10-30T15:00:52+08:00">2019-10-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-07-20 22:27:39" itemprop="dateModified" datetime="2020-07-20T22:27:39+08:00">2020-07-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8E%9F%E5%9E%8B%E4%B8%8E%E5%8E%9F%E5%9E%8B%E9%93%BE/" itemprop="url" rel="index">
+                    <span itemprop="name">原型与原型链</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="什么是继承"><a href="#什么是继承" class="headerlink" title="什么是继承"></a>什么是继承</h1><blockquote>
+<p>继承（英语：inheritance）是面向对象软件技术当中的一个概念。如果一个类别B“继承自”另一个类别A，就把这个B称为“A的子类”，而把A称为“B的父类别”也可以称“A是B的超类”。继承可以使得子类具有父类别的各种属性和方法，而不需要再次编写相同的代码。</p>
+</blockquote>
+<a id="more"></a>
+<p>而javascript中没有类,虽然es6引入了class,但那只是一个语法糖。所以javascript不能继承,只能通过原型模拟继承</p>
+<blockquote>
+<p>每个实例对象( object )都有一个私有属性(称之为 <strong>proto</strong> )指向它的构造函数的原型对象( prototype )。该原型对象也有一个自己的原型对象( <strong>proto</strong> ) ，层层向上直到一个对象的原型对象为 null。根据定义，null 没有原型，并作为这个原型链中的最后一个环节。</p>
+</blockquote>
+<p>比如 </p>
+<pre><code>num = new Number(123)
+num.__proto__ === Number.prototype // true
+Number.prototype.__proto__ === Object.prototype  // true
+Object.prototype.__proto__ === null    // true
+
+num.toString()  // &apos;123&apos;</code></pre><p>这里的<code>num</code>为什么会有<code>toString</code>方法呢,打印一下num看看</p>
+
+
+<p>区域1是<code>Number</code>的原型对象<code>Number.prototype</code><br>区域2是<code>Object</code>的原型对象<code>Object.prototype</code><br>javascript为了节省空间，num在调用toString方法时会先在自身的属性上找，如果没有则继续向<code>__proto__</code>属性中找，找到的话就调用该属性，如果没找到则继续向下一级<code>__proto__</code>中找，找到<code>Object.prototype</code>都还没找到，就返回<code>undefined</code>。而Object的原型对象有<code>toString</code>属性,所以num可以调用该方法</p>
+<p>那我们说Number继承了Object,所以Number实例对象具有<code>Object.prototype</code>的各种属性和方法</p>
+<h1 id="怎样继承"><a href="#怎样继承" class="headerlink" title="怎样继承"></a>怎样继承</h1><p>正是因为<code>Number.prototype.__ptoto__</code> 指向了 <code>Object.prototype</code>对象, num才能具有<code>Object.prototype</code>的属性和方法<br>这里的Number继承Object,是js自身实现,如果我们需要实现一个’类’继承另一个’类’呢？</p>
+<h2 id="继承属性"><a href="#继承属性" class="headerlink" title="继承属性"></a>继承属性</h2><p>比如父类Animal 子类Cat Animal具有方法run Cat具有方法say 我们想让Cat也有run方法通过继承Animal</p>
+<pre><code>function Animal(name){
+  this.name = name
+}
+Animal.prototype.run = function(){
+  console.log(&apos;I can run&apos;)
+}
+function Cat(){
+  this.age = 1
+}
+let animal = new Animal()
+let cat = new Cat()</code></pre><p>这个时候我们看下animal和cat</p>
+
+
+<p>如果我们想让cat也具有name属性,可以在定义Cat时调用一下Animal方法,用<strong>call</strong>绑定this,这样cat的name就是’cat’了</p>
+<pre><code>function Animal(name){
+  this.name = name
+}
+Animal.prototype.run = function(){
+  console.log(&apos;I can run&apos;)
+}
+function Cat(){
+  Animal.call(this,&apos;cat&apos;)
+  this.age = 1
+}
+let animal = new Animal()
+let cat = new Cat()</code></pre>
+
+
+<h2 id="继承方法"><a href="#继承方法" class="headerlink" title="继承方法"></a>继承方法</h2><p>继承属性还不够,我们还需要继承共有方法呢！根据上文,我们要让<code>Cat</code>继承<code>Animal</code>,让<code>Cat.prototype</code> 的 <code>__proto__</code> 指向 <code>Animal.prototype</code> 不就可以了吗？那我们来试试</p>
+<pre><code>Cat.prototype.__proto__ = Animal.prototype</code></pre>{% asset_img cat继承方法.png cat继承方法 %}
+
+<p>真的实现了呢，现在我们的小猫也可以 <code>run</code>了,但是这种方法在IE不兼容,有什么解决办法呢？<br>总结一下我们就是让一个对象的<strong>proto</strong> 只想另一个对象的prototype,好熟悉,有木有？在<code>num = new Number()</code> 的时候 <code>num.__proto ==== Number.prototype</code><br>那就套一下呗</p>
+<pre><code>Cat.prototype = new Animal(&apos;cat&apos;)
+let cat2 = new Cat()</code></pre>
+
+<p>但是这样Cat.prototype却会多出一个name属性,我们并不想要这个name属性<br>我们不应该直接new这个Animal,不然它就会给实例对象添加name属性。<br>通过一个空函数,间接改变指向</p>
+<pre><code>var f = function(){}       
+f.prototype = Animal.prototype
+Cat.prototype = new f()</code></pre><p>这个时候</p>
+<pre><code>Cat.prototype.__proto__ === Animal.prototype  // true</code></pre><p>其实上面的代码就是<code>Object.create()</code>的<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/create" target="_blank" rel="noopener">Polyfill</a><br>所以我们也可以直接这么写</p>
+<p>  Cat.prototype = Object.create(Animal.prototype)</p>
+<h2 id="改变constructor指向"><a href="#改变constructor指向" class="headerlink" title="改变constructor指向"></a>改变constructor指向</h2><p>虽然我们已经实现了<code>Cat.prototype.__proto__ === Animal.prototype</code></p>
+<p>但是<code>Cat.prototype.constructor</code>方法缺丢失了,打印一下看看</p>
+{% asset_img constructor丢失.jpg Cat.prototype.constructor丢失 %}
+
+<p>可以看到<code>Cat.prototype</code>只有一个<code>__proto__</code>属性, </p>
+<p>但是当我们打印<code>Cat.prototype.constructor</code>是有输出的，输出的是Animal函数</p>
+{% asset_img animal_constructor.jpg Cat.prototype.constructor为Animal函数 %}
+
+<p>那为什么会这样呢, 因为</p>
+<p> Cat.prototype.constructor  === Cat.prototype.<strong>proto</strong>.constructor        // true<br> Cat.prototype.<strong>proto</strong>.constructor ===  Animal.prototype.constructor               // true<br> Animal.prototype.constructor === Animal    // true</p>
+ {% asset_img Animal与Cat原型关系.jpg Animal与Cat原型关系 %}
+
+<p>所以我们调用的是Animal.prototype的constructor,当然是Animal函数啦</p>
+<p>所以我们需要手动加上<code>Cat.prototype</code>的<code>constructor</code>属性</p>
+<pre><code>Cat.prototype.constructor = Cat</code></pre><p>这时候再看<code>Cat.prototype</code>就会多了一个constructor</p>
+
+
+<h1 id="ES5-写法"><a href="#ES5-写法" class="headerlink" title="ES5 写法"></a>ES5 写法</h1><p>总结一下ES5 的写法</p>
+<pre><code>function Animal(name){
+  this.name = name
+}
+Animal.prototype.run = function(){
+  console.log(&apos;I can run&apos;)
+}
+function Cat(){
+    Animal.call(this,&apos;cat&apos;)
+    this.age = 1
+}
+var f = function(){}       
+f.prototype = Animal.prototype
+Cat.prototype = new f()
+Cat.prototype.constructor = Cat
+
+// 后面再给Cat添加公有属性
+Cat.prototype.say = function(){
+  console.log(&apos;miao miao miao&apos;)
+}
+
+也叫作寄生组合继承</code></pre><h1 id="ES6-写法"><a href="#ES6-写法" class="headerlink" title="ES6 写法"></a>ES6 写法</h1><p>ES6引入了class语法糖,跟java类似</p>
+<pre><code>class Animal{
+    constructor(name){
+        this.name = name
+    }
+    run(){
+        console.log(&quot;I can run&quot;)
+        return undefined
+    }
+}
+class Cat extends Animal{
+    constructor(name){
+        super(name)
+        this.age = 1
+    }
+    say(){
+      console.log(&apos;miao miao miao&apos;)
+    }
+}</code></pre>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/js/" rel="tag"># js</a>
+              <a href="/tags/%E5%8E%9F%E5%9E%8B%E9%93%BE/" rel="tag"># 原型链</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/10/28/cookie%E3%80%81session%E4%B8%8E%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C/" rel="prev" title="cookie、session与登录注册(基于Node.js)">
+      <i class="fa fa-chevron-left"></i> cookie、session与登录注册(基于Node.js)
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/11/01/%E6%88%91%E7%BB%88%E4%BA%8E%E6%87%82%E4%BA%86%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE%E7%9A%84/" rel="next" title="计算机编码与js字符串">
+      计算机编码与js字符串 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是继承"><span class="nav-number">1.</span> <span class="nav-text">什么是继承</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#怎样继承"><span class="nav-number">2.</span> <span class="nav-text">怎样继承</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#继承属性"><span class="nav-number">2.1.</span> <span class="nav-text">继承属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#继承方法"><span class="nav-number">2.2.</span> <span class="nav-text">继承方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改变constructor指向"><span class="nav-number">2.3.</span> <span class="nav-text">改变constructor指向</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ES5-写法"><span class="nav-number">3.</span> <span class="nav-text">ES5 写法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ES6-写法"><span class="nav-number">4.</span> <span class="nav-text">ES6 写法</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="xiaoyu"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">xiaoyu</p>
+  <div class="site-description" itemprop="description">又是元气满满的一天</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cxyxiaoyuyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cxyxiaoyuyu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://leetcode-cn.com/u/qian-yu-qian-xun-17/" title="LeetCode → https:&#x2F;&#x2F;leetcode-cn.com&#x2F;u&#x2F;qian-yu-qian-xun-17&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-database"></i>LeetCode</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xiaoyu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,0' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>
+
+<style>
+.text-popup {
+    animation: textPopup 1s;
+    color: red;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    user-select: none;
+    white-space: nowrap;
+    position: absolute;
+    z-index: 99;
+}
+@keyframes textPopup {
+    0%, 100% {
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-50px);    
+    }
+}
+</style>
+
+<script>
+var fnTextPopup = function (options) {
+    var index = 0;
+    document.documentElement.addEventListener('click', function (event) {
+        var x = event.pageX, y = event.pageY;
+        var eleText = document.createElement('span');
+        var img = document.createElement('img')
+        img.src="/images/cherry.png"
+        eleText.appendChild(img)
+        eleText.className = 'text-popup';
+        this.appendChild(eleText);
+
+        // 动画结束后删除自己
+        eleText.addEventListener('animationend', function () {
+            eleText.parentNode.removeChild(eleText);
+        });
+        // 位置
+        eleText.style.left = (x - eleText.clientWidth / 2) + 'px';
+        eleText.style.top = (y - eleText.clientHeight) + 'px';
+        // index递增
+        index++;
+    });    
+};
+
+fnTextPopup();
+</script>
+
+
+
+

@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://cxyxiaoyuyu.github.io').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="&#x3D;&#x3D;&amp;gt; String方法1  toString()方法 null 和 undefined 没有toString() APIobject 的 toString() 不能得到想要的结果console.log()  默认调用toString()方法">
+<meta name="keywords" content="js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS中的类型转换">
+<meta property="og:url" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2018&#x2F;11&#x2F;03&#x2F;JS%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2&#x2F;index.html">
+<meta property="og:site_name" content="小宇的博客">
+<meta property="og:description" content="&#x3D;&#x3D;&amp;gt; String方法1  toString()方法 null 和 undefined 没有toString() APIobject 的 toString() 不能得到想要的结果console.log()  默认调用toString()方法">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-09-03T15:22:10.962Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://cxyxiaoyuyu.github.io/2018/11/03/JS%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>JS中的类型转换 | 小宇的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband">
+      <a href="https://github.com/cxyxiaoyuyu" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub">
+      <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true">
+      <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+      <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+      <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg>
+      </a> 
+    </div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小宇的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">越努力,越幸运,做个ccode～</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://cxyxiaoyuyu.github.io/2018/11/03/JS%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="xiaoyu">
+      <meta itemprop="description" content="又是元气满满的一天">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小宇的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JS中的类型转换
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-11-03 20:00:17" itemprop="dateCreated datePublished" datetime="2018-11-03T20:00:17+08:00">2018-11-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-09-03 23:22:10" itemprop="dateModified" datetime="2020-09-03T23:22:10+08:00">2020-09-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">Javascript</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="gt-String"><a href="#gt-String" class="headerlink" title="==&gt; String"></a>==&gt; String</h2><h4 id="方法1-toString-方法"><a href="#方法1-toString-方法" class="headerlink" title="方法1  toString()方法"></a>方法1  <code>toString()</code>方法</h4><blockquote>
+<p><code>null</code> 和 <code>undefined</code> 没有<code>toString()</code> API<br><code>object</code> 的 <code>toString()</code> 不能得到想要的结果<br><code>console.log()</code>  默认调用<code>toString()</code>方法</p>
+</blockquote>
+<a id="more"></a>
+
+<pre><code>123.toString() // &apos;123&apos;
+true.toString() // &apos;true&apos;
+null.toString()  // Cannot read property &apos;toString&apos; of null
+undefined.toString()  //Cannot read property &apos;toString&apos; of undefined
+var a = {a:1}
+a.toString()  // &quot;[object Object]&quot;
+({a:1}).toString() // &quot;[object Object]&quot;</code></pre><h4 id="方法2-39-39-加空字符串"><a href="#方法2-39-39-加空字符串" class="headerlink" title="方法2  + &#39;&#39; 加空字符串"></a>方法2  <code>+ &#39;&#39;</code> 加空字符串</h4><pre><code>1 + &apos;1&apos; // &apos;11&apos;  ==&gt; &apos;+&apos; 会自动进行类型转换,优先变为字符串
+123 + &apos;&apos; // &apos;123&apos;
+true + &apos;&apos;  // &apos;true&apos;
+null + &apos;&apos; // &apos;null&apos;
+undefined + &apos;&apos; // &apos;undefined&apos;
+({a:1}) + &apos;&apos; // &quot;[object Object]&quot;
+&apos;&apos; + {a:1}  // &quot;[object Object]&quot;</code></pre><h4 id="方法3-全局函数String"><a href="#方法3-全局函数String" class="headerlink" title="方法3  全局函数String()"></a>方法3  全局函数<code>String()</code></h4><pre><code>String(1)  // &apos;1&apos;
+String(true) // &apos;true&apos;
+String(null)  // &apos;null&apos;
+String(undefined) // undefined
+String({a:1})  // &quot;[object Object]&quot;</code></pre><h2 id="gt-Boolean"><a href="#gt-Boolean" class="headerlink" title="==&gt; Boolean"></a>==&gt; Boolean</h2><h4 id="方法1-全局方法Boolean"><a href="#方法1-全局方法Boolean" class="headerlink" title="方法1  全局方法Boolean()"></a>方法1  全局方法<code>Boolean()</code></h4><pre><code>Boolean(1) // true
+Boolean(0) // false
+Boolean(NaN) // false
+Boolean(&apos;&apos;) // false
+Boolean(&apos; &apos;) // true
+Boolean(&apos;123&apos;) // true
+Boolean(null)  // false
+Boolean(undefined) //false
+Boolean({})  // true
+Boolean({a:1}) //true</code></pre><h4 id="方法2-双重取反-gt"><a href="#方法2-双重取反-gt" class="headerlink" title="方法2 双重取反 ==&gt; !!"></a>方法2 双重取反 ==&gt; <code>!!</code></h4><pre><code>!! 1  // true
+!! NaN // false
+!! 0 // false
+!! &apos;&apos; // false
+!! &apos; &apos; // true
+!! &apos;123&apos; // true
+!! null // false
+!! undefined //false
+!! {}  // true
+!! {a:1} // true</code></pre><h4 id="五个falsy值"><a href="#五个falsy值" class="headerlink" title="五个falsy值"></a>五个<strong>falsy</strong>值</h4><blockquote>
+<p> 0<br>NaN<br>null<br>undefined<br>‘’</p>
+</blockquote>
+<h2 id="gt-Number"><a href="#gt-Number" class="headerlink" title="==&gt; Number"></a>==&gt; Number</h2><h4 id="方法1-Number"><a href="#方法1-Number" class="headerlink" title="方法1  Number()"></a>方法1  <code>Number()</code></h4><pre><code>Number(&apos;1&apos;) // 1
+Number(&apos;1.123&apos;) // 1.123
+Number(&apos;1.abc&apos;) // NaN
+Number(&apos;&apos;)    // 0
+Number(true)  // 1
+Number(false) // 0
+Number(null) // 0
+Number(undefined) // NaN
+Number({a:1})  // NaN</code></pre><h4 id="方法2-parseInt"><a href="#方法2-parseInt" class="headerlink" title="方法2  parseInt()"></a>方法2  <code>parseInt()</code></h4><blockquote>
+<p><code>parseInt()</code> 主要是将字符串转为整数<br>它会从第一个字符开始，直到不是数字结束</p>
+</blockquote>
+<pre><code>parseInt(&apos;1&apos;) //1
+parseInt(&apos;1.23&apos;) // 1
+parseInt(&apos;  123&apos;) // 123
+parseInt(&apos;1234abc&apos;)  // 1234
+parseInt(&apos;abc&apos;) // NaN
+parseInt(&apos;a567bc&apos;) // NaN
+parseInt(true) // NaN
+parseInt(null) // NaN
+parseInt(undefined) // NaN
+parseInt({a:1}) // NaN
+parseInt([1,2,3]) // 1</code></pre><h4 id="方法3-parseFloat"><a href="#方法3-parseFloat" class="headerlink" title="方法3  parseFloat()"></a>方法3  <code>parseFloat()</code></h4><blockquote>
+<p>parseFloat() 主要是将字符串转为浮点数</p>
+</blockquote>
+<pre><code>parseFloat(&apos;3.14&apos;) // 3.14
+parseFloat(&apos;314e-2&apos;) // 3.14
+parseFloat(&apos;0.0314E+2&apos;) // 3.14
+// 其他与parseInt()结果相同</code></pre><h4 id="方法4-0"><a href="#方法4-0" class="headerlink" title="方法4  - 0"></a>方法4  <code>- 0</code></h4><pre><code>&apos;1&apos; - 0 // 1
+&apos;1.23&apos; - 0  // 1.23
+&apos;1.abc&apos; -0 // NaN
+&apos;&apos; - 0  // 0
+true -0 // 1
+false - 0  // 0
+null - 0 // 0
+undefined - 0 // NaN
+({a:1}) - 0</code></pre><h4 id="方法5-取正"><a href="#方法5-取正" class="headerlink" title="方法5  取正"></a>方法5  取正</h4><pre><code>+ &apos;1&apos; // 1
++ &apos;1.23&apos; // 1.23
++ &apos;1.abc&apos; // NaN
++ &apos;&apos; // 0
++ true // 1
++ false // 0
++ null // 0
++ undefined // NaN
++ {a:1} // NaN</code></pre><h2 id="JS中普通类型与对象的区别"><a href="#JS中普通类型与对象的区别" class="headerlink" title="JS中普通类型与对象的区别"></a>JS中普通类型与对象的区别</h2><h4 id="普通类型-Number-Bool-String-Symbol-Null-Undefined"><a href="#普通类型-Number-Bool-String-Symbol-Null-Undefined" class="headerlink" title="普通类型  Number Bool String Symbol Null Undefined"></a>普通类型  Number Bool String Symbol Null Undefined</h4><blockquote>
+<p>数据直接存在栈内存中</p>
+</blockquote>
+<pre><code>var a = 1
+var b = a
+a = 2
+b // 1</code></pre><p>将a中的数据直接赋值给b，所以改变a，不会影响b ==&gt; 深复制<br>所以普通类型之间的复制都是深复制</p>
+<h4 id="引用类型-Object"><a href="#引用类型-Object" class="headerlink" title="引用类型  Object"></a>引用类型  Object</h4><blockquote>
+<p>栈内存中保存的是对象在堆内存中的引用地址<br>通过这个引用地址可以快速查找到保存中堆内存中的对象</p>
+</blockquote>
+<pre><code>var a = {name:1}
+var b = a
+a.name = 2
+b // {name:2}</code></pre><p>将a赋值给b的时候，实际上是b也指向了与a地址相同的对象，<br>改变a会影响b == &gt; 浅复制</p>
+<pre><code>var a = {name:1}
+var b = a
+a = {name:2}
+b // {name:1}</code></pre><p><code>a = {name:2}</code> 时，a指向了另一个对象的地址,而b还指向原来地址的对象,所以给a重新赋值不会影响b</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/js/" rel="tag"># js</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/11/01/CSS-REM%E4%B8%8E%E5%8A%A8%E6%80%81REM/" rel="prev" title="CSS-REM与动态REM">
+      <i class="fa fa-chevron-left"></i> CSS-REM与动态REM
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/11/06/%E5%8E%9F%E5%9E%8B%E4%B8%8E%E5%8E%9F%E5%9E%8B%E9%93%BE/" rel="next" title="原型与原型链">
+      原型与原型链 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#gt-String"><span class="nav-number">1.</span> <span class="nav-text">==&gt; String</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方法1-toString-方法"><span class="nav-number">1.0.1.</span> <span class="nav-text">方法1  toString()方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法2-39-39-加空字符串"><span class="nav-number">1.0.2.</span> <span class="nav-text">方法2  + &#39;&#39; 加空字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法3-全局函数String"><span class="nav-number">1.0.3.</span> <span class="nav-text">方法3  全局函数String()</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gt-Boolean"><span class="nav-number">2.</span> <span class="nav-text">==&gt; Boolean</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方法1-全局方法Boolean"><span class="nav-number">2.0.1.</span> <span class="nav-text">方法1  全局方法Boolean()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法2-双重取反-gt"><span class="nav-number">2.0.2.</span> <span class="nav-text">方法2 双重取反 ==&gt; !!</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五个falsy值"><span class="nav-number">2.0.3.</span> <span class="nav-text">五个falsy值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gt-Number"><span class="nav-number">3.</span> <span class="nav-text">==&gt; Number</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方法1-Number"><span class="nav-number">3.0.1.</span> <span class="nav-text">方法1  Number()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法2-parseInt"><span class="nav-number">3.0.2.</span> <span class="nav-text">方法2  parseInt()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法3-parseFloat"><span class="nav-number">3.0.3.</span> <span class="nav-text">方法3  parseFloat()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法4-0"><span class="nav-number">3.0.4.</span> <span class="nav-text">方法4  - 0</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法5-取正"><span class="nav-number">3.0.5.</span> <span class="nav-text">方法5  取正</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS中普通类型与对象的区别"><span class="nav-number">4.</span> <span class="nav-text">JS中普通类型与对象的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#普通类型-Number-Bool-String-Symbol-Null-Undefined"><span class="nav-number">4.0.1.</span> <span class="nav-text">普通类型  Number Bool String Symbol Null Undefined</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#引用类型-Object"><span class="nav-number">4.0.2.</span> <span class="nav-text">引用类型  Object</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="xiaoyu"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">xiaoyu</p>
+  <div class="site-description" itemprop="description">又是元气满满的一天</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cxyxiaoyuyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cxyxiaoyuyu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://leetcode-cn.com/u/qian-yu-qian-xun-17/" title="LeetCode → https:&#x2F;&#x2F;leetcode-cn.com&#x2F;u&#x2F;qian-yu-qian-xun-17&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-database"></i>LeetCode</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xiaoyu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,0' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>
+
+<style>
+.text-popup {
+    animation: textPopup 1s;
+    color: red;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    user-select: none;
+    white-space: nowrap;
+    position: absolute;
+    z-index: 99;
+}
+@keyframes textPopup {
+    0%, 100% {
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-50px);    
+    }
+}
+</style>
+
+<script>
+var fnTextPopup = function (options) {
+    var index = 0;
+    document.documentElement.addEventListener('click', function (event) {
+        var x = event.pageX, y = event.pageY;
+        var eleText = document.createElement('span');
+        var img = document.createElement('img')
+        img.src="/images/cherry.png"
+        eleText.appendChild(img)
+        eleText.className = 'text-popup';
+        this.appendChild(eleText);
+
+        // 动画结束后删除自己
+        eleText.addEventListener('animationend', function () {
+            eleText.parentNode.removeChild(eleText);
+        });
+        // 位置
+        eleText.style.left = (x - eleText.clientWidth / 2) + 'px';
+        eleText.style.top = (y - eleText.clientHeight) + 'px';
+        // index递增
+        index++;
+    });    
+};
+
+fnTextPopup();
+</script>
+
+
+
+

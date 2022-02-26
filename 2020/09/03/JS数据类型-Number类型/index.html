@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://cxyxiaoyuyu.github.io').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="前言最近在做题目LeetCode表示数值的字符串这道题的时候对数值类型又有了新的认识 打算重新总结下">
+<meta name="keywords" content="js,number">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS数据类型-Number类型">
+<meta property="og:url" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2020&#x2F;09&#x2F;03&#x2F;JS%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-Number%E7%B1%BB%E5%9E%8B&#x2F;index.html">
+<meta property="og:site_name" content="小宇的博客">
+<meta property="og:description" content="前言最近在做题目LeetCode表示数值的字符串这道题的时候对数值类型又有了新的认识 打算重新总结下">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-09-07T14:41:36.073Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://cxyxiaoyuyu.github.io/2020/09/03/JS%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-Number%E7%B1%BB%E5%9E%8B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>JS数据类型-Number类型 | 小宇的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband">
+      <a href="https://github.com/cxyxiaoyuyu" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub">
+      <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true">
+      <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+      <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+      <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg>
+      </a> 
+    </div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小宇的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">越努力,越幸运,做个ccode～</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://cxyxiaoyuyu.github.io/2020/09/03/JS%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-Number%E7%B1%BB%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="xiaoyu">
+      <meta itemprop="description" content="又是元气满满的一天">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小宇的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JS数据类型-Number类型
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-09-03 22:35:47" itemprop="dateCreated datePublished" datetime="2020-09-03T22:35:47+08:00">2020-09-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-09-07 22:41:36" itemprop="dateModified" datetime="2020-09-07T22:41:36+08:00">2020-09-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">Javascript</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在做题目LeetCode<a href="https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/" target="_blank" rel="noopener">表示数值的字符串</a>这道题的时候<br>对数值类型又有了新的认识 打算重新总结下</p>
+<a id="more"></a>
+
+<h2 id="1-整数、浮点数"><a href="#1-整数、浮点数" class="headerlink" title="1. 整数、浮点数"></a>1. 整数、浮点数</h2><blockquote>
+<p>JavaScript 内部，所有数字都是以64位浮点数形式储存，即使整数也是如此。所以，1与1.0是相同的，是同一个数   <code>1 === 1.0</code>  // true</p>
+</blockquote>
+<h3 id="保留两位小数"><a href="#保留两位小数" class="headerlink" title="保留两位小数"></a>保留两位小数</h3><h4 id="1-四舍五入"><a href="#1-四舍五入" class="headerlink" title="1 四舍五入"></a>1 四舍五入</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> num = <span class="number">2.446242342</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">num = num.toFixed(<span class="number">2</span>)     <span class="comment">// 输出是字符串 需要用parseFloat或Number再转一下</span></span></pre></td></tr></table></figure>
+<h4 id="2-不四舍五入"><a href="#2-不四舍五入" class="headerlink" title="2 不四舍五入"></a>2 不四舍五入</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.floor(<span class="number">15.7784514000</span> * <span class="number">100</span>) / <span class="number">100</span>       <span class="comment">// 15.77</span></span></pre></td></tr></table></figure>
+
+
+<h2 id="2-数值的进制"><a href="#2-数值的进制" class="headerlink" title="2. 数值的进制"></a>2. 数值的进制</h2><ul>
+<li><p>十进制：没有前导0的数值</p>
+</li>
+<li><p>八进制：有前缀0o或0O的数值，或者有前导0、且只用到0-7的八个阿拉伯数字的数值</p>
+<pre><code>012  // 10
+0o12 // 10
+0O12 // 10
+078  // 78   超出范围 无效的八进制 解析为十进制</code></pre></li>
+<li><p>十六进制：有前缀0x或0X的数值</p>
+<pre><code>0xA   // 10
+0x12  // 18
+0XAB  //171</code></pre></li>
+<li><p>二进制：有前缀0b或0B的数值</p>
+<pre><code>0b111 // 7
+0B11  // 3</code></pre></li>
+</ul>
+<blockquote>
+<p>默认情况下，JavaScript 内部会自动将八进制、十六进制、二进制转为十进制</p>
+</blockquote>
+<h2 id="3-进制之间的转换"><a href="#3-进制之间的转换" class="headerlink" title="3. 进制之间的转换"></a>3. 进制之间的转换</h2><h3 id="1-Number-prototype-toString-radix"><a href="#1-Number-prototype-toString-radix" class="headerlink" title="1) Number.prototype.toString([radix])"></a>1) Number.prototype.toString([radix])</h3><blockquote>
+<p>toString() 方法返回指定 Number 对象的字符串表示形式。<br>radix 指定要用于数字到字符串的转换的基数(从2到36)。如果未指定 radix 参数，则默认值为 10。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">(<span class="number">12</span>).toString()   <span class="comment">// "12"   十进制转十进制</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">(<span class="number">012</span>).toString()  <span class="comment">// "10"     八进制转十进制</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">(<span class="number">10</span>).toString(<span class="number">2</span>)  <span class="comment">// "1010"   十进制转二进制</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">(<span class="number">0b1010</span>).toString(<span class="number">8</span>)  <span class="comment">// "12"  二进制转八进制</span></span></pre></td></tr></table></figure>
+<p>toString()以后是字符串格式 在通过格式转换 转为数值类型就好啦 怎么转换，后续有介绍哦</p>
+<h3 id="2-parseInt-string-radix"><a href="#2-parseInt-string-radix" class="headerlink" title="2) parseInt(string,[radix])"></a>2) parseInt(string,[radix])</h3><p>parseInt() 可以将任意进制的数转为10进制</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="number">111</span>,<span class="number">2</span>) <span class="comment">// 3</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="number">12</span>,<span class="number">8</span>)  <span class="comment">// 10</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="number">0xA</span>)   <span class="comment">// 10  </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="number">014</span>)   <span class="comment">// 12</span></span></pre></td></tr></table></figure>
+<p>关于parseInt()的详细解释在后面</p>
+<h2 id="4-Number-函数"><a href="#4-Number-函数" class="headerlink" title="4. Number() 函数"></a>4. Number() 函数</h2><p>在说NaN 之前先说下Number函数 </p>
+<blockquote>
+<p>Number() 函数是数值类型的构造函数 同时也可以将其他类型转为数值类型<br>如果无法转为数值 就返回NaN</p>
+</blockquote>
+<p>Number()函数的转换规则如下</p>
+<ul>
+<li><p>Boolean false =&gt; 0 true =&gt; 1</p>
+</li>
+<li><p>Number  直接返回</p>
+</li>
+<li><p>null =&gt; 0</p>
+</li>
+<li><p>undefined =&gt; NaN  </p>
+</li>
+<li><p>字符串<br>1 空字符串转为0<br>2 只包含数字(包含前导正负号) 将其转为十进制<br>3 如果包含有效的进制格式 将转为相同大小的十进制<br>4 如果包含有效的浮点格式 将其转为对应的浮点数值<br>5 如果不符合以上条件 返回NaN</p>
+</li>
+<li><p>对象 调用对用的valueOf()方法 然后按照前面的规则进行转换 如果转换的结果是NaN 则调用对象的toString()方法，然后再依照前面的规则进行转换</p>
+<pre><code>Number(false)      // 0 布尔值false对应0
+Number(123)        // 123 数值类型直接返回
+Number(null)       // 0
+Number(undefined)  // NaN
+Number(&apos;&apos;)         // 0
+Number(&apos;abc&apos;)      // NaN &apos;abc&apos; 不能被转为数字
+Number(&apos;123&apos;)      // 123  &apos;123&apos; 可以被转为数字
+Number(&apos;123a)      // NaN  &apos;123a&apos; 不是只包含数字不能被转换
+Number(&apos;0x12&apos;)     // 18    0x12是有效的进制格式 站位10进制
+Number(&apos;1.1&apos;)      // 1.1   有效的浮点格式 转为相应的浮点格式
+
+Number([])        // 0   因为[].toString() ==&gt; &apos;&apos;  Number(&apos;&apos;) ==&gt; 0 
+Number([2])       // 2   因为[2].toString() ==&gt; &apos;2&apos; Number(&apos;2&apos;) ==&gt; 2
+Number([1,2,3])   // NaN  [1,2,3].toString() ==&gt; &apos;1,2,3&apos; 不能转为数值
+
+Number({})        // NaN   ({}).toString() ==&gt; &quot;[object Object]&quot;  不能转为数值</code></pre></li>
+</ul>
+<p>所以对于leetCode 这道题我们可以利用Number()函数对于字符串的转换规则 如果结果是NaN 就不符合条件 否则就是可以转为数值的字符串</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> isNumber = <span class="function"><span class="keyword">function</span> (<span class="params">s</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  s = s.trim()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">if</span> (s == <span class="string">''</span>) <span class="keyword">return</span> <span class="literal">false</span>  <span class="comment">// 因为 Number('') === 0 所以需要做特殊判断</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">return</span> !<span class="built_in">isNaN</span>(<span class="built_in">Number</span>(s))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<h2 id="5-NaN"><a href="#5-NaN" class="headerlink" title="5. NaN"></a>5. NaN</h2><blockquote>
+<p>NaN 表示“非数字”（Not a Number） 是一个特殊的<strong>数值</strong> 数据类型依然属于Number</p>
+</blockquote>
+<ul>
+<li>主要出现在将字符串解析成数字出错的场合</li>
+<li>一些数学函数的运算结果会出现NaN   比如 0除以0也会得到NaN</li>
+<li>NaN不等于任何值，包括它本身</li>
+</ul>
+<p>针对NaN的特性 ES定义了isNaN()函数 该函数接受一个参数 可以为任何类型 isNaN()会尝试将这个参数转为数值 转换规则与Number()函数一致 所以isNaN方法可以用来判断一个值是否 “不是数值”</p>
+<pre><code>NaN === NaN  // false
+isNaN(NaN)   // true
+isNaN(123)   // false
+
+// isNaN()只对数值有效，如果传入其他值，会先转成数值类型
+isNaN(&apos;&apos;)             // false
+isNaN(&apos;hello&apos;)        // true
+//相当于
+isNaN(Number(&apos;hello&apos;)) //true
+
+isNaN(false)           // false  false会转为0
+isNaN({})              //true
+isNaN([1,2])           //true
+// 所以isNaN() 为true的时候，有可能是一个字符串，或对象或数组
+// 所以使用isNaN()时，需要先判断下数据类型
+// 但是当数组为空，或数组长度为1时返回false
+isNaN([]) //false
+isNaN([1]) //false</code></pre><p>由于isNaN()函数会对参数进行转换 那这题又可以直接写为</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> isNumber = <span class="function"><span class="keyword">function</span> (<span class="params">s</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  s = s.trim()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">if</span> (s == <span class="string">''</span>) <span class="keyword">return</span> <span class="literal">false</span>  <span class="comment">// 因为 Number('') === 0 所以需要做特殊判断</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">return</span> !<span class="built_in">isNaN</span>(s)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<h2 id="6-parseInt"><a href="#6-parseInt" class="headerlink" title="6. parseInt()"></a>6. parseInt()</h2><blockquote>
+<p>parseInt()解析一个字符串并返回指定基数的十进制整数， radix 是2-36之间的整数，表示被解析字符串的基数。 如果不能解析的话返回NaN</p>
+</blockquote>
+<h3 id="parseInt-参数"><a href="#parseInt-参数" class="headerlink" title="parseInt 参数"></a>parseInt 参数</h3><p>parseInt(string,[radix]) 接受两个参数 </p>
+<ul>
+<li>string 如果参数不是字符串类型 会通过toString()方法转为字符串</li>
+<li>radix  从2-36 表示字符串的基数 需要注意的是 <strong>10不是默认值</strong></li>
+</ul>
+<p>如果 radix 是 undefined、0或未指定的，JavaScript会假定以下情况：</p>
+<ul>
+<li>如果输入的 string以 “0x”或 “0x”（一个0，后面是小写或大写的X）开头，那么radix被假定为16，字符串的其余部分被当做十六进制数去解析。</li>
+<li>如果输入的 string以 “0”（0）开头， radix被假定为8（八进制）或10（十进制）。具体选择哪一个radix取决于实现。ECMAScript 5 澄清了应该使用 10 (十进制)，但不是所有的浏览器都支持。因此，在使用 parseInt 时，一定要指定一个 radix。</li>
+<li>如果输入的 string 以任何其他值开头， radix 是 10 (十进制)。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="number">110</span>,<span class="number">2</span>)  <span class="comment">// 6 二进制110 转为十进制是 6</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="number">123</span>,<span class="number">8</span>)  <span class="comment">// 83 八进制的123 转为十进制是83</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="number">89</span>,<span class="number">8</span>)   <span class="comment">// NaN 不是合法的八进制</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="string">'014'</span>)  <span class="comment">// 14  被当做十进制解析</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="number">014</span>)    <span class="comment">// 12  因为(014).toString() =&gt; 12</span></span></pre></td></tr></table></figure>
+
+<h3 id="一道有意思的面试题"><a href="#一道有意思的面试题" class="headerlink" title="一道有意思的面试题"></a>一道有意思的面试题</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">[<span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>].map(<span class="built_in">parseInt</span>)  <span class="comment">// [1,NaN,NaN]</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 相当于parseInt(1,0)  =&gt; 1 string不以任何其他值开头 radix为十进制 parseInt(1,10) =&gt; 1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// parseInt(2,1) =&gt; NaN  1进制不合法 所以返回NaN </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// parseInt(3,2) =&gt; NaN  3 是不合法的二进制 所以返回NaN</span></span></pre></td></tr></table></figure>
+
+<h3 id="parseInt-忽略后续字符"><a href="#parseInt-忽略后续字符" class="headerlink" title="parseInt 忽略后续字符"></a>parseInt 忽略后续字符</h3><blockquote>
+<p>如果 parseInt 遇到的字符不是指定 radix 参数中的数字，它将忽略该字符以及所有后续字符，并返回到该点为止已解析的整数值。 parseInt 将数字截断为整数值。 允许前导和尾随空格。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="string">'123a'</span>,<span class="number">2</span>) <span class="comment">// 1 因为符合二进制的只有1 </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="string">'1123110'</span>,<span class="number">2</span>)  <span class="comment">// 3  符合二进制的只有前面的11 找到2不符合 会忽略后面的字符 解析为十进制为3</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="string">'123abc'</span>)     <span class="comment">// 123 这通常用来在字符串中提取前面的数值</span></span></pre></td></tr></table></figure>
+
+
+<h2 id="7-parseFloat"><a href="#7-parseFloat" class="headerlink" title="7. parseFloat()"></a>7. parseFloat()</h2><blockquote>
+<p>parseFloat() 函数解析一个参数（必要时先转换为字符串）并返回一个浮点数。</p>
+</blockquote>
+<ul>
+<li>如果 parseFloat 在解析过程中遇到了正号（+）、负号（- U+002D HYPHEN-MINUS）、数字（0-9）、小数点（.）、或者科学记数法中的指数（e 或 E）以外的字符，则它会忽略该字符以及之后的所有字符，返回当前已经解析到的浮点数。</li>
+<li>第二个小数点的出现也会使解析停止（在这之前的字符都会被解析）。</li>
+<li>参数首位和末位的空白符会被忽略。</li>
+<li>如果参数字符串的第一个字符不能被解析成为数字,则 parseFloat 返回 NaN。</li>
+<li>parseFloat 也可以解析并返回 Infinity。</li>
+<li>parseFloat解析 BigInt 为 Numbers, 丢失精度。因为末位 n 字符被丢弃。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 以下的栗子全部返回3.14</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseFloat</span>(<span class="number">3.14</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseFloat</span>(<span class="string">'3.14'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseFloat</span>(<span class="string">'  3.14  '</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseFloat</span>(<span class="string">'314e-2'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseFloat</span>(<span class="string">'0.0314E+2'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseFloat</span>(<span class="string">'3.14some non-digit characters'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseFloat</span>(&#123; <span class="attr">toString</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="string">"3.14"</span> &#125; &#125;);</span></pre></td></tr></table></figure>
+
+
+<h2 id="8-其他类型转换为数值类型"><a href="#8-其他类型转换为数值类型" class="headerlink" title="8. 其他类型转换为数值类型"></a>8. 其他类型转换为数值类型</h2><p>有三个函数可以将非数值转为数值类型: Number() parseInt() parseFloat()<br>这三个函数对于同样的输入会返回不同的类型</p>
+<h3 id="方法1-Number"><a href="#方法1-Number" class="headerlink" title="方法1  Number()"></a>方法1  <code>Number()</code></h3><p>转换规则上面已说过</p>
+<pre><code>Number(&apos;1&apos;) // 1
+Number(&apos;1.123&apos;) // 1.123
+Number(&apos;1.abc&apos;) // NaN
+Number(&apos;&apos;)    // 0
+Number(true)  // 1
+Number(false) // 0
+Number(null) // 0
+Number(undefined) // NaN
+Number({a:1})  // NaN</code></pre><h3 id="方法2-parseInt"><a href="#方法2-parseInt" class="headerlink" title="方法2  parseInt()"></a>方法2  <code>parseInt()</code></h3><blockquote>
+<p><code>parseInt()</code> 主要是将字符串转为整数<br>它会从第一个字符开始，直到不是数字结束</p>
+</blockquote>
+<pre><code>parseInt(&apos;1&apos;) //1
+parseInt(&apos;1.23&apos;) // 1
+parseInt(&apos;  123&apos;) // 123
+parseInt(&apos;1234abc&apos;)  // 1234
+parseInt(&apos;abc&apos;) // NaN
+parseInt(&apos;a567bc&apos;) // NaN
+parseInt(true) // NaN
+parseInt(null) // NaN
+parseInt(undefined) // NaN
+parseInt({a:1}) // NaN
+parseInt([1,2,3]) // 1</code></pre><h3 id="方法3-parseFloat"><a href="#方法3-parseFloat" class="headerlink" title="方法3  parseFloat()"></a>方法3  <code>parseFloat()</code></h3><blockquote>
+<p>parseFloat() 主要是将字符串转为浮点数</p>
+</blockquote>
+<pre><code>parseFloat(&apos;3.14&apos;) // 3.14
+parseFloat(&apos;314e-2&apos;) // 3.14
+parseFloat(&apos;0.0314E+2&apos;) // 3.14
+// 其他与parseInt()结果相同</code></pre><h3 id="方法4-0"><a href="#方法4-0" class="headerlink" title="方法4  - 0"></a>方法4  <code>- 0</code></h3><pre><code>&apos;1&apos; - 0 // 1
+&apos;1.23&apos; - 0  // 1.23
+&apos;1.abc&apos; -0 // NaN
+&apos;&apos; - 0  // 0
+true -0 // 1
+false - 0  // 0
+null - 0 // 0
+undefined - 0 // NaN
+({a:1}) - 0</code></pre><h3 id="方法5-取正"><a href="#方法5-取正" class="headerlink" title="方法5  取正"></a>方法5  取正</h3><pre><code>+ &apos;1&apos; // 1
++ &apos;1.23&apos; // 1.23
++ &apos;1.abc&apos; // NaN
++ &apos;&apos; // 0
++ true // 1
++ false // 0
++ null // 0
++ undefined // NaN
++ {a:1} // NaN</code></pre><h2 id="9-补充一个比较运算符的坑"><a href="#9-补充一个比较运算符的坑" class="headerlink" title="9. 补充一个比较运算符的坑"></a>9. 补充一个比较运算符的坑</h2><h3 id="不同类型"><a href="#不同类型" class="headerlink" title="不同类型"></a>不同类型</h3><p>比较<strong>不同类型</strong>的数据也许会出现不可预料的结果。<br>如果将字符串与数字进行比较，那么在做比较时 JavaScript 会把字符串转换为数值。<br>空字符串将被转换为 0  非数值字符串将被转换为始终为 false 的 NaN。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="string">' '</span> &gt;= <span class="number">0</span> &amp;&amp; <span class="string">' '</span> &lt;= <span class="number">9</span>  <span class="comment">// true 因为空字符串会转为0 </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="string">'a'</span> &gt;= <span class="number">0</span> || <span class="string">'a'</span> &lt;= <span class="number">9</span>  <span class="comment">// false  'a' 转为数值 NaN</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="string">'123a'</span> &gt;= <span class="string">'123'</span>       <span class="comment">// false '123a'也会转为NaN</span></span></pre></td></tr></table></figure>
+
+<h3 id="相同类型都为字符串"><a href="#相同类型都为字符串" class="headerlink" title="相同类型都为字符串"></a>相同类型都为字符串</h3><p>字符串大小会按照字母排序</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="string">'2'</span> &gt; <span class="string">'12'</span>   <span class="comment">// true</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="string">'2020-6-8'</span> &gt; <span class="string">'2020-6-14'</span>  <span class="comment">// true 因为 '8' &gt; '14' </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 所以时间格式比较日期格式要yyyy-MM-dd去比较</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="string">'2020-06-08'</span> &gt; <span class="string">'2020-06-14'</span> <span class="comment">// false  '08' &lt; '14'</span></span></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/js/" rel="tag"># js</a>
+              <a href="/tags/number/" rel="tag"># number</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/30/JS%E5%9F%BA%E7%A1%80%E5%B7%A9%E5%9B%BA%E7%AF%87/" rel="prev" title="JS基础巩固篇">
+      <i class="fa fa-chevron-left"></i> JS基础巩固篇
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/09/13/%E6%89%8B%E5%86%99%E7%B3%BB%E5%88%97-%E6%89%8B%E5%86%99%E6%B7%B1%E6%8B%B7%E8%B4%9D/" rel="next" title="手写系列-手写深拷贝">
+      手写系列-手写深拷贝 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-整数、浮点数"><span class="nav-number">2.</span> <span class="nav-text">1. 整数、浮点数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#保留两位小数"><span class="nav-number">2.1.</span> <span class="nav-text">保留两位小数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-四舍五入"><span class="nav-number">2.1.1.</span> <span class="nav-text">1 四舍五入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-不四舍五入"><span class="nav-number">2.1.2.</span> <span class="nav-text">2 不四舍五入</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-数值的进制"><span class="nav-number">3.</span> <span class="nav-text">2. 数值的进制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-进制之间的转换"><span class="nav-number">4.</span> <span class="nav-text">3. 进制之间的转换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Number-prototype-toString-radix"><span class="nav-number">4.1.</span> <span class="nav-text">1) Number.prototype.toString([radix])</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-parseInt-string-radix"><span class="nav-number">4.2.</span> <span class="nav-text">2) parseInt(string,[radix])</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Number-函数"><span class="nav-number">5.</span> <span class="nav-text">4. Number() 函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-NaN"><span class="nav-number">6.</span> <span class="nav-text">5. NaN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-parseInt"><span class="nav-number">7.</span> <span class="nav-text">6. parseInt()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#parseInt-参数"><span class="nav-number">7.1.</span> <span class="nav-text">parseInt 参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一道有意思的面试题"><span class="nav-number">7.2.</span> <span class="nav-text">一道有意思的面试题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#parseInt-忽略后续字符"><span class="nav-number">7.3.</span> <span class="nav-text">parseInt 忽略后续字符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-parseFloat"><span class="nav-number">8.</span> <span class="nav-text">7. parseFloat()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-其他类型转换为数值类型"><span class="nav-number">9.</span> <span class="nav-text">8. 其他类型转换为数值类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法1-Number"><span class="nav-number">9.1.</span> <span class="nav-text">方法1  Number()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法2-parseInt"><span class="nav-number">9.2.</span> <span class="nav-text">方法2  parseInt()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法3-parseFloat"><span class="nav-number">9.3.</span> <span class="nav-text">方法3  parseFloat()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法4-0"><span class="nav-number">9.4.</span> <span class="nav-text">方法4  - 0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法5-取正"><span class="nav-number">9.5.</span> <span class="nav-text">方法5  取正</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-补充一个比较运算符的坑"><span class="nav-number">10.</span> <span class="nav-text">9. 补充一个比较运算符的坑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#不同类型"><span class="nav-number">10.1.</span> <span class="nav-text">不同类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相同类型都为字符串"><span class="nav-number">10.2.</span> <span class="nav-text">相同类型都为字符串</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="xiaoyu"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">xiaoyu</p>
+  <div class="site-description" itemprop="description">又是元气满满的一天</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cxyxiaoyuyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cxyxiaoyuyu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://leetcode-cn.com/u/qian-yu-qian-xun-17/" title="LeetCode → https:&#x2F;&#x2F;leetcode-cn.com&#x2F;u&#x2F;qian-yu-qian-xun-17&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-database"></i>LeetCode</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xiaoyu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,0' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>
+
+<style>
+.text-popup {
+    animation: textPopup 1s;
+    color: red;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    user-select: none;
+    white-space: nowrap;
+    position: absolute;
+    z-index: 99;
+}
+@keyframes textPopup {
+    0%, 100% {
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-50px);    
+    }
+}
+</style>
+
+<script>
+var fnTextPopup = function (options) {
+    var index = 0;
+    document.documentElement.addEventListener('click', function (event) {
+        var x = event.pageX, y = event.pageY;
+        var eleText = document.createElement('span');
+        var img = document.createElement('img')
+        img.src="/images/cherry.png"
+        eleText.appendChild(img)
+        eleText.className = 'text-popup';
+        this.appendChild(eleText);
+
+        // 动画结束后删除自己
+        eleText.addEventListener('animationend', function () {
+            eleText.parentNode.removeChild(eleText);
+        });
+        // 位置
+        eleText.style.left = (x - eleText.clientWidth / 2) + 'px';
+        eleText.style.top = (y - eleText.clientHeight) + 'px';
+        // index递增
+        index++;
+    });    
+};
+
+fnTextPopup();
+</script>
+
+
+
+

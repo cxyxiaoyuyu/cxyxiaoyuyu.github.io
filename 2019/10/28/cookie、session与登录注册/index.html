@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://cxyxiaoyuyu.github.io').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="本文代码基于Node.js,参考完整代码">
+<meta name="keywords" content="cookie,session">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cookie、session与登录注册(基于Node.js)">
+<meta property="og:url" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2019&#x2F;10&#x2F;28&#x2F;cookie%E3%80%81session%E4%B8%8E%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C&#x2F;index.html">
+<meta property="og:site_name" content="小宇的博客">
+<meta property="og:description" content="本文代码基于Node.js,参考完整代码">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-07-20T14:33:30.500Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://cxyxiaoyuyu.github.io/2019/10/28/cookie%E3%80%81session%E4%B8%8E%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>cookie、session与登录注册(基于Node.js) | 小宇的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband">
+      <a href="https://github.com/cxyxiaoyuyu" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub">
+      <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true">
+      <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+      <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+      <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg>
+      </a> 
+    </div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小宇的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">越努力,越幸运,做个ccode～</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://cxyxiaoyuyu.github.io/2019/10/28/cookie%E3%80%81session%E4%B8%8E%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="xiaoyu">
+      <meta itemprop="description" content="又是元气满满的一天">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小宇的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          cookie、session与登录注册(基于Node.js)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-10-28 14:56:36" itemprop="dateCreated datePublished" datetime="2019-10-28T14:56:36+08:00">2019-10-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-07-20 22:33:30" itemprop="dateModified" datetime="2020-07-20T22:33:30+08:00">2020-07-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index">
+                    <span itemprop="name">Web</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>本文代码基于Node.js,参考<a href="https://github.com/cxyxiaoyuyu/login_register" target="_blank" rel="noopener">完整代码</a></p>
+<a id="more"></a>
+<h3 id="登录与注册流程"><a href="#登录与注册流程" class="headerlink" title="登录与注册流程"></a>登录与注册流程</h3><h4 id="注册流程"><a href="#注册流程" class="headerlink" title="注册流程"></a>注册流程</h4><ul>
+<li>注册时传入用户名,密码,确认密码</li>
+<li>注册成功将用户名与密码存入数据库</li>
+<li>密码与确认密码不同，或已经注册的用户，返回400</li>
+</ul>
+<h4 id="注册具体实现"><a href="#注册具体实现" class="headerlink" title="注册具体实现"></a>注册具体实现</h4><p>客户端传递注册时需要的数据</p>
+<pre><code>let value = [&apos;username&apos;,&apos;password&apos;,&apos;password_confirm&apos;]
+  value.forEach(name=&gt;{
+      data[name] = $(`input[name=${name}]`).val()
+  })
+  $.post({
+      url: &apos;./sign_up&apos;,
+      type: &apos;post&apos;,
+      data
+  }).then( response =&gt; {
+      window.location.href = &apos;./sign_in&apos;
+  }).fail( error =&gt; {
+      alert(error.responseText)
+  })</code></pre><p>服务端获取数据readBodyData</p>
+<pre><code>// 因为数据是一个一个上传的
+function readBodyData(request){
+  return new Promise(function(resolve,reject){
+    let data = &apos;&apos;
+    request.on(&apos;data&apos;,chunk =&gt; {
+      data += chunk.toString()
+    })
+    request.on(&apos;end&apos;, ()=&gt;{
+      let params = data.split(&apos;&amp;&apos;)
+      let hash = {}
+      params.forEach(value =&gt; {
+        let temp = value.split(&apos;=&apos;)
+        hash[temp[0]] = temp[1]
+      })
+      resolve(hash)
+    })
+  })
+}</code></pre><p>读取数据库文件,判断用户是否已经注册</p>
+<pre><code>// else if(path === &apos;/sign_up&apos; &amp;&amp; method === &apos;POST&apos;)
+
+readBodyData(request).then(data =&gt; {   
+   let { username,password,password_confirm } = data
+
+  let users = JSON.parse(fs.readFileSync(&apos;./database.json&apos;,&apos;utf8&apos;) || &quot;[]&quot;)
+  let userExist = false
+  for(i=0;i&lt;users.length;i++){
+    if(users[i].username === username){
+      userExist = true
+    }
+  }
+
+  // 已经注册返回400,提示已经注册,注册成功将用户名密码写入数据库
+
+  if(userExist){
+      response.statusCode = 400
+      response.setHeader(&apos;Content-Type&apos;, &apos;application/json;charset=utf-8&apos;)
+      response.write(&apos;该用户已注册,请勿重复注册&apos;)
+    }else{
+      users.push({username,password})
+      fs.writeFileSync(&apos;./database.json&apos;,JSON.stringify(users))
+      response.statusCode = 200
+    }
+    response.end()
+})</code></pre><h4 id="登录流程"><a href="#登录流程" class="headerlink" title="登录流程"></a>登录流程</h4><ul>
+<li>登录时传入用户名密码</li>
+<li>如果与数据库匹配，则登录成功，跳转到主页面 </li>
+<li>如果用户不存在或密码错误，返回404</li>
+</ul>
+<h4 id="登录具体实现"><a href="#登录具体实现" class="headerlink" title="登录具体实现"></a>登录具体实现</h4><p>客户端传递数据与注册类似</p>
+<pre><code>let value = [&apos;username&apos;,&apos;password&apos;]
+value.forEach(name=&gt;{
+    data[name] = $(`input[name=${name}]`).val()
+})
+$.post({
+    url: &apos;./sign_in&apos;,
+    type: &apos;post&apos;,
+    data
+}).then( response =&gt; {
+    // 登录成功 前往主页
+    window.location.href = &apos;./&apos;
+}).fail( error =&gt; {
+    console.log(error,&apos;error&apos;)
+    alert(error.responseText)
+})</code></pre><p>匹配数据库,用户名密码是否匹配</p>
+<pre><code>readBodyData(request).then(data=&gt;{
+  let { username,password } = data
+
+  // 判断数据库是否有该用户
+  let users = JSON.parse(fs.readFileSync(&apos;./database.json&apos;,&apos;utf8&apos;) || &quot;[]&quot;)
+  console.log(users)
+  let userMatch = false
+  for(i=0;i&lt;users.length;i++){
+    if(users[i].username === username &amp;&amp; users[i].password === password){
+      userMatch = true
+    }
+  }
+  if(userMatch){
+    response.statusCode = 200
+  }else{
+    response.setHeader(&apos;Content-Type&apos;, &apos;application/json;charset=utf-8&apos;)
+    response.write(&apos;用户名或密码错误&apos;)
+  }
+  response.end()
+})</code></pre><p>以上已经实现的基本的登录与注册<br>但是我们也可以直接输入主页的url访问主页，并不要经过登录啊，有没有什么方法可以判断,用户访问主页，如果登录了就返回主页面，如果没有登录就跳转到登录页面呢？如果我们还想要在主页显示用户的用户名呢？</p>
+<p>由于Http是无状态协议,也就是说，服务器单从网络连接上无从知道客户身份。</p>
+<blockquote>
+<p>HTTP无状态协议，是指协议对于事务处理没有记忆能力。<br>缺少状态意味着如果后续处理需要前面的信息，则它必须重传，这样可能导致每次连接传送的数据量增大。<br>另一方面，在服务器不需要先前信息时它的应答就较快。</p>
+</blockquote>
+<p>如果每次请求的时候,都带上相关标志呢, 让我们来看看cookie是如何工作的吧</p>
+<h3 id="cookie判断是否登录"><a href="#cookie判断是否登录" class="headerlink" title="cookie判断是否登录"></a>cookie判断是否登录</h3><p>在登录成功的时候, 设置响应头, </p>
+<pre><code>response.setHeader(&apos;Set-Cookie&apos;,`username=${username}`)
+
+// 设置多个cookie
+response.setHeader(&apos;Set-Cookie&apos;,[`username=${username}`,&apos;a=123&apos;,&apos;b=456&apos;])</code></pre><p>这样,客户端在请求同一域名的情况下，都会带上这个cookie<br>比如在登录成功跳转到主页面的时候发送请求,就会带上刚才拿到的cookie</p>
+
+
+
+<p>我们也可以在控制台中看到cookie,并且可以随意修改cookie</p>
+
+
+<p>这时,我们就可以通过请求头的cookie判断用户是否登录</p>
+<pre><code>if(request.headers.cookie){
+  let cookies = request.headers.cookie.split(&apos;; &apos;)
+  let cookieObj = {}
+  cookies.forEach(value =&gt; {
+    let temp = value.split(&apos;=&apos;)
+    cookieObj[temp[0]] = temp[1]
+  })
+  let username = cookieObj.username
+
+  // 登录成功替换页面用户名
+  body = body.replace(&apos;__username__&apos;,username)
+}else(
+  response.writeHead(301, {&apos;Location&apos;: &apos;./sign_in&apos;})
+)</code></pre><p>好啦,通过cookie判断用户是否登录,并且通过cookie可以获取到用户相关信息,当然这个值也是服务器自己设置的</p>
+<p>但是刚才说过cookie是不安全的,它是可以手动修改的,如果我们主页显示的是用户的隐私信息呢,比如余额,薪资什么的,只要将cookie的username改为其他人的,不就想看谁的就看谁的了嘛,那不就太危险了,有什么解决办法呢?</p>
+<h3 id="session存储信息"><a href="#session存储信息" class="headerlink" title="session存储信息"></a>session存储信息</h3><p>如果我们在服务器设立一小块内存,存储用户的隐私信息,并给每个用户信息设置一个Id标志,每次登录成功,生成一个随机数Id传给客户端,用户每次通过cookie将这个随机数传到服务器,那这个内存就存储了所有的session, 这个随机数标志就是sessionId</p>
+<p>因为随机数范围很大,所以用户根本无法篡改<br>那么现在我们登录成功的需要做的事情是这样,假设<code>sessions</code>在内存中是这样的<code>sessions = {}</code></p>
+<pre><code>// 设置sessionId
+let sessionId = Math.random() * 100000
+response.setHeader(&apos;Set-Cookie&apos;,`sessionId=${sessionId}`)
+// 用session存储用户隐私数据
+sessions[sessionId] = { username,password }</code></pre><p>主页面从sessions中获取username</p>
+<pre><code>let username = sessions[cookieObj.sessionId].username</code></pre><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><blockquote>
+<p>一般来说，Session 基于 Cookie 来实现。</p>
+</blockquote>
+<h4 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h4><ul>
+<li>服务器通过 Set-Cookie 头给客户端一串字符串</li>
+<li>客户端每次访问相同域名的网页时，必须带上这段字符串</li>
+<li>客户端要在一段时间内保存这个Cookie</li>
+<li>Cookie 默认在用户关闭页面后就失效，后台代码可以任意设置 Cookie 的过期时间</li>
+<li>大小大概在 4kb 以内</li>
+</ul>
+<h4 id="session"><a href="#session" class="headerlink" title="session"></a>session</h4><ul>
+<li>将 SessionID（随机数）通过 Cookie 发给客户端</li>
+<li>客户端访问服务器时，服务器读取 SessionID</li>
+<li>服务器有一块内存（哈希表）保存了所有 session</li>
+<li>通过 SessionID 我们可以得到对应用户的隐私信息，如 id、email</li>
+<li>这块内存（哈希表）就是服务器上的所有 session</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/cookie/" rel="tag"># cookie</a>
+              <a href="/tags/session/" rel="tag"># session</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/10/24/npm%E5%AE%89%E8%A3%85%E3%80%81%E6%9B%B4%E6%96%B0%E4%B8%8E%E5%8D%B8%E8%BD%BD/" rel="prev" title="npm安装、更新与卸载">
+      <i class="fa fa-chevron-left"></i> npm安装、更新与卸载
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/10/30/JS%E6%A8%A1%E6%8B%9F%E7%BB%A7%E6%89%BF/" rel="next" title="JS模拟继承">
+      JS模拟继承 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#登录与注册流程"><span class="nav-number">1.</span> <span class="nav-text">登录与注册流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#注册流程"><span class="nav-number">1.1.</span> <span class="nav-text">注册流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注册具体实现"><span class="nav-number">1.2.</span> <span class="nav-text">注册具体实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#登录流程"><span class="nav-number">1.3.</span> <span class="nav-text">登录流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#登录具体实现"><span class="nav-number">1.4.</span> <span class="nav-text">登录具体实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cookie判断是否登录"><span class="nav-number">2.</span> <span class="nav-text">cookie判断是否登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#session存储信息"><span class="nav-number">3.</span> <span class="nav-text">session存储信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cookie"><span class="nav-number">4.1.</span> <span class="nav-text">cookie</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#session"><span class="nav-number">4.2.</span> <span class="nav-text">session</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="xiaoyu"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">xiaoyu</p>
+  <div class="site-description" itemprop="description">又是元气满满的一天</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cxyxiaoyuyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cxyxiaoyuyu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://leetcode-cn.com/u/qian-yu-qian-xun-17/" title="LeetCode → https:&#x2F;&#x2F;leetcode-cn.com&#x2F;u&#x2F;qian-yu-qian-xun-17&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-database"></i>LeetCode</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xiaoyu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,0' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>
+
+<style>
+.text-popup {
+    animation: textPopup 1s;
+    color: red;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    user-select: none;
+    white-space: nowrap;
+    position: absolute;
+    z-index: 99;
+}
+@keyframes textPopup {
+    0%, 100% {
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-50px);    
+    }
+}
+</style>
+
+<script>
+var fnTextPopup = function (options) {
+    var index = 0;
+    document.documentElement.addEventListener('click', function (event) {
+        var x = event.pageX, y = event.pageY;
+        var eleText = document.createElement('span');
+        var img = document.createElement('img')
+        img.src="/images/cherry.png"
+        eleText.appendChild(img)
+        eleText.className = 'text-popup';
+        this.appendChild(eleText);
+
+        // 动画结束后删除自己
+        eleText.addEventListener('animationend', function () {
+            eleText.parentNode.removeChild(eleText);
+        });
+        // 位置
+        eleText.style.left = (x - eleText.clientWidth / 2) + 'px';
+        eleText.style.top = (y - eleText.clientHeight) + 'px';
+        // index递增
+        index++;
+    });    
+};
+
+fnTextPopup();
+</script>
+
+
+
+

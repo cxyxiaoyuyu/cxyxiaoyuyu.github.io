@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://cxyxiaoyuyu.github.io').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="先简单说下跨域问题  协议相同 域名相同 端口相同">
+<meta name="keywords" content="jsonp javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="什么是JSONP">
+<meta property="og:url" content="http:&#x2F;&#x2F;cxyxiaoyuyu.github.io&#x2F;2019&#x2F;03&#x2F;19&#x2F;%E4%BB%80%E4%B9%88%E6%98%AFJSONP&#x2F;index.html">
+<meta property="og:site_name" content="小宇的博客">
+<meta property="og:description" content="先简单说下跨域问题  协议相同 域名相同 端口相同">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-07-20T14:38:00.313Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://cxyxiaoyuyu.github.io/2019/03/19/%E4%BB%80%E4%B9%88%E6%98%AFJSONP/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>什么是JSONP | 小宇的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband">
+      <a href="https://github.com/cxyxiaoyuyu" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub">
+      <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true">
+      <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+      <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+      <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg>
+      </a> 
+    </div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小宇的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">越努力,越幸运,做个ccode～</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://cxyxiaoyuyu.github.io/2019/03/19/%E4%BB%80%E4%B9%88%E6%98%AFJSONP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="xiaoyu">
+      <meta itemprop="description" content="又是元气满满的一天">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小宇的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          什么是JSONP
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-03-19 23:36:26" itemprop="dateCreated datePublished" datetime="2019-03-19T23:36:26+08:00">2019-03-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-07-20 22:38:00" itemprop="dateModified" datetime="2020-07-20T22:38:00+08:00">2020-07-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index">
+                    <span itemprop="name">Web</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="先简单说下跨域问题"><a href="#先简单说下跨域问题" class="headerlink" title="先简单说下跨域问题"></a>先简单说下跨域问题</h2><blockquote>
+<ol>
+<li>协议相同</li>
+<li>域名相同</li>
+<li>端口相同</li>
+</ol>
+</blockquote>
+<a id="more"></a>
+
+<p>满足以上三个就是同源</p>
+<h3 id="可以发请求的HTML标签"><a href="#可以发请求的HTML标签" class="headerlink" title="可以发请求的HTML标签"></a>可以发请求的HTML标签</h3><blockquote>
+<p>form表单<br>a标签<br>link标签<br>img标签<br>script标签</p>
+</blockquote>
+<h2 id="基本需求"><a href="#基本需求" class="headerlink" title="基本需求"></a>基本需求</h2><p>比如我有100元，我每次点击付钱的按钮就会支付一元，后台将这100元存于数据库(本文中存于txt)<br>假设页面有一个id为button的button按钮</p>
+<p>在最开始的前端</p>
+<h3 id="form表单发请求"><a href="#form表单发请求" class="headerlink" title="form表单发请求"></a>form表单发请求</h3><pre><code>我们都知道form表单可以发post或get请求到后台,但是会刷新页面，为了更好的用户体验我们怎么能每次变更数据都刷新页面呢，所以得想办法局部更新呀。</code></pre><h2 id="创建img标签发请求-get"><a href="#创建img标签发请求-get" class="headerlink" title="创建img标签发请求(get)"></a>创建img标签发请求(get)</h2><pre><code>    前端代码
+    button.addEventListener(&apos;click&apos;, (e)=&gt;{
+        let image = document.createElement(&apos;img&apos;)
+        image.src = &apos;/pay&apos;
+        image.onload = function(){ // 状态码是 200~299 则表示成功
+            remain.innerText = remain - 1
+        }
+        image.onerror = function(){ // 状态码大于等于 400 则表示失败
+            alert(&apos;失败&apos;)
+        }
+    })
+
+    后端代码
+
+
+
+
+
+这种方法虽然可以实现，但是每此都要请求一个图片，当你返回不是图片类型的时候，浏览器也不是那么傻，它就报错啦，我们每一次都返回一个图片，总感觉多次一举。emmmmmm....有没有什么更好的办法呢,试试创建script标签发请求吧。</code></pre><h2 id="创建script标签发请求"><a href="#创建script标签发请求" class="headerlink" title="创建script标签发请求"></a>创建script标签发请求</h2><pre><code> 前端代码
+ button.addEventListener(&apos;click&apos;, (e)=&gt;{
+     let script = document.createElement(&apos;script&apos;)
+     script.src = &apos;/pay&apos;
+     document.body.appendChild(script)
+     script.onload = function(e){ // 状态码是 200~299 则表示成功
+         e.currentTarget.remove() // 发一次请求就会多一个script标签，需要删除
+         remain.innerText = remain - 1
+     }
+     script.onerror = function(e){ // 状态码大于等于 400 则表示失败
+         e.currentTarget.remove()
+     }
+})
+
+ 后端代码</code></pre><h3 id="为什么不直接返回script脚本呢"><a href="#为什么不直接返回script脚本呢" class="headerlink" title="为什么不直接返回script脚本呢"></a>为什么不直接返回script脚本呢</h3><pre><code>既然后端返回给前端的是js,嵌入到页面时脚本就会执行，我何必多写一个onload函数，好像有点道理哎~
+那就后端来写局部刷新代码吧
+
+
+
+
+
+
+
+
+写完后，后端不开心了,作为后端，我只想做后端的事，这样前后端发生了耦合，如果后端程序员不熟悉前端，那不就写不下去了嘛，怎么办呢，解耦合呀。</code></pre><h3 id="解决前后端耦合-gt-Jsonp技术的由来"><a href="#解决前后端耦合-gt-Jsonp技术的由来" class="headerlink" title="解决前后端耦合 =&gt; Jsonp技术的由来"></a>解决前后端耦合 =&gt; Jsonp技术的由来</h3><pre><code>怎么解耦合呢，那前端想了，说我们封装一个函数吧，你们成功后就调用一下这个回调函数，把要返回的值放在回调函数的第一个参数里。这样的话，后端说好呀，那你们封装好函数，函数名传给我，我成功就调用一下。
+
+
+
+以上，这个技术就叫jsonp啦，总结一下
+
+
+请求方：frank.com 的前端程序员（浏览器）
+响应方：jack.com 的后端程序员（服务器）
+
+请求方创建 script，src 指向响应方，同时传一个查询参数 ?callbackName=yyy
+响应方根据查询参数callbackName，构造形如
+yyy.call(undefined, &apos;你要的数据&apos;)
+yyy(&apos;你要的数据&apos;)
+这样的响应
+浏览器接收到响应，就会执行 yyy.call(undefined, &apos;你要的数据&apos;)
+那么请求方就知道了他要的数据</code></pre><h3 id="约定"><a href="#约定" class="headerlink" title="约定"></a>约定</h3><pre><code>哎呦,还不错，就是我们能不能做些规定,前端传过来回调函数的key值能不能统一,如下:
+
+callbackName -&gt; callback
+yyy -&gt; 随机数 function12312312312321325() (为了不重复)</code></pre><h3 id="jquery封装的API"><a href="#jquery封装的API" class="headerlink" title="jquery封装的API"></a>jquery封装的API</h3><pre><code>$.ajax({
+    url: &quot;http://jack.com:8002/pay&quot;,
+    dataType: &quot;jsonp&quot;,
+    success: function( response ) {
+        if(response === &apos;success&apos;){
+        amount.innerText = amount.innerText - 1
+        }
+    }
+})</code></pre>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/jsonp-javascript/" rel="tag"># jsonp javascript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/03/12/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8/" rel="prev" title="linux 常用命令使用">
+      <i class="fa fa-chevron-left"></i> linux 常用命令使用
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/10/24/Promise%E8%A7%A3%E5%86%B3%E5%9B%9E%E8%B0%83%E5%9C%B0%E7%8B%B1%E9%97%AE%E9%A2%98/" rel="next" title="Promise解决回调地狱问题">
+      Promise解决回调地狱问题 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#先简单说下跨域问题"><span class="nav-number">1.</span> <span class="nav-text">先简单说下跨域问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#可以发请求的HTML标签"><span class="nav-number">1.1.</span> <span class="nav-text">可以发请求的HTML标签</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本需求"><span class="nav-number">2.</span> <span class="nav-text">基本需求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#form表单发请求"><span class="nav-number">2.1.</span> <span class="nav-text">form表单发请求</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建img标签发请求-get"><span class="nav-number">3.</span> <span class="nav-text">创建img标签发请求(get)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建script标签发请求"><span class="nav-number">4.</span> <span class="nav-text">创建script标签发请求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么不直接返回script脚本呢"><span class="nav-number">4.1.</span> <span class="nav-text">为什么不直接返回script脚本呢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决前后端耦合-gt-Jsonp技术的由来"><span class="nav-number">4.2.</span> <span class="nav-text">解决前后端耦合 =&gt; Jsonp技术的由来</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#约定"><span class="nav-number">4.3.</span> <span class="nav-text">约定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jquery封装的API"><span class="nav-number">4.4.</span> <span class="nav-text">jquery封装的API</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="xiaoyu"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">xiaoyu</p>
+  <div class="site-description" itemprop="description">又是元气满满的一天</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cxyxiaoyuyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cxyxiaoyuyu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://leetcode-cn.com/u/qian-yu-qian-xun-17/" title="LeetCode → https:&#x2F;&#x2F;leetcode-cn.com&#x2F;u&#x2F;qian-yu-qian-xun-17&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-database"></i>LeetCode</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xiaoyu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,0' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>
+
+<style>
+.text-popup {
+    animation: textPopup 1s;
+    color: red;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    user-select: none;
+    white-space: nowrap;
+    position: absolute;
+    z-index: 99;
+}
+@keyframes textPopup {
+    0%, 100% {
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-50px);    
+    }
+}
+</style>
+
+<script>
+var fnTextPopup = function (options) {
+    var index = 0;
+    document.documentElement.addEventListener('click', function (event) {
+        var x = event.pageX, y = event.pageY;
+        var eleText = document.createElement('span');
+        var img = document.createElement('img')
+        img.src="/images/cherry.png"
+        eleText.appendChild(img)
+        eleText.className = 'text-popup';
+        this.appendChild(eleText);
+
+        // 动画结束后删除自己
+        eleText.addEventListener('animationend', function () {
+            eleText.parentNode.removeChild(eleText);
+        });
+        // 位置
+        eleText.style.left = (x - eleText.clientWidth / 2) + 'px';
+        eleText.style.top = (y - eleText.clientHeight) + 'px';
+        // index递增
+        index++;
+    });    
+};
+
+fnTextPopup();
+</script>
+
+
+
+
