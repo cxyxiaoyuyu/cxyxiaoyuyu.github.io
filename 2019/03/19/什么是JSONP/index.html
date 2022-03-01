@@ -54,7 +54,7 @@
 <meta property="og:site_name" content="小宇的博客">
 <meta property="og:description" content="先简单说下跨域问题  协议相同 域名相同 端口相同">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-07-20T14:38:00.313Z">
+<meta property="og:updated_time" content="2022-03-01T06:56:29.149Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://cxyxiaoyuyu.github.io/2019/03/19/%E4%BB%80%E4%B9%88%E6%98%AFJSONP/">
@@ -216,7 +216,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-20 22:38:00" itemprop="dateModified" datetime="2020-07-20T22:38:00+08:00">2020-07-20</time>
+                <time title="Modified: 2022-03-01 14:56:29" itemprop="dateModified" datetime="2022-03-01T14:56:29+08:00">2022-03-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -251,12 +251,12 @@
 <a id="more"></a>
 
 <p>满足以上三个就是同源</p>
-<h3 id="可以发请求的HTML标签"><a href="#可以发请求的HTML标签" class="headerlink" title="可以发请求的HTML标签"></a>可以发请求的HTML标签</h3><blockquote>
-<p>form表单<br>a标签<br>link标签<br>img标签<br>script标签</p>
+<h3 id="可以发请求的-HTML-标签"><a href="#可以发请求的-HTML-标签" class="headerlink" title="可以发请求的 HTML 标签"></a>可以发请求的 HTML 标签</h3><blockquote>
+<p>form 表单<br>a 标签<br>link 标签<br>img 标签<br>script 标签</p>
 </blockquote>
-<h2 id="基本需求"><a href="#基本需求" class="headerlink" title="基本需求"></a>基本需求</h2><p>比如我有100元，我每次点击付钱的按钮就会支付一元，后台将这100元存于数据库(本文中存于txt)<br>假设页面有一个id为button的button按钮</p>
+<h2 id="基本需求"><a href="#基本需求" class="headerlink" title="基本需求"></a>基本需求</h2><p>比如我有 100 元，我每次点击付钱的按钮就会支付一元，后台将这 100 元存于数据库(本文中存于 txt)<br>假设页面有一个 id 为 button 的 button 按钮</p>
 <p>在最开始的前端</p>
-<h3 id="form表单发请求"><a href="#form表单发请求" class="headerlink" title="form表单发请求"></a>form表单发请求</h3><pre><code>我们都知道form表单可以发post或get请求到后台,但是会刷新页面，为了更好的用户体验我们怎么能每次变更数据都刷新页面呢，所以得想办法局部更新呀。</code></pre><h2 id="创建img标签发请求-get"><a href="#创建img标签发请求-get" class="headerlink" title="创建img标签发请求(get)"></a>创建img标签发请求(get)</h2><pre><code>    前端代码
+<h3 id="form-表单发请求"><a href="#form-表单发请求" class="headerlink" title="form 表单发请求"></a>form 表单发请求</h3><pre><code>我们都知道form表单可以发post或get请求到后台,但是会刷新页面，为了更好的用户体验我们怎么能每次变更数据都刷新页面呢，所以得想办法局部更新呀。</code></pre><h2 id="创建-img-标签发请求-get"><a href="#创建-img-标签发请求-get" class="headerlink" title="创建 img 标签发请求(get)"></a>创建 img 标签发请求(get)</h2><pre><code>    前端代码
     button.addEventListener(&apos;click&apos;, (e)=&gt;{
         let image = document.createElement(&apos;img&apos;)
         image.src = &apos;/pay&apos;
@@ -274,7 +274,7 @@
 
 
 
-这种方法虽然可以实现，但是每此都要请求一个图片，当你返回不是图片类型的时候，浏览器也不是那么傻，它就报错啦，我们每一次都返回一个图片，总感觉多次一举。emmmmmm....有没有什么更好的办法呢,试试创建script标签发请求吧。</code></pre><h2 id="创建script标签发请求"><a href="#创建script标签发请求" class="headerlink" title="创建script标签发请求"></a>创建script标签发请求</h2><pre><code> 前端代码
+这种方法虽然可以实现，但是每此都要请求一个图片，当你返回不是图片类型的时候，浏览器也不是那么傻，它就报错啦，我们每一次都返回一个图片，总感觉多次一举。emmmmmm....有没有什么更好的办法呢,试试创建script标签发请求吧。</code></pre><h2 id="创建-script-标签发请求"><a href="#创建-script-标签发请求" class="headerlink" title="创建 script 标签发请求"></a>创建 script 标签发请求</h2><pre><code> 前端代码
  button.addEventListener(&apos;click&apos;, (e)=&gt;{
      let script = document.createElement(&apos;script&apos;)
      script.src = &apos;/pay&apos;
@@ -288,7 +288,7 @@
      }
 })
 
- 后端代码</code></pre><h3 id="为什么不直接返回script脚本呢"><a href="#为什么不直接返回script脚本呢" class="headerlink" title="为什么不直接返回script脚本呢"></a>为什么不直接返回script脚本呢</h3><pre><code>既然后端返回给前端的是js,嵌入到页面时脚本就会执行，我何必多写一个onload函数，好像有点道理哎~
+ 后端代码</code></pre><h3 id="为什么不直接返回-script-脚本呢"><a href="#为什么不直接返回-script-脚本呢" class="headerlink" title="为什么不直接返回 script 脚本呢"></a>为什么不直接返回 script 脚本呢</h3><pre><code>既然后端返回给前端的是js,嵌入到页面时脚本就会执行，我何必多写一个onload函数，好像有点道理哎~
 那就后端来写局部刷新代码吧
 
 
@@ -298,7 +298,7 @@
 
 
 
-写完后，后端不开心了,作为后端，我只想做后端的事，这样前后端发生了耦合，如果后端程序员不熟悉前端，那不就写不下去了嘛，怎么办呢，解耦合呀。</code></pre><h3 id="解决前后端耦合-gt-Jsonp技术的由来"><a href="#解决前后端耦合-gt-Jsonp技术的由来" class="headerlink" title="解决前后端耦合 =&gt; Jsonp技术的由来"></a>解决前后端耦合 =&gt; Jsonp技术的由来</h3><pre><code>怎么解耦合呢，那前端想了，说我们封装一个函数吧，你们成功后就调用一下这个回调函数，把要返回的值放在回调函数的第一个参数里。这样的话，后端说好呀，那你们封装好函数，函数名传给我，我成功就调用一下。
+写完后，后端不开心了,作为后端，我只想做后端的事，这样前后端发生了耦合，如果后端程序员不熟悉前端，那不就写不下去了嘛，怎么办呢，解耦合呀。</code></pre><h3 id="解决前后端耦合-gt-Jsonp-技术的由来"><a href="#解决前后端耦合-gt-Jsonp-技术的由来" class="headerlink" title="解决前后端耦合 =&gt; Jsonp 技术的由来"></a>解决前后端耦合 =&gt; Jsonp 技术的由来</h3><pre><code>怎么解耦合呢，那前端想了，说我们封装一个函数吧，你们成功后就调用一下这个回调函数，把要返回的值放在回调函数的第一个参数里。这样的话，后端说好呀，那你们封装好函数，函数名传给我，我成功就调用一下。
 
 
 
@@ -317,7 +317,7 @@ yyy(&apos;你要的数据&apos;)
 那么请求方就知道了他要的数据</code></pre><h3 id="约定"><a href="#约定" class="headerlink" title="约定"></a>约定</h3><pre><code>哎呦,还不错，就是我们能不能做些规定,前端传过来回调函数的key值能不能统一,如下:
 
 callbackName -&gt; callback
-yyy -&gt; 随机数 function12312312312321325() (为了不重复)</code></pre><h3 id="jquery封装的API"><a href="#jquery封装的API" class="headerlink" title="jquery封装的API"></a>jquery封装的API</h3><pre><code>$.ajax({
+yyy -&gt; 随机数 function12312312312321325() (为了不重复)</code></pre><h3 id="jquery-封装的-API"><a href="#jquery-封装的-API" class="headerlink" title="jquery 封装的 API"></a>jquery 封装的 API</h3><pre><code>$.ajax({
     url: &quot;http://jack.com:8002/pay&quot;,
     dataType: &quot;jsonp&quot;,
     success: function( response ) {
@@ -409,7 +409,7 @@ yyy -&gt; 随机数 function12312312312321325() (为了不重复)</code></pre><h
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#先简单说下跨域问题"><span class="nav-number">1.</span> <span class="nav-text">先简单说下跨域问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#可以发请求的HTML标签"><span class="nav-number">1.1.</span> <span class="nav-text">可以发请求的HTML标签</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本需求"><span class="nav-number">2.</span> <span class="nav-text">基本需求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#form表单发请求"><span class="nav-number">2.1.</span> <span class="nav-text">form表单发请求</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建img标签发请求-get"><span class="nav-number">3.</span> <span class="nav-text">创建img标签发请求(get)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建script标签发请求"><span class="nav-number">4.</span> <span class="nav-text">创建script标签发请求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么不直接返回script脚本呢"><span class="nav-number">4.1.</span> <span class="nav-text">为什么不直接返回script脚本呢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决前后端耦合-gt-Jsonp技术的由来"><span class="nav-number">4.2.</span> <span class="nav-text">解决前后端耦合 =&gt; Jsonp技术的由来</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#约定"><span class="nav-number">4.3.</span> <span class="nav-text">约定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jquery封装的API"><span class="nav-number">4.4.</span> <span class="nav-text">jquery封装的API</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#先简单说下跨域问题"><span class="nav-number">1.</span> <span class="nav-text">先简单说下跨域问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#可以发请求的-HTML-标签"><span class="nav-number">1.1.</span> <span class="nav-text">可以发请求的 HTML 标签</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本需求"><span class="nav-number">2.</span> <span class="nav-text">基本需求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#form-表单发请求"><span class="nav-number">2.1.</span> <span class="nav-text">form 表单发请求</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建-img-标签发请求-get"><span class="nav-number">3.</span> <span class="nav-text">创建 img 标签发请求(get)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建-script-标签发请求"><span class="nav-number">4.</span> <span class="nav-text">创建 script 标签发请求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么不直接返回-script-脚本呢"><span class="nav-number">4.1.</span> <span class="nav-text">为什么不直接返回 script 脚本呢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决前后端耦合-gt-Jsonp-技术的由来"><span class="nav-number">4.2.</span> <span class="nav-text">解决前后端耦合 =&gt; Jsonp 技术的由来</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#约定"><span class="nav-number">4.3.</span> <span class="nav-text">约定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jquery-封装的-API"><span class="nav-number">4.4.</span> <span class="nav-text">jquery 封装的 API</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
